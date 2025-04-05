@@ -1,0 +1,75 @@
+/* Make sure the app fills the full screen */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #0052D4, #4364F7, #6FB1FC);
+}
+
+
+/* Full height container with centered content */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Login card styling */
+.login-box {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+  width: 350px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Logo and heading */
+.logo {
+  width: 80px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  color: #0052D4;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+/* Form fields */
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Remember me and forgot password layout */
+.options {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+/* Submit button */
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #0052D4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #003c91;
+}
