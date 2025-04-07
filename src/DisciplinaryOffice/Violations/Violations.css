@@ -1,0 +1,56 @@
+.violations-page {
+    background-color: #fff;
+  }
+  
+  .notif-count {
+    padding: 4px 14px;
+    border: 2px solid #00000020;
+    border-radius: 999px;
+  }
+  
+  .violations-filter-bar {
+    background-color: #0d1e61;
+    padding: 16px;
+    border-radius: 10px;
+    color: white;
+    flex-wrap: wrap;
+  }
+  
+  .search-box {
+    max-width: 250px;
+  }
+  
+  .filter-active {
+    background-color: white !important;
+    color: #0d1e61 !important;
+    border-radius: 20px;
+  }
+  
+  .badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 20px;
+  }
+  
+  .table-container {
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+  }
+  
+  .table-header {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  
+  .table th,
+  .table td {
+    font-size: 0.88rem;
+    vertical-align: middle;
+    padding: 0.75rem;
+  }
+  
+  .table tbody tr:not(:last-child) {
+    border-bottom: 1px solid #dee2e6;
+  }
+  

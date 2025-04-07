@@ -73,3 +73,31 @@ button {
 button:hover {
   background-color: #003c91;
 }
+
+.spinner-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 30px 0;
+}
+
+.spinner-grow {
+  width: 2rem;
+  height: 2rem;
+}
+
+.fullpage-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffffff; /* You can use a gradient or transparent if needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  z-index: 9999;
+}
+

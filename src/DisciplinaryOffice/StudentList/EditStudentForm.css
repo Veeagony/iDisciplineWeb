@@ -1,0 +1,29 @@
+.edit-student-drawer {
+    position: fixed;
+    top: 0;
+    right: -450px; /* hidden off screen */
+    width: 450px;
+    height: 100vh;
+    background-color: #fff;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
+    transition: right 0.3s ease-in-out;
+    z-index: 1050;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid #ddd;
+  }
+  
+  .edit-student-drawer.open {
+    right: 0; /* slide in */
+  }
+  
+  .drawer-header {
+    background-color: #004aad;
+    color: white;
+  }
+  
+  .drawer-body {
+    overflow-y: auto;
+    flex-grow: 1;
+  }
+  

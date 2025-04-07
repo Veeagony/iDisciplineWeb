@@ -1,0 +1,59 @@
+.student-title {
+    font-weight: 700;
+    color: #1f4ed8;
+  }
+  
+  .student-count {
+    margin-left: 10px;
+    background: #e0ecff;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+  
+  .year-dropdown {
+    padding: 6px 10px;
+    border-radius: 6px;
+  }
+  
+  .search-input {
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 6px 12px;
+    width: 200px;
+  }
+  
+  .icon {
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  .add-student-btn {
+    background-color: #2dd6a2;
+    border: none;
+    color: white;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+  
+  .student-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .student-table th,
+  .student-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .student-photo {
+    width: 32px;
+    height: 32px;
+    background-color: #ccc;
+    border-radius: 50%;
+  }
+  
