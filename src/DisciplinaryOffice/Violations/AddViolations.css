@@ -1,130 +1,87 @@
-/* Drawer Styles */
 .drawer {
     position: fixed;
     top: 0;
-    right: -100%;
-    width: 50%;
+    right: 0;
+    width: 60%;  /* Adjusted width to make it fit better on the screen */
+    max-width: 800px;  /* Maximum width */
     height: 100%;
-    background-color: #1d3b61;
-    padding: 30px;
-    box-shadow: -4px 0px 6px rgba(0, 0, 0, 0.2);
-    transition: right 0.3s ease-in-out;
-    z-index: 1000;
-    overflow-y: auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%);
+    animation: slideIn 0.3s forwards;
+    overflow-y: auto; /* Makes the drawer scrollable */
   }
   
-  .drawer.open {
-    right: 0;
+  @keyframes slideIn {
+    100% {
+      transform: translateX(0);
+    }
   }
   
   .drawer-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
   }
   
-  .drawer-header h4 {
-    color: white;
-    font-weight: 600;
-    font-size: 24px;
+  .drawer-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #0144F2;
   }
   
   .close-btn {
-    background: none;
+    font-size: 18px;
+    background: transparent;
     border: none;
-    color: white;
-    font-size: 30px;
+    color: #0144F2;
     cursor: pointer;
   }
   
-  .drawer-content {
-    color: white;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
+  .form {
+    margin-top: 20px;
   }
   
   label {
-    font-size: 14px;
-    font-weight: 600;
+    font-weight: bold;
     margin-bottom: 5px;
+    display: block;
+    font-size: 16px;
   }
   
-  input, textarea, select {
+  input, select, textarea {
     width: 100%;
-    padding: 12px;
-    margin-top: 8px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 5px 0 15px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
     font-size: 14px;
-    background-color: #f8f8f8;
-    color: #333;
   }
   
   textarea {
-    resize: vertical;
+    height: 120px;
   }
   
-  .date-time-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-  }
-  
-  .date-input {
+  .date-time input {
     width: 22%;
+    margin-right: 5%;
   }
   
-  .form-group button {
-    padding: 12px;
-    background-color: #32cd32;
-    border: none;
-    border-radius: 20px;
-    font-weight: bold;
-    font-size: 16px;
+  .add-btn {
+    background-color: #0144F2;
     color: white;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
     cursor: pointer;
-  }
-  
-  button[type="submit"] {
     width: 100%;
+    font-size: 16px;
   }
   
-  /* Styling for Select Dropdown */
-  select {
-    background-color: #f8f8f8;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    font-size: 14px;
+  .add-btn:hover {
+    background-color: #0039c7;
   }
-  
-  /* Layout Adjustments */
-  .date-time-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-  }
-  
-  .date-time-container input {
-    width: 23%;
-  }
-  
-  @media screen and (max-width: 768px) {
-    .drawer {
-      width: 70%;
-    }
-  
-    .date-time-container {
-      flex-direction: column;
-      gap: 20px;
-    }
-  
-    .date-input {
-      width: 100%;
-    }
-  }
-  
   

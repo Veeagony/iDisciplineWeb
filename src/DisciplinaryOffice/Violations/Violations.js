@@ -1,28 +1,32 @@
 import React, { useState } from "react";
-import AddViolations from "./AddViolations"; // Import AddViolations component
+import AddViolations from "./AddViolations"; 
 import "./Violations.css";
 
 const ViolationsPage = () => {
-  const [isDrawerOpen, setDrawerOpen] = useState(false); // State to control drawer visibility
-  const [searchTerm, setSearchTerm] = useState(""); // New state for search term
+  const [isDrawerOpen, setDrawerOpen] = useState(false); 
+  const [searchTerm, setSearchTerm] = useState(""); 
   const [filter, setFilter] = useState("All");
-
-  const violations = [
-    { status: "Unresolved", Date: "Jan 1", firstName: "John", lastName: "Doe", type: "Minor Offense", gradeLevel: "6" },
-    { status: "Resolved", Date: "Feb 2", firstName: "Jane", lastName: "Smith", type: "Major Offense", gradeLevel: "7" },
-    { status: "Unresolved", Date: "Mar 3", firstName: "Alice", lastName: "Johnson", type: "Minor Offense", gradeLevel: "6" },
-    { status: "Resolved", Date: "Apr 4", firstName: "Bob", lastName: "Brown", type: "Major Offense", gradeLevel: "7" },
-  ];
+  const [violations, setViolations] = useState([
+    { status: "Unresolved", caseNo: "0001", firstName: "John", lastName: "Doe", violationCategory: "Minor Offense", Date: "Jan 1" },
+    { status: "Resolved", caseNo: "0002", firstName: "Jane", lastName: "Smith", violationCategory: "Major Offense", Date: "Feb 2" },
+    { status: "Unresolved", caseNo: "0003", firstName: "Alice", lastName: "Johnson", violationCategory: "Minor Offense", Date: "Mar 3" },
+    { status: "Resolved", caseNo: "0004", firstName: "Bob", lastName: "Brown", violationCategory: "Major Offense", Date: "Apr 4" },
+  ]);
 
   const getBadgeClass = (status) =>
     status === "Resolved" ? "badge-resolved" : "badge-unresolved";
 
-  // Filter violations based on selected filter and search term
+ 
   const filteredViolations = violations.filter((v) =>
-    (filter === "All" || v.type === filter) &&
+    (filter === "All" || v.violationCategory === filter) &&
     (v.firstName.toLowerCase().includes(searchTerm.toLowerCase()) || 
      v.lastName.toLowerCase().includes(searchTerm.toLowerCase()))
   );
+
+  
+  const handleAddViolation = (newViolation) => {
+    setViolations([...violations, newViolation]);
+  };
 
   return (
     <div className="violations-page px-4 py-4">
@@ -66,7 +70,6 @@ const ViolationsPage = () => {
         >
           Major Offense
         </button>
-        
       </div>
 
       {/* Add Violation Button */}
@@ -82,11 +85,10 @@ const ViolationsPage = () => {
           <thead className="table-header">
             <tr>
               <th>Status</th>
+              <th>Case No.</th>
+              <th>Full Name</th>
+              <th>Violation Category</th>
               <th>Date</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Type</th>
-              <th>Grade Level</th>
             </tr>
           </thead>
           <tbody>
@@ -97,11 +99,10 @@ const ViolationsPage = () => {
                     {v.status}
                   </span>
                 </td>
+                <td>{v.caseNo}</td>
+                <td>{`${v.firstName} ${v.lastName}`}</td> {/* Merged First and Last Name */}
+                <td>{v.violationCategory}</td> {/* Violation Category */}
                 <td>{v.Date}</td>
-                <td>{v.firstName}</td>
-                <td>{v.lastName}</td>
-                <td>{v.type}</td>
-                <td>{v.gradeLevel}</td>
               </tr>
             ))}
           </tbody>
@@ -109,7 +110,7 @@ const ViolationsPage = () => {
       </div>
 
       {/* AddViolations Component (Drawer) */}
-      {isDrawerOpen && <AddViolations closeDrawer={() => setDrawerOpen(false)} />}
+      {isDrawerOpen && <AddViolations closeDrawer={() => setDrawerOpen(false)} addViolation={handleAddViolation} />}
     </div>
   );
 };

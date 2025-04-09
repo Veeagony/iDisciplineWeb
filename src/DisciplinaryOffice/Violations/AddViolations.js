@@ -1,92 +1,166 @@
 import React, { useState } from "react";
-import "./AddViolations.css";
+import "./AddViolations.css"; 
 
-const AddViolations = ({ closeDrawer }) => {
+const AddViolations = ({ closeDrawer, addViolation }) => {
+  const [caseNo, setCaseNo] = useState("");
+  const [month, setMonth] = useState("");
+  const [day, setDay] = useState("");
+  const [year, setYear] = useState("");
+  const [time, setTime] = useState("");
+  const [location, setLocation] = useState("");
+  const [violationCategory, setViolationCategory] = useState("Minor Offense");
+  const [violationType, setViolationType] = useState("");
+  const [firstName, setFirstName] = useState("");  // First Name
+  const [lastName, setLastName] = useState("");    // Last Name
+  const [partiesInvolved, setPartiesInvolved] = useState("");
+  const [victim, setVictim] = useState("");
+  const [offender, setOffender] = useState("");
+  const [witness, setWitness] = useState("");
+  const [description, setDescription] = useState("");
+  const [dateReported, setDateReported] = useState("");
+  const [status, setStatus] = useState("Unresolved");
+
+  const handleSubmit = () => {
+    // Validate if all fields are filled
+    if (
+      !caseNo || !month || !day || !year || !time || !location || !violationCategory ||
+      !violationType || !firstName || !lastName || !partiesInvolved || !victim || !offender || !witness ||
+      !description || !dateReported
+    ) {
+      alert("Please fill in all the fields!");
+      return;
+    }
+
+    const newViolation = {
+      status,
+      Date: `${month} ${day}, ${year}`,
+      firstName,
+      lastName,
+      type: violationType,
+      gradeLevel: "6",  
+    };
+
+    addViolation(newViolation);
+    closeDrawer(); 
+  };
+
   return (
-    <div className="add-violation-page">
-      {/* Drawer (Sliding Panel) */}
-      <div className="drawer open">
-        <div className="drawer-header">
-          <h4 className="text-white">Add Violation</h4>
-          <button className="close-btn" onClick={closeDrawer}>
-            &times;
-          </button>
+    <div className="drawer">
+      <div className="drawer-header">
+        <h2 className="drawer-title">Violation</h2>
+        <button className="close-btn" onClick={closeDrawer}>X</button>
+      </div>
+
+      <div className="form">
+        <label>CASE NO.</label>
+        <input
+          type="text"
+          placeholder="Enter Case No."
+          value={caseNo}
+          onChange={(e) => setCaseNo(e.target.value)}
+        />
+
+        <label>Status</label>
+        <select value={status} onChange={(e) => setStatus(e.target.value)}>
+          <option value="Unresolved">Unresolved</option>
+          <option value="Resolved">Resolved</option>
+        </select>
+
+        {/* First Name and Last Name fields */}
+        <label>First Name:</label>
+        <input
+          type="text"
+          placeholder="Enter First Name"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+
+        <label>Last Name:</label>
+        <input
+          type="text"
+          placeholder="Enter Last Name"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+        />
+
+        <label>Violence Category</label>
+        <select value={violationCategory} onChange={(e) => setViolationCategory(e.target.value)}>
+          <option value="Minor Offense">Minor Offense</option>
+          <option value="Major Offense">Major Offense</option>
+        </select>
+
+        <label>Violation Type:</label>
+        <input
+          type="text"
+          placeholder="Enter Type"
+          value={violationType}
+          onChange={(e) => setViolationType(e.target.value)}
+        />
+
+        <label>Date & Time of the incident:</label>
+        <div className="date-time">
+          <input type="text" placeholder="Month" value={month} onChange={(e) => setMonth(e.target.value)} />
+          <input type="text" placeholder="Day" value={day} onChange={(e) => setDay(e.target.value)} />
+          <input type="text" placeholder="Year" value={year} onChange={(e) => setYear(e.target.value)} />
+          <input type="text" placeholder="Time" value={time} onChange={(e) => setTime(e.target.value)} />
         </div>
-        
-        <div className="drawer-content">
-          <form>
-            {/* Case Number */}
-            <div className="form-group">
-              <label>Case No.</label>
-              <input type="text" className="form-control" placeholder="000000" />
-            </div>
 
-            {/* Date & Time */}
-            <div className="form-group date-time-container">
-              <div className="date-input">
-                <input type="number" className="form-control" placeholder="Month" />
-              </div>
-              <div className="date-input">
-                <input type="number" className="form-control" placeholder="Day" />
-              </div>
-              <div className="date-input">
-                <input type="number" className="form-control" placeholder="Year" />
-              </div>
-              <div className="date-input">
-                <input type="time" className="form-control" />
-              </div>
-            </div>
+        <label>Location:</label>
+        <input
+          type="text"
+          placeholder="Enter Location"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+        />
 
-            {/* Location */}
-            <div className="form-group">
-              <label>Location:</label>
-              <input type="text" className="form-control" />
-            </div>
+        <label>Parties Involved:</label>
+        <input
+          type="text"
+          placeholder="Victim, Offender, Witness"
+          value={partiesInvolved}
+          onChange={(e) => setPartiesInvolved(e.target.value)}
+        />
 
-            {/* Parties Involved */}
-            <div className="form-group">
-              <label>Parties Involved (Victim, Offender, Witness):</label>
-              <input type="text" className="form-control" />
-            </div>
+        <label>Victim:</label>
+        <input
+          type="text"
+          placeholder="Enter Victim Name"
+          value={victim}
+          onChange={(e) => setVictim(e.target.value)}
+        />
 
-            {/* Description */}
-            <div className="form-group">
-              <label>Description of the Incident:</label>
-              <textarea className="form-control" rows="4" placeholder="Factual Narrative"></textarea>
-            </div>
+        <label>Offender:</label>
+        <input
+          type="text"
+          placeholder="Enter Offender Name"
+          value={offender}
+          onChange={(e) => setOffender(e.target.value)}
+        />
 
-            {/* Date Reported */}
-            <div className="form-group">
-              <label>Date Reported:</label>
-              <input type="date" className="form-control" />
-            </div>
+        <label>Witness:</label>
+        <input
+          type="text"
+          placeholder="Enter Witness Name"
+          value={witness}
+          onChange={(e) => setWitness(e.target.value)}
+        />
 
-            {/* Status */}
-            <div className="form-group">
-              <label>Status:</label>
-              <select className="form-control">
-                <option>Unresolved</option>
-                <option>Resolved</option>
-              </select>
-            </div>
+        <label>Description of the Incident:</label>
+        <textarea
+          placeholder="Factual Narrative"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
 
-            {/* Scheduled Meeting */}
-            <div className="form-group">
-              <label>Scheduled Meeting:</label>
-              <input type="text" className="form-control" />
-            </div>
+        <label>Date Reported:</label>
+        <input
+          type="text"
+          placeholder="Enter Date"
+          value={dateReported}
+          onChange={(e) => setDateReported(e.target.value)}
+        />
 
-            {/* Meeting Type */}
-            <div className="form-group">
-              <label>Meeting Type:</label>
-              <input type="text" className="form-control" />
-            </div>
-
-            <div className="form-group">
-              <button type="submit" className="btn btn-success w-100">Add</button>
-            </div>
-          </form>
-        </div>
+        <button className="add-btn" onClick={handleSubmit}>Add</button>
       </div>
     </div>
   );
