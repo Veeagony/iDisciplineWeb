@@ -1,16 +1,20 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
-import Sidebar from "../DisciplinaryOffice/Components/Sidebar/Sidebar";
+import React, { useState } from "react";
+import { Outlet } from "react-router-dom"; // Used to render child routes
+import Sidebar from "../DisciplinaryOffice/Components/Sidebar/Sidebar"; // Assuming Sidebar is in this folder
 import "./MainLayout.css";
 
 function MainLayout() {
-  const [isOpen, setIsOpen] = React.useState(true);
-  const toggleSidebar = () => setIsOpen(!isOpen);
+  const [isOpen, setIsOpen] = useState(true); // Manage sidebar open state
+  const togglesidebar = () => setIsOpen(!isOpen); // Toggle sidebar visibility
 
   return (
     <div className="main-layout">
-      <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
+      {/* Sidebar */}
+      <Sidebar isOpen={isOpen} togglesidebar={togglesidebar} />
+      
+      {/* Main content area */}
       <div className="main-content">
+        {/* The Outlet component will render child routes here */}
         <Outlet />
       </div>
     </div>

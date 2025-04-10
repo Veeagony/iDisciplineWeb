@@ -1,6 +1,8 @@
 import React from "react";
-import "./StudentDetailsForm.css";
 import { IoMdClose } from "react-icons/io";
+import { FaPen } from "react-icons/fa"; // Add FaPen for the pencil icon
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import "./StudentDetailsForm.css";
 
 const StudentDetailsForm = ({ isOpen, onClose, student, onEdit }) => {
   if (!student) return null;
@@ -8,7 +10,7 @@ const StudentDetailsForm = ({ isOpen, onClose, student, onEdit }) => {
   return (
     <div className={`student-details-drawer ${isOpen ? "open" : ""}`}>
       {/* Header */}
-      <div className="details-header d-flex justify-content-between align-items-center px-4 py-3">
+      <div className="details-header">
         <h5 className="text-white fw-bold mb-0">Student Details</h5>
         <IoMdClose
           size={24}
@@ -19,7 +21,7 @@ const StudentDetailsForm = ({ isOpen, onClose, student, onEdit }) => {
       </div>
 
       {/* Body */}
-      <div className="details-body p-4">
+      <div className="details-body">
         {/* Profile Card */}
         <div className="profile-card shadow-sm mb-4">
           <div className="d-flex align-items-center p-3">
@@ -31,7 +33,10 @@ const StudentDetailsForm = ({ isOpen, onClose, student, onEdit }) => {
               <div className="text-muted small">School Year: 2024-2025</div>
             </div>
           </div>
-          <button className="edit-btn" onClick={() => onEdit?.(student)}>Edit</button>
+          {/* Edit Icon */}
+          <button className="edit-btn" onClick={() => onEdit?.(student)}>
+            <FaPen />
+          </button>
         </div>
 
         {/* Student Info + Emergency Contact */}
@@ -57,7 +62,10 @@ const StudentDetailsForm = ({ isOpen, onClose, student, onEdit }) => {
         <div className="d-flex gap-3">
           <div className="card flex-grow-1 p-3 shadow-sm">
             <h6 className="fw-bold">Student Report</h6>
-            <button className="btn btn-link p-0">Violation Record &gt;</button>
+            {/* Clickable Violation Record */}
+            <Link to={`/student-violation-record/${student.id}`} className="btn btn-link p-0">
+              Violation Record &gt;
+            </Link>
           </div>
           <div className="card flex-grow-1 p-3 shadow-sm">
             <h6 className="text-primary fw-bold">Behavior Report</h6>

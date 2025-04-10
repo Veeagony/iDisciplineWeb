@@ -7,10 +7,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 .sidebar.collapsed {
-  width: 80px;
+  width: 75px;
 }
 
 .toggle-btn {
@@ -18,16 +19,18 @@
   border: none;
   color: white;
   font-size: 20px;
-  margin-bottom: 30px;
+  position: absolute;
+  top: 15px; /* Adjust top position to avoid overlapping */
+  left: 3px;
   cursor: pointer;
-  align-self: flex-start;
-  margin-left: 20px;
+  z-index: 100; /* Ensure it's on top of other elements */
 }
 
 .user-section {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 60px; /* Adjust top margin to avoid overlap with toggle button */
   margin-bottom: 30px;
 }
 
@@ -72,12 +75,12 @@
   display: flex;
   align-items: center;
   gap: 15px;
-  padding: 12px 20px;
+  padding: 12px 30px;
   font-size: 15px;
   border-radius: 30px;
   transition: all 0.3s ease;
   cursor: pointer;
-  width: 100%;
+  width: 90%;
   justify-content: flex-start;
 }
 
@@ -110,4 +113,22 @@
 
 .menu-item.active svg {
   color: #007bff;
+}
+
+.sidebar .user-section,
+.sidebar .menu {
+  width: 100%;
+}
+
+.sidebar.collapsed .menu-item {
+  padding: 12px 0;
+  justify-content: center;
+}
+
+.sidebar.collapsed .menu-item svg {
+  font-size: 18px; /* Adjust icon size when collapsed */
+}
+
+.sidebar.collapsed .menu-item span {
+  display: none; /* Hide labels when sidebar is collapsed */
 }

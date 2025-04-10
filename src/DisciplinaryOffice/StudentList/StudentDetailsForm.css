@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   right: -100%;
-  width: 550px;
+  width: 680px; /* Adjust width to match the design */
   height: 100%;
   background: #fff;
   box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
@@ -19,11 +19,14 @@
   background-color: #1f4ed8;
   border-top-left-radius: 0.75rem;
   border-top-right-radius: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
 }
 
 .image-placeholder-lg {
-  width: 100px;
-  height: 100px;
+  width: 120px; /* Make the image placeholder larger */
+  height: 120px;
   background-color: #f0f0f0;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -34,21 +37,64 @@
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
 .edit-btn {
   position: absolute;
-  top: -15px;
-  right: 20px;
-  background-color: #ffc107;
-  color: #000;
-  font-weight: 600;
-  font-size: 14px;
-  padding: 6px 24px;
+  top: 10px; /* Adjusted for smaller space from the top */
+  right: 10px; /* Positioned at the right corner */
+  background-color: transparent; /* No background */
   border: none;
-  border-radius: 999px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  font-size: 18px; /* Adjusted to make the icon small */
+  color: #000;
   cursor: pointer;
   z-index: 10;
 }
 
+.edit-btn:hover {
+  color: #ffc107; /* Change color on hover */
+}
+
+
+.details-body {
+  padding: 24px;
+}
+
+.row.gx-5 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.col-6 {
+  flex: 1 0 48%;
+}
+
+h6.fw-bold.text-primary.mb-3 {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card h6 {
+  margin-bottom: 10px;
+}
+
+.card .btn-link {
+  padding: 0;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.card .btn-link:hover {
+  color: #007bff;
+}

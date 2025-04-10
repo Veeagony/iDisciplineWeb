@@ -5,7 +5,8 @@ import MainLayout from "./Layouts/MainLayout";
 import LoginScreen from "./DisciplinaryOffice/LoginScreen/Login";
 import Dashboard from "./DisciplinaryOffice/Dashboard/Dashboard";
 import StudentList from "./DisciplinaryOffice/StudentList/StudentList";
-import Violations from "./DisciplinaryOffice/Violations/Violations"
+import Violations from "./DisciplinaryOffice/Violations/Violations"; // Import the StudentDetailsForm
+import StudentViolationRecord from "./DisciplinaryOffice/StudentList/StudentViolationRecord";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/studentlist" element={<StudentList />} />
         <Route path="/violations" element={<Violations />} />
+        <Route path="/student-violation-record/:id" element={<StudentViolationRecord />} />
         </Route>
     </Routes>
   </Router>
