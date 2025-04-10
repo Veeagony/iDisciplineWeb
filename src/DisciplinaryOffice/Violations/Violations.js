@@ -80,34 +80,37 @@ const ViolationsPage = () => {
       </div>
 
       {/* Table */}
-      <div className="table-container table-responsive">
-        <table className="table align-middle text-center">
-          <thead className="table-header">
-            <tr>
-              <th>Status</th>
-              <th>Case No.</th>
-              <th>Full Name</th>
-              <th>Violation Category</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredViolations.map((v, i) => (
-              <tr key={i}>
-                <td>
-                  <span className={`badge ${getBadgeClass(v.status)} px-3 py-2`}>
-                    {v.status}
-                  </span>
-                </td>
-                <td>{v.caseNo}</td>
-                <td>{`${v.firstName} ${v.lastName}`}</td> {/* Merged First and Last Name */}
-                <td>{v.violationCategory}</td> {/* Violation Category */}
-                <td>{v.Date}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+<div className="table-container table-responsive">
+  <table className="table align-middle text-center">
+    <thead className="table-header">
+      <tr>
+        <th>Status</th>
+        <th>Case No.</th>
+        <th>Full Name</th>
+        <th>Violation Category</th>
+        <th>Date</th>
+        {/* Add more columns if needed */}
+      </tr>
+    </thead>
+    <tbody>
+      {filteredViolations.map((v, i) => (
+        <tr key={i}>
+          <td>
+            <span className={`badge ${getBadgeClass(v.status)} px-3 py-2`}>
+              {v.status}
+            </span>
+          </td>
+          <td>{v.caseNo}</td>
+          <td>{`${v.firstName} ${v.lastName}`}</td> {/* Full Name */}
+          <td>{v.violationCategory}</td>
+          <td>{v.Date}</td> {/* Date */}
+          {/* Add other fields as needed */}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
 
       {/* AddViolations Component (Drawer) */}
       {isDrawerOpen && <AddViolations closeDrawer={() => setDrawerOpen(false)} addViolation={handleAddViolation} />}

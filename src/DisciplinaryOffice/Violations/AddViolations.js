@@ -30,19 +30,29 @@ const AddViolations = ({ closeDrawer, addViolation }) => {
       alert("Please fill in all the fields!");
       return;
     }
-
+  
     const newViolation = {
       status,
-      Date: `${month} ${day}, ${year}`,
+      caseNo,  // Ensure caseNo is included in the newViolation
+      Date: `${month} ${day}, ${year}`, // Correct Date format
       firstName,
       lastName,
-      type: violationType,
-      gradeLevel: "6",  
+      violationCategory,
+      violationType,
+      time, // Include time if you need it
+      location,
+      partiesInvolved,  // This could be a comma-separated list if needed
+      victim,
+      offender,
+      witness,
+      description,
+      dateReported,
     };
-
-    addViolation(newViolation);
-    closeDrawer(); 
+  
+    addViolation(newViolation); // Pass all fields when adding the violation
+    closeDrawer();  // Close the drawer after submitting
   };
+  
 
   return (
     <div className="drawer">
