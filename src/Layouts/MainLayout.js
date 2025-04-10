@@ -5,12 +5,12 @@ import "./MainLayout.css";
 
 function MainLayout() {
   const [isOpen, setIsOpen] = useState(true); // Manage sidebar open state
-  const togglesidebar = () => setIsOpen(!isOpen); // Toggle sidebar visibility
+  const toggleSidebar = () => setIsOpen(!isOpen); // Toggle sidebar visibility
 
   return (
     <div className="main-layout">
       {/* Sidebar */}
-      <Sidebar isOpen={isOpen} togglesidebar={togglesidebar} />
+      <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />
       
       {/* Main content area */}
       <div className="main-content">
