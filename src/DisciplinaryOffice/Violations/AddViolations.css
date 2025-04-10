@@ -2,7 +2,7 @@
     position: fixed;
     top: 0;
     right: 0;
-    width: 60%;  /* Adjusted width to make it fit better on the screen */
+    width: 40%;  /* Adjusted width to make it fit better on the screen */
     max-width: 800px;  /* Maximum width */
     height: 100%;
     background-color: white;
@@ -36,7 +36,7 @@
     font-size: 18px;
     background: transparent;
     border: none;
-    color: #0144F2;
+    color: #dcdcdc;
     cursor: pointer;
   }
   
@@ -72,7 +72,7 @@
   .add-btn {
     background-color: #0144F2;
     color: white;
-    padding: 12px 18px;
+    padding: 8px 12px;
     border: none;
     border-radius: 6px;
     font-weight: bold;
