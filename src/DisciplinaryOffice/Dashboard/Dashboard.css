@@ -1,14 +1,3 @@
-/* Ensure full height layout */
-html, body, #root {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f8f9fa;
-}
-
-
 /* Main content */
 .main-content {
   padding: 30px;
@@ -27,39 +16,34 @@ html, body, #root {
   color: #6c757d;
 }
 
-/* Notification icons */
-.notification-icons {
-  font-size: 20px;
-  color: #0b3d91;
-  cursor: pointer;
-}
-
-.notification-icons > * {
-  margin-left: 15px;
-}
-
 /* Cards */
 .card {
   border: none;
   border-radius: 20px !important;
-  padding: 20px;
+  padding: 30px;
   text-align: center;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.card p {
-  font-size: 16px;
-  margin-bottom: 5px;
+.card-icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.card h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: 600;
 }
 
 .card h3 {
   font-size: 28px;
   font-weight: bold;
   margin: 0;
-}
-
-.card svg {
-  margin-bottom: 10px;
 }
 
 /* Color themes */
@@ -75,118 +59,41 @@ html, body, #root {
   background-color: #1e88e5 !important;
 }
 
-/* Responsive spacing */
-@media (max-width: 768px) {
-  .sidebar {
-    width: 100%;
-    min-height: auto;
-    display: flex;
-    flex-direction: row;
-    overflow-x: auto;
-  }
-
-  .sidebar .nav-link {
-    flex-direction: column;
-    font-size: 12px;
-    padding: 10px 8px;
-  }
-
-  .main-content {
-    padding: 20px;
-  }
-}
-
-/* Sidebar Layout */
-.sidebar {
-  width: 220px;
-  min-height: 100vh;
-  background-color: #007bff;
-  padding: 20px 15px;
-  transition: all 0.3s ease;
-  position: relative;
+/* Spacing between cards */
+.row {
   display: flex;
-  flex-direction: column;
-}
-
-.sidebar.collapsed {
-  width: 70px;
-}
-
-/* Toggle Button */
-.toggle-btn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 24px;
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  cursor: pointer;
-}
-
-/* User Info */
-.user-section {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-  margin-top: 60px;
-  margin-bottom: 30px;
-  transition: all 0.3s ease;
-}
-
-.user-avatar {
-  background-color: white;
-  color: #007bff;
-  border-radius: 50%;
-  font-size: 28px;
-  width: 50px;
-  height: 50px;
-  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
   justify-content: center;
-  align-items: center;
+  margin-top: 40px;
 }
 
-.user-info {
+.row .col-md-4 {
+  flex: 1 1 30%;
+  min-width: 250px;
+  max-width: 300px;
+}
+
+/* Card hover effect */
+.card:hover {
+  transform: translateY(-5px);
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover .card-icon {
   color: white;
-  display: flex;
-  flex-direction: column;
 }
 
-.user-info p {
-  margin: 0;
-  font-weight: 600;
-}
+/* Responsive layout */
+@media (max-width: 768px) {
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 
-.user-info small {
-  font-size: 12px;
-  color: #e0e0e0;
-}
-
-/* Collapse effect */
-.sidebar.collapsed .user-info,
-.sidebar.collapsed .menu span {
-  display: none;
-}
-
-.sidebar.collapsed .user-avatar {
-  margin: 0 auto;
-}
-
-/* Navigation Menu */
-.menu p {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: white;
-  padding: 10px 12px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background 0.2s ease;
-  white-space: nowrap;
-}
-
-.menu p:hover,
-.menu p.active {
-  background-color: rgba(255, 255, 255, 0.2);
+  .col-md-4 {
+    flex: 1 1 100%;
+    margin-bottom: 20px;
+  }
 }
