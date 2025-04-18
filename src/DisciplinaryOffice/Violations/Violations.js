@@ -4,9 +4,9 @@ import "./Violations.css";
 import { db } from "../../firebase/firebaseConfig"; // Make sure path is correct
 import { ref, onValue, push, set } from "firebase/database";
 
-const ViolationsPage = () => {
-  const [isDrawerOpen, setDrawerOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
+const Violations = () => {
+  const [isDrawerOpen, setDrawerOpen] = useState(false); 
+  const [searchTerm, setSearchTerm] = useState(""); 
   const [filter, setFilter] = useState("All");
   const [violations, setViolations] = useState([]);
 
@@ -22,7 +22,7 @@ const ViolationsPage = () => {
         }));
         setViolations(violationArray);
       } else {
-        setViolations([]);
+        setViolations([]); // In case no data is found
       }
     });
 
@@ -39,7 +39,7 @@ const ViolationsPage = () => {
       caseNo,
     });
 
-    setDrawerOpen(false);
+    setDrawerOpen(false); // Close drawer after adding
   };
 
   const getBadgeClass = (status) =>
@@ -53,11 +53,11 @@ const ViolationsPage = () => {
 
   return (
     <div className="violations-page px-4 py-4">
-  {/* Header */}
-  <div className="d-flex justify-content-between align-items-center mb-3">
-    <h4 className="studentsv">Students Violations</h4>
-    <span className="violations-count">{filteredViolations.length}</span>
-  </div>
+      {/* Header */}
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h4 className="studentsv">Students Violations</h4>
+        <span className="violations-count">{filteredViolations.length}</span>
+      </div>
 
       {/* Filter Bar */}
       <div className="violations-filter-bar d-flex align-items-center gap-3 mb-3">
@@ -74,26 +74,6 @@ const ViolationsPage = () => {
           />
         </div>
 
-    <button
-      className={`btn ${filter === "All" ? "btn-primary" : "btn-outline-primary"} fw-semibold`}
-      onClick={() => setFilter("All")}
-    >
-      All Violations
-    </button>
-
-    <button
-      className={`btn ${filter === "Minor Offense" ? "btn-primary" : "btn-outline-primary"} fw-semibold`}
-      onClick={() => setFilter("Minor Offense")}
-    >
-      Minor Offense
-    </button>
-    <button
-      className={`btn ${filter === "Major Offense" ? "btn-primary" : "btn-outline-primary"} fw-semibold`}
-      onClick={() => setFilter("Major Offense")}
-    >
-      Major Offense
-    </button>
-  </div>
         {["All", "Minor Offense", "Major Offense"].map((type) => (
           <button
             key={type}
@@ -105,18 +85,9 @@ const ViolationsPage = () => {
         ))}
       </div>
 
-  {/* Add Violation Button */}
-  <div className="mb-3">
-    <button className="btn btn-primary rounded-pill px-4 py-2 fw-medium" onClick={() => setDrawerOpen(true)}>
-      Add Violation
-    </button>
-  </div>
       {/* Add Violation Button */}
       <div className="mb-3">
-        <button
-          className="btn btn-primary rounded-pill px-4 py-2 fw-medium"
-          onClick={() => setDrawerOpen(true)}
-        >
+        <button className="btn btn-primary rounded-pill px-4 py-2 fw-medium" onClick={() => setDrawerOpen(true)}>
           Add Violation
         </button>
       </div>
@@ -151,7 +122,7 @@ const ViolationsPage = () => {
         </table>
       </div>
 
-      {/* AddViolation Drawer */}
+      {/* AddViolations Component (Drawer) */}
       {isDrawerOpen && (
         <AddViolations
           closeDrawer={() => setDrawerOpen(false)}
@@ -162,4 +133,4 @@ const ViolationsPage = () => {
   );
 };
 
-export default ViolationsPage;
+export default Violations;
