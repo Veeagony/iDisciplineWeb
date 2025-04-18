@@ -1,0 +1,130 @@
+.appointments-container {
+    margin: 20px;
+    background-color: #f4f6fa;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header h3 {
+    margin: 0;
+    font-size: 24px;
+    color: #007bff;
+    font-weight: 300;
+  }
+  
+  .filters {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .filters input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .filters select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .filters button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .filters button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Calendar styles */
+  .calendar-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .react-calendar {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+  }
+  
+  .react-calendar__tile {
+    border-radius: 8px;
+  }
+  
+  .react-calendar__tile--now {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .react-calendar__tile--active {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .react-calendar__tile:hover {
+    background-color: #f1f5f9;
+    cursor: pointer;
+  }
+  
+  .react-calendar__tile--neighboringMonth {
+    color: #aaa;
+  }
+  
+  /* Styling the appointments table */
+  .appointments-table {
+    margin-top: 30px;
+  }
+  
+  .appointments-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .appointments-table th,
+  .appointments-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+    font-size: 14px;
+  }
+  
+  .appointments-table th {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .appointments-table td {
+    background-color: #ffffff;
+  }
+  
+  .appointments-table tr:hover {
+    background-color: #f1f5f9;
+    cursor: pointer;
+  }
+  
+  .appointments-table th,
+  .appointments-table td {
+    border-radius: 5px;
+  }
+  

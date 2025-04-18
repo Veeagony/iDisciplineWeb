@@ -1,26 +1,53 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaBell, FaCommentDots } from "react-icons/fa";
 import AddStudentForm from "./AddStudentForm";
 import StudentDetailsDrawer from "./StudentDetailsForm";
-import EditStudentForm from "./EditStudentForm"; // ✅ Import the edit form
+import EditStudentForm from "./EditStudentForm";
 import "./StudentList.css";
+
+// 🔥 Firebase imports
+import { db } from "../../firebase/firebaseConfig"; // Adjust if needed
+import { ref, set, push, onValue, update } from "firebase/database";
 
 const StudentList = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [students, setStudents] = useState([]);
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [showDetails, setShowDetails] = useState(false);
-  const [showEditDrawer, setShowEditDrawer] = useState(false); // ✅ New
+  const [showEditDrawer, setShowEditDrawer] = useState(false);
+
+  // 🔁 Load students from Firebase on mount
+  useEffect(() => {
+    const studentsRef = ref(db, "students");
+    onValue(studentsRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        const studentList = Object.entries(data).map(([id, student]) => ({
+          id,
+          ...student,
+        }));
+        setStudents(studentList);
+      } else {
+        setStudents([]);
+      }
+    });
+  }, []);
 
   const toggleDrawer = () => setDrawerOpen(!isDrawerOpen);
 
   const handleAddStudent = (studentData) => {
-    const newStudent = {
+    const nextIdNumber = students.length + 1;
+    const paddedId = String(nextIdNumber).padStart(4, "0");
+  
+    const newStudentRef = push(ref(db, "students"));
+    set(newStudentRef, {
       ...studentData,
-      id: String(students.length + 1).padStart(5, "0"),
-    };
-    setStudents((prev) => [...prev, newStudent]);
+      studentId: paddedId, // 👈 This is the formatted ID
+    });
+  
+    setDrawerOpen(false);
   };
+  
 
   const handleRowClick = (student) => {
     setSelectedStudent(student);
@@ -34,12 +61,11 @@ const StudentList = () => {
   };
 
   const handleSaveEditedStudent = (updatedStudent) => {
-    // Replace the student in the list
-    setStudents((prev) =>
-      prev.map((s) => (s.id === selectedStudent.id ? { ...s, ...updatedStudent } : s))
-    );
+    if (!selectedStudent?.id) return;
+    const studentRef = ref(db, `students/${selectedStudent.id}`);
+    update(studentRef, updatedStudent); // Update in Firebase
     setShowEditDrawer(false);
-    setShowDetails(false); // Optional: close details after save
+    setShowDetails(false);
   };
 
   return (
@@ -101,6 +127,35 @@ const StudentList = () => {
         </tbody>
       </table>
     </div>
+        <table className="student-table mt-4">
+          <thead>
+            <tr>
+              <th>Photo</th>
+              <th>Student ID</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>No of Violations</th>
+              <th>No of IR Submitted</th>
+            </tr>
+          </thead>
+          <tbody>
+            {students.map((student) => (
+              <tr
+                key={student.id}
+                onClick={() => handleRowClick(student)}
+                style={{ cursor: "pointer" }}
+              >
+                <td><div className="student-photo" /></td>
+                <td>{student.studentId || "0001"}</td>
+                <td>{student.firstName}</td>
+                <td>{student.lastName}</td>
+                <td>{student.violations || 0}</td>
+                <td>{student.irSubmitted || 0}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
     {/* Add Student Drawer */}
     <AddStudentForm
@@ -108,6 +163,11 @@ const StudentList = () => {
       onClose={toggleDrawer}
       onSubmit={handleAddStudent}
     />
+      <AddStudentForm
+        isOpen={isDrawerOpen}
+        onClose={toggleDrawer}
+        onSubmit={handleAddStudent}
+      />
 
     {/* Student Details Drawer */}
     <StudentDetailsDrawer
@@ -116,6 +176,12 @@ const StudentList = () => {
       student={selectedStudent}
       onEdit={handleEditStudent}
     />
+      <StudentDetailsDrawer
+        isOpen={showDetails}
+        onClose={() => setShowDetails(false)}
+        student={selectedStudent}
+        onEdit={handleEditStudent}
+      />
 
     {/* Edit Student Drawer */}
     <EditStudentForm
@@ -126,6 +192,13 @@ const StudentList = () => {
     />
   </div>
 
+      <EditStudentForm
+        isOpen={showEditDrawer}
+        onClose={() => setShowEditDrawer(false)}
+        student={selectedStudent}
+        onSave={handleSaveEditedStudent}
+      />
+    </div>
   );
 };
 

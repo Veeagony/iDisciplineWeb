@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase/firebaseConfig"; // Adjust the import path as necessary
@@ -11,8 +11,18 @@ function Login() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [loginError, setLoginError] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
 
   const navigate = useNavigate();
+
+  // Check if there's a saved email in localStorage when the component mounts
+  useEffect(() => {
+    const savedEmail = localStorage.getItem("email");
+    if (savedEmail) {
+      setEmail(savedEmail);
+      setRememberMe(true);
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,6 +31,14 @@ function Login() {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
+
+      // If Remember Me is checked, store the email in localStorage
+      if (rememberMe) {
+        localStorage.setItem("email", email);
+      } else {
+        localStorage.removeItem("email"); // Remove it if Remember Me is unchecked
+      }
+
       navigate("/dashboard");
     } catch (error) {
       setLoginError(error.message);
@@ -34,7 +52,6 @@ function Login() {
       {loading ? (
         <div className="fullpage-loader">
           <div className="spinner-grow text-primary" role="status"></div>
-          {/* Your other spinners */}
         </div>
       ) : (
         <div className="login-container">
@@ -65,9 +82,13 @@ function Login() {
                 required
               />
               <div className="options">
-                <label className="remember-label">
-                  <input type="checkbox" /> 
-                  <span>Remember Me</span>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
+                  />{" "}
+                  Remember Me
                 </label>
 
                 <a href="#" className="forgotpw">Forgot your password?</a>
