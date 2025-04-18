@@ -4,7 +4,7 @@ html, body, #root {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background: linear-gradient(to right, #0052D4, #4364F7, #6FB1FC);
+  background: linear-gradient(to right, #0E47A1, #1564C0);
 }
 
 
@@ -32,6 +32,7 @@ html, body, #root {
 /* Logo and heading */
 .logo {
   width: 80px;
+  height: 100px;
   margin-bottom: 10px;
 }
 
@@ -51,21 +52,44 @@ input {
 }
 
 /* Remember me and forgot password layout */
+
 .options {
   display: flex;
   justify-content: space-between;
   font-size: 12px;
   margin-bottom: 10px;
+  align-items: center;
 }
+
+.remember-label {
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+  color: #777; /* light gray */
+  gap: 5px;
+  margin: 0;
+  white-space: nowrap;
+}
+
+
+.remember-label input {
+  margin-top: 13px;
+}
+
+.forgotpw {
+  color: #283F7D;
+}
+
+
 
 /* Submit button */
 button {
   width: 100%;
   padding: 10px;
-  background-color: #0052D4;
+  background-color: #283F7D;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   font-size: 16px;
   cursor: pointer;
 }

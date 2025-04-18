@@ -3,6 +3,8 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase/firebaseConfig"; // Adjust the import path as necessary
 import "./Login.css";
+import iDisciplineLogo from '../../assets/iDisciplineLogo.png';
+
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -37,8 +39,7 @@ function Login() {
       ) : (
         <div className="login-container">
           <div className="login-box">
-            <img src="logo.png" alt="iDiscipline Logo" className="logo" />
-            <h2>iDiscipline</h2>
+            <img src={iDisciplineLogo.png} className="logo" />
 
             {loginError && (
               <div className="alert alert-danger text-center w-100 mt-2" role="alert">
@@ -64,10 +65,12 @@ function Login() {
                 required
               />
               <div className="options">
-                <label>
-                  <input type="checkbox" /> Remember Me
+                <label className="remember-label">
+                  <input type="checkbox" /> 
+                  <span>Remember Me</span>
                 </label>
-                <a href="#">Forgot your password?</a>
+
+                <a href="#" className="forgotpw">Forgot your password?</a>
               </div>
               <button type="submit">Sign In</button>
             </form>

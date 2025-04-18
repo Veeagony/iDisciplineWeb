@@ -9,7 +9,7 @@ function Dashboard() {
       <div className="main-content flex-grow-1 p-4">
         <div className="dashboard-header d-flex justify-content-between align-items-center">
           <div>
-            <h2>Dashboard</h2>
+            <label>Dashboard</label>
             <p>for the last 30 days</p>
           </div>
         </div>

@@ -32,7 +32,7 @@ const ViolationsPage = () => {
     <div className="violations-page px-4 py-4">
       {/* Header */}
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <h4 className="fw-bold text-dark m-0">Students Violations</h4>
+        <h4 className="studentsv">Students Violations</h4>
         <span className="notif-count fw-semibold">{filteredViolations.length}</span>
       </div>
 

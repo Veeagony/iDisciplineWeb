@@ -6,9 +6,10 @@
 }
 
 /* Dashboard header */
-.dashboard-header h2 {
+.dashboard-header label {
   font-weight: bold;
-  color: #0b3d91;
+  color: #000;
+  font-size: 25px;
 }
 
 .dashboard-header p {
