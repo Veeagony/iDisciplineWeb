@@ -2,16 +2,19 @@
   background-color: #fff;
 }
 
-/*header*/
-.studentsv{
-  color: #000000;
+/* Header */
+.studentsv {
+  color: #10349e;
   font-weight: bold;
+  font-size: 25px;
 }
 
-.notif-count {
-  padding: 4px 14px;
-  border: 2px solid #00000020;
-  border-radius: 999px;
+.violations-count {
+  background: #e0ecff;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  
 }
 
 .violations-filter-bar {

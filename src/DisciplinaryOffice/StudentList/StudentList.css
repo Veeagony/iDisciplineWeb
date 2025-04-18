@@ -1,10 +1,12 @@
 .student-title {
-    font-weight: 700;
-    color: #1f4ed8;
+    font-weight: bold;
+    color: #10349E;
+    font-size: 25px;
   }
-  
-  .student-count {
-    margin-left: 10px;
+
+.student-count {
+    margin-top: -25px;
+    margin-left: 30px;
     background: #e0ecff;
     padding: 3px 10px;
     border-radius: 20px;
@@ -12,21 +14,19 @@
   }
   
   .year-dropdown {
-    padding: 6px 10px;
-    border-radius: 6px;
+    width: 100px;
+    padding: 6px;
+    margin-bottom: -10px;
+    border-radius: 4px;
   }
   
   .search-input {
     border: 1px solid #ccc;
     border-radius: 20px;
     padding: 6px 12px;
-    width: 200px;
+    width: 500px;
   }
   
-  .icon {
-    width: 100px;
-    cursor: pointer;
-  }
   
   .add-student-btn {
     background-color: #2dd6a2;
@@ -35,6 +35,7 @@
     padding: 6px 18px;
     border-radius: 20px;
     font-weight: 600;
+    width: 200px;
   }
   
   .student-table {
@@ -56,4 +57,30 @@
     background-color: #ccc;
     border-radius: 50%;
   }
-  
+
+.icon-btn {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    
+    
+}
+
+.icon-btn svg {
+    fill: #10349E;
+    height: 40px;
+    width: 40px;
+}
+
+.icon-btn:hover {
+    background-color: white;
+    color: black;
+    outline: none;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Controls the space between the elements */
+}

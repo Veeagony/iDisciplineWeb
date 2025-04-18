@@ -43,75 +43,89 @@ const StudentList = () => {
   };
 
   return (
-    <div className="student-list-container d-flex flex-grow-1">
-      <div className="student-list-content flex-grow-1 p-4">
-        <div className="d-flex justify-content-between align-items-center">
-          <div className="d-flex align-items-center">
-            <h2 className="student-title">Students</h2>
-            <span className="student-count">{students.length}</span>
-            <select className="year-dropdown ms-3">
-              <option>Year</option>
-            </select>
-          </div>
+      <div className="student-list-container d-flex flex-grow-1">
+    <div className="student-list-content flex-grow-1 p-4">
+      <div className="d-flex justify-content-between align-items-center">
+        <div className="d-flex align-items-center">
+          <h2 className="student-title">Students</h2>
+          <span className="student-count">{students.length}</span>
+        </div>
+
+        {/* Right aligned container for search bar and icons */}
+        <div className="d-flex align-items-center gap-3">
+          <input className="search-input" placeholder="Search Here" />
+
           <div className="d-flex align-items-center gap-3">
-            <input className="search-input" placeholder="Search Here" />
-            <FaCommentDots className="comment" />
-            <FaBell className="icon" />
-            <button className="add-student-btn" onClick={toggleDrawer}>
-              Add Student
+            <button className="icon-btn" onClick={toggleDrawer}>
+              <FaCommentDots size={20} />
+            </button>
+            <button className="icon-btn" onClick={toggleDrawer}>
+              <FaBell size={20} />
             </button>
           </div>
         </div>
-
-        <table className="student-table mt-4">
-          <thead>
-            <tr>
-              <th>Photo</th>
-              <th>Student ID</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>No of Violations</th>
-              <th>No of IR Submitted</th>
-            </tr>
-          </thead>
-          <tbody>
-            {students.map((student, i) => (
-              <tr key={i} onClick={() => handleRowClick(student)} style={{ cursor: "pointer" }}>
-                <td><div className="student-photo" /></td>
-                <td>{student.id}</td>
-                <td>{student.firstName}</td>
-                <td>{student.lastName}</td>
-                <td>0</td>
-                <td>0</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
       </div>
 
-      {/* Add Student Drawer */}
-      <AddStudentForm
-        isOpen={isDrawerOpen}
-        onClose={toggleDrawer}
-        onSubmit={handleAddStudent}
-      />
+      {/* Align dropdown and Add Student button horizontally */}
+      <div className="d-flex justify-content-between align-items-center mt-3">
+        <select className="year-dropdown">
+          <option>Year</option>
+        </select>
+        <button className="add-student-btn" onClick={toggleDrawer}>
+          Add Student
+        </button>
+      </div>
 
-      {/* Student Details Drawer */}
-      <StudentDetailsDrawer
-        isOpen={showDetails}
-        onClose={() => setShowDetails(false)}
-        student={selectedStudent}
-        onEdit={handleEditStudent} // ✅ Wire the edit
-      />
-
-      {/* Edit Student Drawer */}
-      <EditStudentForm
-        isOpen={showEditDrawer}
-        onClose={() => setShowEditDrawer(false)}
-        student={selectedStudent}
-        onSave={handleSaveEditedStudent}
-      />
+      <table className="student-table mt-4">
+        <thead>
+          <tr>
+            <th>Photo</th>
+            <th>Student ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>No of Violations</th>
+            <th>No of IR Submitted</th>
+          </tr>
+        </thead>
+        <tbody>
+          {students.map((student, i) => (
+            <tr key={i} onClick={() => handleRowClick(student)} style={{ cursor: "pointer" }}>
+              <td><div className="student-photo" /></td>
+              <td>{student.id}</td>
+              <td>{student.firstName}</td>
+              <td>{student.lastName}</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
+
+    {/* Add Student Drawer */}
+    <AddStudentForm
+      isOpen={isDrawerOpen}
+      onClose={toggleDrawer}
+      onSubmit={handleAddStudent}
+    />
+
+    {/* Student Details Drawer */}
+    <StudentDetailsDrawer
+      isOpen={showDetails}
+      onClose={() => setShowDetails(false)}
+      student={selectedStudent}
+      onEdit={handleEditStudent}
+    />
+
+    {/* Edit Student Drawer */}
+    <EditStudentForm
+      isOpen={showEditDrawer}
+      onClose={() => setShowEditDrawer(false)}
+      student={selectedStudent}
+      onSave={handleSaveEditedStudent}
+    />
+  </div>
+
   );
 };
 
