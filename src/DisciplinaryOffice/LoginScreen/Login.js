@@ -1,30 +1,29 @@
 import React, { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../../firebase/firebaseConfig"; // Adjust the import path as necessary
 import "./Login.css";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [loginError, setLoginError] = useState(false);
+  const [loginError, setLoginError] = useState("");
+
   const navigate = useNavigate();
 
-  const correctEmail = "do";
-  const correctPassword = "123";
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setLoginError("");
 
-    if (email.trim() === correctEmail && password.trim() === correctPassword) {
-      setLoading(true);
-      setLoginError(false);
-
-      setTimeout(() => {
-        navigate("/dashboard");
-        setLoading(false);
-      }, 1500);
-    } else {
-      setLoginError(true);
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate("/dashboard");
+    } catch (error) {
+      setLoginError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -33,13 +32,7 @@ function Login() {
       {loading ? (
         <div className="fullpage-loader">
           <div className="spinner-grow text-primary" role="status"></div>
-          <div className="spinner-grow text-secondary" role="status"></div>
-          <div className="spinner-grow text-success" role="status"></div>
-          <div className="spinner-grow text-danger" role="status"></div>
-          <div className="spinner-grow text-warning" role="status"></div>
-          <div className="spinner-grow text-info" role="status"></div>
-          <div className="spinner-grow text-light" role="status"></div>
-          <div className="spinner-grow text-dark" role="status"></div>
+          {/* Your other spinners */}
         </div>
       ) : (
         <div className="login-container">
@@ -49,14 +42,14 @@ function Login() {
 
             {loginError && (
               <div className="alert alert-danger text-center w-100 mt-2" role="alert">
-                Invalid email or password
+                {loginError}
               </div>
             )}
 
             <form onSubmit={handleSubmit}>
               <input
-                type="text"
-                placeholder="Username"
+                type="email"
+                placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 autoComplete="off"
@@ -86,4 +79,3 @@ function Login() {
 }
 
 export default Login;
-
