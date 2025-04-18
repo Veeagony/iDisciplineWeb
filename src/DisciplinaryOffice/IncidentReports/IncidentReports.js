@@ -6,6 +6,7 @@ const IncidentReports = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
+  const [selectedReport, setSelectedReport] = useState(null); // To track the clicked report
 
   // Dummy incident reports data
   const reports = [
@@ -33,6 +34,14 @@ const IncidentReports = () => {
 
   const handlePagination = (pageNumber) => {
     setCurrentPage(pageNumber);
+  };
+
+  const handleRowClick = (report) => {
+    setSelectedReport(report); // Set the clicked report
+  };
+
+  const handleCloseDrawer = () => {
+    setSelectedReport(null); // Close the drawer when clicking the close button
   };
 
   return (
@@ -70,7 +79,7 @@ const IncidentReports = () => {
         </thead>
         <tbody>
           {currentReports.map((report, index) => (
-            <tr key={index}>
+            <tr key={index} onClick={() => handleRowClick(report)} className="clickable-row">
               <td>{report.status}</td>
               <td>{report.id}</td>
               <td>{report.name}</td>
@@ -105,6 +114,25 @@ const IncidentReports = () => {
           &gt;
         </button>
       </div>
+
+      {/* Drawer Component for Incident Report Details */}
+      {selectedReport && (
+        <div className="drawer">
+          <div className="drawer-content">
+            <button className="close-btn" onClick={handleCloseDrawer}>X</button>
+            <h3>Incident Report Details</h3>
+            <div><strong>Incident Report No.</strong>: {selectedReport.id}</div>
+            <div><strong>Date & Time of the Incident</strong>: {selectedReport.date}</div>
+            <div><strong>Location</strong>: Not Provided</div>
+            <div><strong>Parties Involved</strong>: Victim, Offender, Witness</div>
+            <div><strong>Description of the Incident</strong>: {selectedReport.message}</div>
+            <div><strong>Reported by</strong>: Unknown</div>
+            <div><strong>Date Reported</strong>: {selectedReport.date}</div>
+            <button className="btn-archive">Archive</button>
+            <button className="btn-log-violation">Log as Violation</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
