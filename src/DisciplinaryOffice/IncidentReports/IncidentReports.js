@@ -52,7 +52,7 @@ const IncidentReports = () => {
           </select>
           <button className="btn-filter">All</button>
           <button className="btn-filter">Logged</button>
-          <button className="btn-filter">Under Review</button>
+          <button className="btn-filter">Review</button>
           <button className="btn-filter">Archive</button>
         </div>
       </div>
