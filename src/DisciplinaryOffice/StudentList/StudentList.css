@@ -5,7 +5,7 @@
   }
 
 .student-count {
-    margin-top: -25px;
+    margin-top: -20px;
     margin-left: 30px;
     background: #e0ecff;
     padding: 3px 10px;
@@ -29,13 +29,13 @@
   
   
   .add-student-btn {
-    background-color: #2dd6a2;
+    background-color: #26a69a;
     border: none;
     color: white;
     padding: 6px 18px;
     border-radius: 20px;
     font-weight: 600;
-    width: 200px;
+    width: 150px;
   }
   
   .student-table {
@@ -69,8 +69,8 @@
 
 .icon-btn svg {
     fill: #10349E;
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
 }
 
 .icon-btn:hover {

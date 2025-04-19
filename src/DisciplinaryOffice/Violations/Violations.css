@@ -14,7 +14,8 @@
   padding: 3px 10px;
   border-radius: 20px;
   font-weight: 600;
-  
+  margin-top: -8px;
+  margin-left: 30px;
 }
 
 .violations-filter-bar {
@@ -24,10 +25,33 @@
   color: white;
 }
 
-.search-box {
-  max-width: 250px;
-  width: 100%;
-  border-radius: 25px;
+.icon-btn {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  
+}
+
+.icon-btn svg {
+  fill: #10349E;
+  height: 30px;
+  width: 30px;
+}
+
+.icon-btn:hover {
+  background-color: white;
+  color: black;
+  outline: none;
+}
+
+.dropdown {
+  margin-top: 15px;
+  margin-right: 20px;
+  margin-left: 8px;
+  height: 35px;
+  width: 200px;
+  
 }
 
 .input-group-text {
@@ -41,7 +65,26 @@
 .form-control {
   border-radius: 0 25px 25px 0;
   border: 1px solid #ced4da;
-  padding-left: 30px; /* Added padding to accommodate the icon */
+  margin-top: 12px;
+  width: 300px;
+  
+}
+
+.filter-active {
+  
+  background-color: white !important;
+  color: black !important;
+  border-radius: 5px;
+
+}
+
+/* Button styles for inactive filters */
+.btn-outline-primary {
+  border: none;
+  padding: 10px 15px;
+  font-weight: 600;
+  color: white;
+
 }
 
 .bi-search {
@@ -49,11 +92,6 @@
   color: #0d1e61; /* Ensured the icon color matches the design */
 }
 
-.filter-active {
-  background-color: white !important;
-  color: #0d1e61 !important;
-  border-radius: 20px;
-}
 
 .badge-resolved {
   background-color: #28a745;
@@ -91,22 +129,16 @@
   border-bottom: 1px solid #dee2e6;
 }
 
-/* Button Styles */
-.btn-outline-primary {
+
+.addviolationbtn {
+  align-self: flex-end;
+  background-color: #26a69a;
+  border: none;
+  color: white;
+  padding: 6px 18px;
   border-radius: 20px;
-  padding: 10px 15px;
   font-weight: 600;
-  color: #0d1e61;
-  border: 2px solid #0d1e61;
+  width: 150px;
+  margin-bottom: 15px;
 }
 
-.btn-outline-primary:hover {
-  background-color: #0d1e61;
-  color: whitesmoke;
-}
-
-.btn-primary {
-  border-radius: 20px;
-  padding: 10px 15px;
-  font-weight: 600;
-}

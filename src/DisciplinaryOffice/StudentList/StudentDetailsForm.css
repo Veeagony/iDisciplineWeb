@@ -51,6 +51,7 @@
   color: #000;
   cursor: pointer;
   z-index: 10;
+  width: 40px;
 }
 
 .edit-btn:hover {

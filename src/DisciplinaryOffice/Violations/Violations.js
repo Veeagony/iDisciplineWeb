@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AddViolations from "./AddViolations";
 import "./Violations.css";
+import { FaBell, FaCommentDots } from "react-icons/fa";
 import { db } from "../../firebase/firebaseConfig"; // Make sure path is correct
 import { ref, onValue, push, set } from "firebase/database";
 
@@ -55,39 +56,52 @@ const Violations = () => {
     <div className="violations-page px-4 py-4">
       {/* Header */}
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <h4 className="studentsv">Students Violations</h4>
-        <span className="violations-count">{filteredViolations.length}</span>
+        <div className="d-flex align-items-center">
+          <h4 className="studentsv">Students Violations</h4>
+          <span className="violations-count">{filteredViolations.length}</span>
+        </div>
+
+        <div className="d-flex align-items-center gap-3">
+           <button className="icon-btn" >
+             <FaCommentDots size={20} />
+            </button>
+           <button className="icon-btn" >
+              <FaBell size={20} />
+            </button>
+        </div>
+
       </div>
 
       {/* Filter Bar */}
       <div className="violations-filter-bar d-flex align-items-center gap-3 mb-3">
-        <div className="input-group search-box">
-          <span className="input-group-text bg-white border-end-0">
-            <i className="bi bi-search text-dark" />
-          </span>
+          <i className="bi bi-search text-dark" />
           <input
             type="text"
             className="form-control border-start-0"
             placeholder="Search Here"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
+          />  
+        
+        <select className="dropdown">
+            <option>Year</option>
+          </select>
 
-        {["All", "Minor Offense", "Major Offense"].map((type) => (
+        {["All", "Minor Offense", "Major Offense", "Grade Level", "No. of Violations"].map((type) => (
           <button
             key={type}
-            className={`btn ${filter === type ? "btn-primary" : "btn-outline-primary"} fw-semibold`}
+            className={`btn ${filter === type ? "filter-active" : "btn-outline-primary"} fw-semibold`}
             onClick={() => setFilter(type)}
           >
             {type === "All" ? "All Violations" : type}
           </button>
         ))}
+
       </div>
 
       {/* Add Violation Button */}
-      <div className="mb-3">
-        <button className="btn btn-primary rounded-pill px-4 py-2 fw-medium" onClick={() => setDrawerOpen(true)}>
+      <div className="d-flex justify-content-end">
+        <button className="addviolationbtn" onClick={() => setDrawerOpen(true)}>
           Add Violation
         </button>
       </div>

@@ -137,7 +137,7 @@ const AddStudentForm = ({ isOpen, onClose, onSubmit }) => {
           </div>
 
           <div className="text-end mt-3">
-            <button type="submit" className="btn btn-success px-4">Add Student</button>
+            <button type="submit" className="addbtn">Add Student</button>
           </div>
         </form>
       </div>

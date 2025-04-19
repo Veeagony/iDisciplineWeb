@@ -24,11 +24,14 @@
   justify-content: space-between;
   margin-bottom: 24px;
   color: white;
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
 }
 
 .drawer-body {
   padding: 24px;
 }
+
 
 /* Image Upload */
 .image-upload-box {
@@ -107,4 +110,9 @@ h6.fw-bold.text-primary.mb-3 {
 .submit-btn:hover,
 .btn-primary:hover {
   background-color: #2bbf8d;
+}
+
+.addbtn {
+  background-color: #2bbf8d;
+  width: 200px;
 }

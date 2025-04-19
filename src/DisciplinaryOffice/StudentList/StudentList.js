@@ -82,10 +82,10 @@ const StudentList = () => {
 
             <div className="d-flex align-items-center gap-3">
               <button className="icon-btn" onClick={toggleDrawer}>
-                <FaCommentDots size={20} />
+                <FaCommentDots/>
               </button>
               <button className="icon-btn" onClick={toggleDrawer}>
-                <FaBell size={20} />
+                <FaBell />
               </button>
             </div>
           </div>
