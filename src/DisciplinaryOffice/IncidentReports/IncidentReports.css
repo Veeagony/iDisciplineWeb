@@ -18,20 +18,40 @@
   margin-left: 30px;
 }
 
+.icon-btn {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  
+}
+
+.icon-btn svg {
+  fill: #10349E;
+  height: 30px;
+  width: 30px;
+}
+
+.icon-btn:hover {
+  background-color: white;
+  color: black;
+  outline: none;
+}
+
 .filters {
   display: flex;
   align-items: center;
   gap: 10px;
-  background-color: #223067;
+  background-color: #0d1e61;
   padding: 12px;
   border-radius: 10px;
 }
 
 .search-input {
-  width: 300px;
-  padding: 8px 12px;
-  border-radius: 25px;
+  border-radius: 0 25px 25px 0;
   border: 1px solid #ced4da;
+  margin-top: 12px;
+  width: 300px;
 }
 
 .dropdown {
@@ -41,26 +61,16 @@
   margin-left: 10px;
 }
 
-.btn {
-  background-color: transparent;
-  border: 2px solid #0d1e61;
-  color: #0d1e61;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-weight: 600;
-  margin-left: 5px;
-  cursor: pointer;
-}
 
-.btn:hover {
-  background-color: #0d1e61;
-  color: white;
-}
 
 .filter-active {
   background-color: white;
   color: black;
   border: 2px solid #0d1e61;
+}
+
+.btn-outline-primary {
+  border: none;
 }
 
 .incident-table {

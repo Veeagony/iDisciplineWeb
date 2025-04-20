@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import './IncidentReports.css';
+import { FaBell, FaCommentDots } from "react-icons/fa";
 
 const IncidentReports = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -43,6 +44,15 @@ const IncidentReports = () => {
           <span className="report-count">{filteredReports.length}</span>
         </div>
       </div>
+
+      <div className="d-flex align-items-center gap-3">
+        <button className="icon-btn" >
+          <FaCommentDots size={20} />
+        </button>
+              <button className="icon-btn" >
+                    <FaBell size={20} />
+                  </button>
+              </div>
 
       {/* Filter Bar */}
       <div className="filters d-flex align-items-center gap-3 mb-3">
