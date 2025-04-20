@@ -27,21 +27,21 @@ const AddViolations = ({ closeDrawer, addViolation }) => {
       !violationType || !firstName || !lastName || !partiesInvolved || !victim || !offender || !witness ||
       !description || !dateReported
     ) {
-      alert("Please fill in all the fields!");
+      alert("Please fill out all the fields!");
       return;
     }
   
     const newViolation = {
       status,
-      caseNo,  // Ensure caseNo is included in the newViolation
-      Date: `${month} ${day}, ${year}`, // Correct Date format
+      caseNo, 
+      Date: `${month} ${day}, ${year}`, 
       firstName,
       lastName,
       violationCategory,
       violationType,
-      time, // Include time if you need it
+      time, 
       location,
-      partiesInvolved,  // This could be a comma-separated list if needed
+      partiesInvolved,  
       victim,
       offender,
       witness,
@@ -123,7 +123,7 @@ const AddViolations = ({ closeDrawer, addViolation }) => {
           onChange={(e) => setLocation(e.target.value)}
         />
 
-        <label>Parties Involved:</label>
+        <label>Parties Involved:</label>  
         <input
           type="text"
           placeholder="Victim, Offender, Witness"

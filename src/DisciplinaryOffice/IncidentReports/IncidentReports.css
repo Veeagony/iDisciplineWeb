@@ -1,60 +1,66 @@
 .incident-reports {
+  background-color: #fff;
   padding: 20px;
-  background-color: #f4f6fa;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  background-color: #ffffff;
-  padding: 10px 15px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.incidentr {
+  color: #10349e;
+  font-weight: bold;
+  font-size: 25px;
 }
 
-.header h2 {
-  margin: 0;
-  font-size: 24px;
-  color: #007bff;
-  font-weight: 300;
+.report-count {
+  background: #e0ecff;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  margin-top: -8px;
+  margin-left: 30px;
 }
 
 .filters {
   display: flex;
   align-items: center;
   gap: 10px;
+  background-color: #223067;
+  padding: 12px;
+  border-radius: 10px;
 }
 
-.filters input {
-  padding: 10px;
-  margin-right: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  width: 250px;
+.search-input {
+  width: 300px;
+  padding: 8px 12px;
+  border-radius: 25px;
+  border: 1px solid #ced4da;
 }
 
-.filters select {
-  padding: 10px;
-  margin-right: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  width: 150px;
+.dropdown {
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-left: 10px;
 }
 
-.btn-filter {
-  padding: 10px 25px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
+.btn {
+  background-color: transparent;
+  border: 2px solid #0d1e61;
+  color: #0d1e61;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  margin-left: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 
-.btn-filter:hover {
-  background-color: #0056b3;
+.btn:hover {
+  background-color: #0d1e61;
+  color: white;
+}
+
+.filter-active {
+  background-color: white;
+  color: black;
+  border: 2px solid #0d1e61;
 }
 
 .incident-table {
@@ -65,119 +71,81 @@
 
 .incident-table th,
 .incident-table td {
-  padding: 12px 15px;
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
   text-align: left;
-  border: 1px solid #ddd;
-  font-size: 14px;
 }
 
 .incident-table th {
-  background-color: #007bff;
-  color: white;
+  background-color: #f8f9fa;
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
 .incident-table td {
-  background-color: #ffffff;
+  font-size: 0.88rem;
 }
 
-.incident-table tr:hover {
-  background-color: #f1f5f9;
+.clickable-row {
   cursor: pointer;
 }
 
-.pagination {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
+.clickable-row:hover {
+  background-color: #f1f1f1;
 }
 
-.pagination button {
-  padding: 10px;
-  margin: 0 5px;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s;
-}
-
-.pagination button:hover {
-  background-color: #007bff;
-  color: white;
-}
-
-.pagination button:disabled {
-  background-color: #e0e0e0;
-  cursor: not-allowed;
+.table-container {
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  max-height: 400px;
+  overflow-y: auto;  /* Enable vertical scrolling */
 }
 
 .drawer {
   position: fixed;
   top: 0;
   right: 0;
-  width: 400px;
+  width: 720px;
   height: 100%;
-  background-color: #ffffff;
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-  transform: translateX(100%);
-  transition: transform 0.3s ease-in-out;
-  z-index: 100;
+  background-color: white;
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%);
+  animation: slideIn 0.3s forwards;
+  overflow-y: auto;
 }
 
-.drawer.open {
-  transform: translateX(0);
+@keyframes slideIn {
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .drawer-content {
-  flex-grow: 1;
+  padding: 20px;
 }
 
 .close-btn {
-  background-color: red;
-  color: white;
+  font-size: 24px;
+  background: transparent;
   border: none;
-  padding: 5px 10px;
+  color: #dcdcdc;
   cursor: pointer;
-  border-radius: 5px;
-  font-size: 14px;
-  transition: background-color 0.3s;
-}
-
-.close-btn:hover {
-  background-color: #ff3333;
 }
 
 .btn-archive,
 .btn-log-violation {
-  background-color: #007bff;
-  color: white;
+  padding: 8px 15px;
   border: none;
-  padding: 10px 20px;
-  margin-top: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  border-radius: 20px;
+  font-weight: 600;
+  background-color: #0144F2;
+  color: white;
+  margin-top: 15px;
 }
 
 .btn-archive:hover,
 .btn-log-violation:hover {
-  background-color: #0056b3;
-}
-
-.drawer h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
-  color: #333;
-}
-
-.drawer div {
-  margin-bottom: 15px;
-}
-
-.drawer div strong {
-  color: #007bff;
+  background-color: #0039c7;
 }
