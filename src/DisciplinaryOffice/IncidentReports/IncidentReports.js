@@ -4,9 +4,8 @@ import './IncidentReports.css';
 
 const IncidentReports = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(10);
-  const [selectedReport, setSelectedReport] = useState(null); // To track the clicked report
+  const [filter, setFilter] = useState("All");
+  const [selectedReport, setSelectedReport] = useState(null); // Fix: Define selectedReport state
 
   // Dummy incident reports data
   const reports = [
@@ -21,98 +20,83 @@ const IncidentReports = () => {
   ];
 
   const filteredReports = reports.filter(report =>
+    (report.status === filter || filter === "All") &&
     report.message.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Get current page reports
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentReports = filteredReports.slice(indexOfFirstItem, indexOfLastItem);
-
-  // Pagination
-  const totalPages = Math.ceil(filteredReports.length / itemsPerPage);
-
-  const handlePagination = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-
+  // Handle when a row is clicked to open the drawer
   const handleRowClick = (report) => {
     setSelectedReport(report); // Set the clicked report
   };
 
+  // Handle closing the drawer
   const handleCloseDrawer = () => {
     setSelectedReport(null); // Close the drawer when clicking the close button
   };
 
   return (
-    <div className="incident-reports">
-      <div className="header">
-        <h2>Incident Reports</h2>
-        <div className="filters">
-          <input
-            type="text"
-            placeholder="Search Here"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-          <select>
-            <option>Recent</option>
-            <option>Oldest</option>
-          </select>
-          <button className="btn-filter">All</button>
-          <button className="btn-filter">Logged</button>
-          <button className="btn-filter">Review</button>
-          <button className="btn-filter">Archive</button>
+    <div className="incident-reports px-4 py-4">
+      {/* Header */}
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <div className="d-flex align-items-center">
+          <h4 className="incidentr">Incident Reports</h4>
+          <span className="report-count">{filteredReports.length}</span>
         </div>
       </div>
 
-      <table className="incident-table">
-        <thead>
-          <tr>
-            <th>Status</th>
-            <th>Student ID</th>
-            <th>Full Name</th>
-            <th>Message</th>
-            <th>Type</th>
-            <th>Date Sent</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentReports.map((report, index) => (
-            <tr key={index} onClick={() => handleRowClick(report)} className="clickable-row">
-              <td>{report.status}</td>
-              <td>{report.id}</td>
-              <td>{report.name}</td>
-              <td>{report.message}</td>
-              <td>{report.type}</td>
-              <td>{report.date}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {/* Filter Bar */}
+      <div className="filters d-flex align-items-center gap-3 mb-3">
+        <input
+          type="text"
+          className="search-input"
+          placeholder="Search Here"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
 
-      <div className="pagination">
-        <button 
-          onClick={() => handlePagination(currentPage - 1)} 
-          disabled={currentPage === 1}
-        >
-          &lt;
-        </button>
-        {[...Array(totalPages)].map((_, index) => (
-          <button 
-            key={index}
-            onClick={() => handlePagination(index + 1)}
-            className={currentPage === index + 1 ? "active" : ""}
+        <select className="dropdown">
+          <option>Recent</option>
+          <option>Oldest</option>
+        </select>
+
+        {/* Filter Buttons */}
+        {["All", "Logged", "Review", "Archive"].map((type) => (
+          <button
+            key={type}
+            className={`btn ${filter === type ? "filter-active" : "btn-outline-primary"} fw-semibold`}
+            onClick={() => setFilter(type)}
           >
-            {index + 1}
+            {type}
           </button>
         ))}
-        <button 
-          onClick={() => handlePagination(currentPage + 1)} 
-          disabled={currentPage === totalPages}
-        >
-          &gt;
-        </button>
+      </div>
+
+      {/* Incident Table */}
+      <div className="table-container table-responsive">
+        <table className="incident-table mt-4">
+          <thead>
+            <tr>
+              <th>Status</th>
+              <th>Student ID</th>
+              <th>Full Name</th>
+              <th>Message</th>
+              <th>Type</th>
+              <th>Date Sent</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredReports.map((report, index) => (
+              <tr key={index} onClick={() => handleRowClick(report)} className="clickable-row">
+                <td>{report.status}</td>
+                <td>{report.id}</td>
+                <td>{report.name}</td>
+                <td>{report.message}</td>
+                <td>{report.type}</td>
+                <td>{report.date}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
 
       {/* Drawer Component for Incident Report Details */}

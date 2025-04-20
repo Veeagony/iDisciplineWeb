@@ -30,7 +30,6 @@
   border: none;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
-  
 }
 
 .icon-btn svg {
@@ -39,11 +38,6 @@
   width: 30px;
 }
 
-.icon-btn:hover {
-  background-color: white;
-  color: black;
-  outline: none;
-}
 
 .dropdown {
   margin-top: 15px;
@@ -51,7 +45,6 @@
   margin-left: 8px;
   height: 35px;
   width: 200px;
-  
 }
 
 .input-group-text {
@@ -67,31 +60,14 @@
   border: 1px solid #ced4da;
   margin-top: 12px;
   width: 300px;
-  
 }
 
-.filter-active {
-  
-  background-color: white !important;
-  color: black !important;
-  border-radius: 5px;
 
-}
-
-/* Button styles for inactive filters */
-.btn-outline-primary {
-  border: none;
-  padding: 10px 15px;
-  font-weight: 600;
-  color: white;
-
-}
 
 .bi-search {
   font-size: 18px; /* Adjusted icon size */
   color: #0d1e61; /* Ensured the icon color matches the design */
 }
-
 
 .badge-resolved {
   background-color: #28a745;
@@ -129,7 +105,6 @@
   border-bottom: 1px solid #dee2e6;
 }
 
-
 .addviolationbtn {
   align-self: flex-end;
   background-color: #26a69a;
@@ -141,4 +116,3 @@
   width: 150px;
   margin-bottom: 15px;
 }
-
