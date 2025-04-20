@@ -5,7 +5,6 @@ import { auth } from "../../firebase/firebaseConfig"; // Adjust the import path 
 import "./Login.css";
 import iDisciplineLogo from '../../assets/iDisciplineLogo.png';
 
-
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,8 +19,16 @@ function Login() {
     setLoginError("");
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      navigate("/dashboard");
+      // Sign in with email and password
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      
+      // Check if the user is an admin or student
+      if (user.email === "admin@email.com") { // Replace with the actual admin email or use a role check from your database
+        navigate("/dashboard"); // Admin redirects to dashboard
+      } else {
+        navigate("/home"); // Student redirects to home
+      }
     } catch (error) {
       setLoginError(error.message);
     } finally {
@@ -39,7 +46,7 @@ function Login() {
       ) : (
         <div className="login-container">
           <div className="login-box">
-            <img src={iDisciplineLogo.png} className="logo" />
+            <img src={iDisciplineLogo} className="logo" alt="iDiscipline Logo" />
 
             {loginError && (
               <div className="alert alert-danger text-center w-100 mt-2" role="alert">

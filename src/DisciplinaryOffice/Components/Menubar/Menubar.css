@@ -1,0 +1,56 @@
+/* Menubar.css */
+
+/* Overall Menubar styling */
+.menubar {
+    background-color: #0F296F; /* Sidebar background color */
+    color: white;
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: width 0.3s ease;
+    padding: 20px;
+    z-index: 100;
+  }
+  
+  .menubar.collapsed {
+    width: 80px; /* Collapsed width */
+  }
+  
+  /* Menu items section */
+  .menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Menu item styling */
+  .menu-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-size: 18px;
+  }
+  
+  .menu-item:hover {
+    background-color: #2c3e50; /* Hover background color */
+  }
+  
+  .menu-item.active {
+    background-color: #2980b9; /* Active background color */
+  }
+  
+  .menu-item span {
+    margin-left: 10px;
+    display: block; /* Default display for span */
+  }
+  
+  /* When the Menubar is collapsed, only show the icons */
+  .menubar.collapsed .menu-item span {
+    display: none; /* Hide span when collapsed */
+  }
+  
