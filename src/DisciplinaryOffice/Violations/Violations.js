@@ -44,6 +44,7 @@ const Violations = () => {
 
     setDrawerOpen(false); // Close drawer after adding
   };
+  
 
   const getBadgeClass = (status) =>
     status === "Resolved" ? "badge-resolved" : "badge-unresolved";
