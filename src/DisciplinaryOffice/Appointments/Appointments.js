@@ -5,7 +5,7 @@ import './Appointments.css'; // Import your custom styles
 
 const Appointments = () => {
   const [date, setDate] = useState(new Date());
-  const [appointments, setAppointments] = useState([
+  const [appointments] = useState([
     { id: 1, status: 'Settled', studentId: '00000', fullName: 'First Name Last Name', case: 'Case1', message: '---', dateSent: '2025-02-04' },
     { id: 2, status: 'Unsettled', studentId: '00001', fullName: 'First Name Last Name', case: 'Case2', message: '---', dateSent: '2025-02-05' },
     { id: 3, status: 'Settled', studentId: '00002', fullName: 'First Name Last Name', case: 'Case3', message: '---', dateSent: '2025-02-06' },
@@ -66,9 +66,6 @@ const Appointments = () => {
   <button className="add-appointment-btn">Add an Appointment</button>
 </div>
 
-
-
-      
       <div className="calendar-container">
         <div className="calendar-wrapper"></div>
         <Calendar

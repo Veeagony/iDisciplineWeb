@@ -2,15 +2,17 @@
   position: fixed;
   top: 0;
   right: 0;
-  width: 720px; /* Set the drawer width to 720px */
+  width: 420px;
   height: 100%;
   background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 0;
+  border-left: 1px solid #ddd;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
   transform: translateX(100%);
   animation: slideIn 0.3s forwards;
   overflow-y: auto;
+  z-index: 999;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 @keyframes slideIn {
@@ -20,97 +22,89 @@
 }
 
 .drawer-header {
+  background-color: #1A4CE0;           /* Cleaner blue tone */
+  color: white;
+  padding: 18px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .drawer-title {
-  font-size: 22px;
-  font-weight: bold;
-  color: #0144F2;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
 }
 
 .close-btn {
-  font-size: 24px;
-  background: transparent;
+  background: none;
   border: none;
-  color: #dcdcdc;
+  color: white;
+  font-size: 24px;
+  line-height: 1;
   cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.close-btn:hover {
+  opacity: 0.75;
 }
 
 .form {
-  margin-top: 20px;
+  padding: 24px;
 }
 
-label {
-  font-weight: bold;
-  margin-bottom: 5px;
+.form label {
   display: block;
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 16px 0 6px;
   color: #333;
 }
 
 input, select, textarea {
   width: 100%;
-  padding: 12px;
-  margin: 8px 0 20px 0;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+  padding: 10px 12px;
   font-size: 14px;
-  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
 }
 
 textarea {
-  height: 120px;
+  height: 100px;
   resize: none;
 }
 
-.date-time input {
-  width: 22%;
-  margin-right: 4%;
+.date-time {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.link-label {
+  margin-top: 16px;
+  color: #0d1e61;
+  font-weight: 500;
+  font-size: 14px;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .add-btn {
-  background-color: #0144F2;
+  margin: 24px;
+  background-color: #00a383;
   color: white;
-  padding: 10px 20px;
+  padding: 12px;
   border: none;
-  border-radius: 6px;
+  border-radius: 24px;
   font-weight: bold;
-  cursor: pointer;
-  width: 100%;
   font-size: 16px;
+  cursor: pointer;
+  width: calc(100% - 48px);
 }
-
-.add-btn:hover {
-  background-color: #0039c7;
-}
-
-input::placeholder,
-textarea::placeholder {
-  color: #777;
-}
-
-select {
-  font-size: 14px;
-}
-
-/* Styling for input fields that are slightly larger or have specific structure */
-input[type="text"], select {
+.date-time select {
   height: 40px;
-}
-
-label {
-  margin-top: 10px;
-}
-
-.date-time {
-  display: flex;
-  justify-content: space-between;
-}
-
-.date-time input {
-  width: 22%;
 }
