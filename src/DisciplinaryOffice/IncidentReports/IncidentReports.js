@@ -1,38 +1,47 @@
 import React, { useState } from "react";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaBell, FaCommentDots } from "react-icons/fa";
 import './IncidentReports.css';
-import { FaBell, FaCommentDots } from "react-icons/fa";
 
 const IncidentReports = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filter, setFilter] = useState("All");
-  const [selectedReport, setSelectedReport] = useState(null); // Fix: Define selectedReport state
+  const [selectedReport, setSelectedReport] = useState(null);
 
-  // Dummy incident reports data
-  const reports = [
-    { status: "Settled", id: "00000", name: "First Name Last Name", message: "Bullied", type: "Type1", date: "2025-04-10" },
-    { status: "Unsettled", id: "00001", name: "First Name Last Name", message: "Vandal", type: "Type2", date: "2025-04-10" },
-    { status: "Settled", id: "00002", name: "First Name Last Name", message: "--------", type: "Type3", date: "2025-04-10" },
-    { status: "Unsettled", id: "00003", name: "First Name Last Name", message: "--------", type: "Type4", date: "2025-04-10" },
-    { status: "Settled", id: "00004", name: "First Name Last Name", message: "Bullied", type: "Type5", date: "2025-04-10" },
-    { status: "Unsettled", id: "00005", name: "First Name Last Name", message: "Vandal", type: "Type6", date: "2025-04-10" },
-    { status: "Settled", id: "00006", name: "First Name Last Name", message: "--------", type: "Type7", date: "2025-04-10" },
-    { status: "Unsettled", id: "00007", name: "First Name Last Name", message: "--------", type: "Type8", date: "2025-04-10" },
-  ];
+  const [reports, setReports] = useState([
+    { status: "Settled", id: "00000", name: "First Name Last Name", message: "Bullied", type: "Type1", date: "2025-04-10", archived: false },
+    { status: "Unsettled", id: "00001", name: "First Name Last Name", message: "Vandal", type: "Type2", date: "2025-04-10", archived: false },
+    { status: "Settled", id: "00002", name: "First Name Last Name", message: "--------", type: "Type3", date: "2025-04-10", archived: false },
+    { status: "Unsettled", id: "00003", name: "First Name Last Name", message: "--------", type: "Type4", date: "2025-04-10", archived: false },
+    { status: "Settled", id: "00004", name: "First Name Last Name", message: "Bullied", type: "Type5", date: "2025-04-10", archived: false },
+    { status: "Unsettled", id: "00005", name: "First Name Last Name", message: "Vandal", type: "Type6", date: "2025-04-10", archived: false },
+    { status: "Settled", id: "00006", name: "First Name Last Name", message: "--------", type: "Type7", date: "2025-04-10", archived: false },
+    { status: "Unsettled", id: "00007", name: "First Name Last Name", message: "--------", type: "Type8", date: "2025-04-10", archived: false },
+  ]);
 
-  const filteredReports = reports.filter(report =>
-    (report.status === filter || filter === "All") &&
-    report.message.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredReports = reports.filter(report => {
+    const matchesStatus =
+      filter === "All" ? !report.archived :
+      filter === "Archive" ? report.archived :
+      report.status === filter && !report.archived;
 
-  // Handle when a row is clicked to open the drawer
+    return matchesStatus && report.message.toLowerCase().includes(searchQuery.toLowerCase());
+  });
+
   const handleRowClick = (report) => {
-    setSelectedReport(report); // Set the clicked report
+    setSelectedReport(report);
   };
 
-  // Handle closing the drawer
   const handleCloseDrawer = () => {
-    setSelectedReport(null); // Close the drawer when clicking the close button
+    setSelectedReport(null);
+  };
+
+  const handleArchive = () => {
+    setReports(prevReports =>
+      prevReports.map(r =>
+        r.id === selectedReport.id ? { ...r, archived: true } : r
+      )
+    );
+    handleCloseDrawer();
   };
 
   return (
@@ -43,16 +52,11 @@ const IncidentReports = () => {
           <h4 className="incidentr">Incident Reports</h4>
           <span className="report-count">{filteredReports.length}</span>
         </div>
+        <div className="d-flex align-items-center gap-3">
+          <button className="icon-btn"><FaCommentDots size={20} /></button>
+          <button className="icon-btn"><FaBell size={20} /></button>
+        </div>
       </div>
-
-      <div className="d-flex align-items-center gap-3">
-        <button className="icon-btn" >
-          <FaCommentDots size={20} />
-        </button>
-              <button className="icon-btn" >
-                    <FaBell size={20} />
-                  </button>
-              </div>
 
       {/* Filter Bar */}
       <div className="filters d-flex align-items-center gap-3 mb-3">
@@ -69,7 +73,6 @@ const IncidentReports = () => {
           <option>Oldest</option>
         </select>
 
-        {/* Filter Buttons */}
         {["All", "Logged", "Review", "Archive"].map((type) => (
           <button
             key={type}
@@ -122,7 +125,7 @@ const IncidentReports = () => {
             <div><strong>Description of the Incident</strong>: {selectedReport.message}</div>
             <div><strong>Reported by</strong>: Unknown</div>
             <div><strong>Date Reported</strong>: {selectedReport.date}</div>
-            <button className="btn-archive">Archive</button>
+            <button className="btn-archive" onClick={handleArchive}>Archive</button>
             <button className="btn-log-violation">Log as Violation</button>
           </div>
         </div>
