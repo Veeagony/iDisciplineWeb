@@ -33,8 +33,10 @@ const Appointments = () => {
           <button>Add an Appointment</button>
         </div>
       </div>
+
       
       <div className="calendar-container">
+        <div className="calendar-wrapper"></div>
         <Calendar
           onChange={handleDateChange}
           value={date}
