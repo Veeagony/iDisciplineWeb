@@ -8,7 +8,7 @@ function MainLayoutStudent() {
   const toggleMenubar = () => setIsOpen(!isOpen); // Toggle menubar visibility
 
   return (
-    <div className="main-layout-student">
+    <div className="main-layout">
       {/* Menubar */}
       <Menubar isOpen={isOpen} toggleMenubar={toggleMenubar} />
       
