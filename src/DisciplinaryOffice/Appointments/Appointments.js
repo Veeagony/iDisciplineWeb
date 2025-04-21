@@ -18,21 +18,40 @@ const Appointments = () => {
   };
 
   return (
-    <div className="appointments-container">
-      <div className="header">
-        <h3>Appointments Overview</h3>
-        <div className="filters">
-          <input type="text" placeholder="Search Here" />
-          <select>
-            <option>Upcoming</option>
-            <option>All</option>
-            <option>PTC</option>
-            <option>Counseling</option>
-            <option>Archive</option>
-          </select>
-          <button>Add an Appointment</button>
-        </div>
-      </div>
+    <div className="appointments-page px-4 py-4">
+  {/* Header Section (Title + Count + Icons) */}
+  <div className="d-flex justify-content-between align-items-center mb-3">
+    <div className="d-flex align-items-center">
+      <h4 className="appointments-title">Appointments Overview</h4>
+      <span className="appointments-count">{appointments.length}</span>
+    </div>
+  </div>
+
+  {/* Filter Bar Styled Like Violations */}
+  <div className="appointments-filter-bar d-flex align-items-center gap-3 mb-3">
+    <input
+      type="text"
+      className="form-control border-start-0"
+      placeholder="Search Here"
+    />
+
+    <select className="dropdown">
+      <option>Upcoming</option>
+    </select>
+
+    {["All", "PTC", "Counseling", "Archive"].map((category) => (
+      <button
+        key={category}
+        className={`btn ${category === "All" ? "filter-active" : "btn-outline-primary"} fw-semibold`}
+      >
+        {category}
+      </button>
+    ))}
+
+    <button className="add-appointment-btn ms-auto">Add an Appointment</button>
+  </div>
+
+
 
       
       <div className="calendar-container">

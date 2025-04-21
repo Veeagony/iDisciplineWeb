@@ -41,7 +41,7 @@
   }
   
   .filters button {
-    padding: 10px 15px;
+    padding: 10px 10px;
     background-color: #007bff;
     color: white;
     border: none;
@@ -52,6 +52,66 @@
   .filters button:hover {
     background-color: #0056b3;
   }
+
+  /* Mimic Violations nav styles */
+.appointments-title {
+  color: #10349e;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.appointments-count {
+  background: #e0ecff;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  margin-top: -8px;
+  margin-left: 30px;
+}
+
+.appointments-filter-bar {
+  background-color: #223067;
+  padding: 12px;
+  border-radius: 10px;
+  color: white;
+}
+
+.dropdown {
+  margin-top: 15px;
+  margin-right: 20px;
+  margin-left: 8px;
+  height: 35px;
+  width: 200px;
+}
+
+.form-control {
+  border-radius: 25px;
+  margin-top: 12px;
+  width: 300px;
+}
+
+.filter-active {
+  background-color: white !important;
+  color: black !important;
+  border-radius: 5px;
+}
+
+.btn-outline-primary {
+  border: none;
+  padding: 10px 15px;
+  font-weight: 600;
+  color: white;
+}
+
+.add-appointment-btn {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
   
   /* Calendar styles */
   .calendar-container {
