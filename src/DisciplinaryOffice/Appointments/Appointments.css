@@ -1,57 +1,4 @@
-.appointments-container {
-    margin: 20px;
-    background-color: #f4f6fa;
-    border-radius: 8px;
-    padding: 20px;
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    background-color: #ffffff;
-    padding: 10px 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .header h3 {
-    margin: 0;
-    font-size: 24px;
-    color: #007bff;
-    font-weight: 300;
-  }
-  
-  .filters {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .filters input {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  
-  .filters select {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  
-  .filters button {
-    padding: 10px 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .filters button:hover {
-    background-color: #0056b3;
-  }
+
 
   /* Mimic Violations nav styles */
 .appointments-title {
@@ -67,6 +14,19 @@
   font-weight: 600;
   margin-top: -8px;
   margin-left: 30px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #4d7ac9;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.icon-btn:hover {
+  color: #2c4b95;
 }
 
 .appointments-filter-bar {
@@ -104,12 +64,14 @@
 }
 
 .add-appointment-btn {
-  background-color: #007bff;
+  background-color: #26a69a;
   border: none;
   color: white;
-  padding: 6px 18px;
+  padding: 8px 18px;
   border-radius: 20px;
   font-weight: 600;
+  font-size: 14px;
+  width: 13%;
 }
 
   

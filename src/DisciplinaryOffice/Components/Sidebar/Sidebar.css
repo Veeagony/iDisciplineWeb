@@ -85,7 +85,7 @@
 }
 
 .menu-item:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.456);
 }
 
 .menu-item svg {
@@ -107,7 +107,7 @@
 }
 
 .menu-item.active {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   color: #0F296F;
 }
 

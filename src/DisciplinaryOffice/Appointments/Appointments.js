@@ -19,37 +19,52 @@ const Appointments = () => {
 
   return (
     <div className="appointments-page px-4 py-4">
-  {/* Header Section (Title + Count + Icons) */}
-  <div className="d-flex justify-content-between align-items-center mb-3">
-    <div className="d-flex align-items-center">
-      <h4 className="appointments-title">Appointments Overview</h4>
-      <span className="appointments-count">{appointments.length}</span>
-    </div>
+      {/* Header Row (Title + Badge + Icons) */}
+<div className="d-flex justify-content-between align-items-center mb-3">
+  <div className="d-flex align-items-center">
+    <h4 className="appointments-title">Appointments</h4>
+    <span className="appointments-count">4</span>
   </div>
+  <div className="d-flex align-items-center gap-3">
+    <button className="icon-btn">
+      <i className="fas fa-comment-dots"></i>
+    </button>
+    <button className="icon-btn">
+      <i className="fas fa-bell"></i>
+    </button>
+  </div>
+</div>
 
-  {/* Filter Bar Styled Like Violations */}
-  <div className="appointments-filter-bar d-flex align-items-center gap-3 mb-3">
+  {/* Header Section (Title + Count + Icons) */}
+  {/* Filter Bar */}
+<div className="appointments-filter-bar d-flex align-items-center gap-3 mb-2">
+  <div className="search-group">
+    <i className="fas fa-search"></i>
     <input
       type="text"
       className="form-control border-start-0"
       placeholder="Search Here"
     />
-
-    <select className="dropdown">
-      <option>Upcoming</option>
-    </select>
-
-    {["All", "PTC", "Counseling", "Archive"].map((category) => (
-      <button
-        key={category}
-        className={`btn ${category === "All" ? "filter-active" : "btn-outline-primary"} fw-semibold`}
-      >
-        {category}
-      </button>
-    ))}
-
-    <button className="add-appointment-btn ms-auto">Add an Appointment</button>
   </div>
+
+  <select className="dropdown">
+    <option>Upcoming</option>
+  </select>
+
+  {["All", "PTC", "Counseling", "Archive"].map((category) => (
+    <button
+      key={category}
+      className={`btn ${category === "All" ? "filter-active" : "btn-outline-primary"} fw-semibold`}
+    >
+      {category}
+    </button>
+  ))}
+</div>
+
+{/* Add Button */}
+<div className="d-flex mt-2">
+  <button className="add-appointment-btn">Add an Appointment</button>
+</div>
 
 
 
