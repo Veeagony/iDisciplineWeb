@@ -43,16 +43,17 @@ const IncidentReports = () => {
           <h4 className="incidentr">Incident Reports</h4>
           <span className="report-count">{filteredReports.length}</span>
         </div>
+        <div className="d-flex align-items-center gap-3">
+                   <button className="icon-btn" >
+                     <FaCommentDots size={20} />
+                    </button>
+                   <button className="icon-btn" >
+                      <FaBell size={20} />
+                    </button>
+                </div>
       </div>
 
-      <div className="d-flex align-items-center gap-3">
-        <button className="icon-btn" >
-          <FaCommentDots size={20} />
-        </button>
-              <button className="icon-btn" >
-                    <FaBell size={20} />
-                  </button>
-              </div>
+      
 
       {/* Filter Bar */}
       <div className="filters d-flex align-items-center gap-3 mb-3">
@@ -110,23 +111,30 @@ const IncidentReports = () => {
       </div>
 
       {/* Drawer Component for Incident Report Details */}
-      {selectedReport && (
-        <div className="drawer">
-          <div className="drawer-content">
-            <button className="close-btn" onClick={handleCloseDrawer}>X</button>
-            <h3>Incident Report Details</h3>
-            <div><strong>Incident Report No.</strong>: {selectedReport.id}</div>
-            <div><strong>Date & Time of the Incident</strong>: {selectedReport.date}</div>
-            <div><strong>Location</strong>: Not Provided</div>
-            <div><strong>Parties Involved</strong>: Victim, Offender, Witness</div>
-            <div><strong>Description of the Incident</strong>: {selectedReport.message}</div>
-            <div><strong>Reported by</strong>: Unknown</div>
-            <div><strong>Date Reported</strong>: {selectedReport.date}</div>
-            <button className="btn-archive">Archive</button>
-            <button className="btn-log-violation">Log as Violation</button>
+        {selectedReport && (
+          <div className="drawer">
+            <div className="drawer-content">
+              {/* Close Button */}
+              <button className="close-btn" onClick={handleCloseDrawer}>X</button>
+
+              {/* Title */}
+              <h3>Incident Report Details</h3>
+
+              {/* Report Details */}
+              <div><strong>Incident Report No.</strong>: {selectedReport.id}</div>
+              <div><strong>Date & Time of the Incident</strong>: {selectedReport.date}</div>
+              <div><strong>Location</strong>: Not Provided</div>
+              <div><strong>Parties Involved</strong>: Victim, Offender, Witness</div>
+              <div><strong>Description of the Incident</strong>: {selectedReport.message}</div>
+              <div><strong>Reported by</strong>: Unknown</div>
+              <div><strong>Date Reported</strong>: {selectedReport.date}</div>
+
+              {/* Action Buttons */}
+              <button className="btn-archive">Archive</button>
+              <button className="btn-log-violation">Log as Violation</button>
+            </div>
           </div>
-        </div>
-      )}
+        )}
     </div>
   );
 };

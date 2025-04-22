@@ -32,11 +32,7 @@
   width: 30px;
 }
 
-.icon-btn:hover {
-  background-color: white;
-  color: black;
-  outline: none;
-}
+
 
 .filters {
   display: flex;
@@ -63,11 +59,6 @@
 
 
 
-.filter-active {
-  background-color: white;
-  color: black;
-  border: 2px solid #0d1e61;
-}
 
 .btn-outline-primary {
   border: none;
@@ -75,26 +66,22 @@
 
 .incident-table {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
+  
+  
 }
 
 .incident-table th,
 .incident-table td {
   padding: 12px;
+  padding-left: 80px;
   border-bottom: 1px solid #ddd;
   text-align: left;
-}
-
-.incident-table th {
-  background-color: #f8f9fa;
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
-.incident-table td {
   font-size: 0.88rem;
+  
 }
+
+
+
 
 .clickable-row {
   cursor: pointer;
@@ -111,6 +98,7 @@
   overflow-y: auto;  /* Enable vertical scrolling */
 }
 
+/* Drawer Style */
 .drawer {
   position: fixed;
   top: 0;
@@ -126,24 +114,31 @@
   overflow-y: auto;
 }
 
+/* Slide-in animation */
 @keyframes slideIn {
   100% {
     transform: translateX(0);
   }
 }
 
+/* Drawer Content */
 .drawer-content {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
+/* Close button */
 .close-btn {
   font-size: 24px;
   background: transparent;
   border: none;
   color: #dcdcdc;
   cursor: pointer;
+  align-self: flex-end; /* Position it to the right */
 }
 
+/* Buttons for Archive and Log as Violation */
 .btn-archive,
 .btn-log-violation {
   padding: 8px 15px;
@@ -153,9 +148,22 @@
   background-color: #0144F2;
   color: white;
   margin-top: 15px;
+  width: 100%;
 }
 
 .btn-archive:hover,
 .btn-log-violation:hover {
   background-color: #0039c7;
 }
+
+/* Labels for each detail */
+.drawer-content div {
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.drawer-content div strong {
+  color: #0d1e61;
+  font-weight: 600;
+}
+
