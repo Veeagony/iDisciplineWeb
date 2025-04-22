@@ -1,8 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Dashboard.css";
 import { FaBalanceScale, FaUserGraduate, FaCalendarAlt } from "react-icons/fa";
+import { db } from "../../firebase/firebaseConfig";
+import { ref, onValue } from "firebase/database";
 
 function Dashboard() {
+  const [violationCount, setViolationCount] = useState(0);
+
+  useEffect(() => {
+    const violationsRef = ref(db, "violations");
+    const unsubscribe = onValue(violationsRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        const count = Object.keys(data).length;
+        setViolationCount(count);
+      } else {
+        setViolationCount(0);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   return (
     <div className="d-flex">
       {/* Main Content */}
@@ -22,7 +41,7 @@ function Dashboard() {
                 <FaBalanceScale />
               </div>
               <h4>Violation</h4>
-              <h3>0</h3>
+              <h3>{violationCount}</h3>
             </div>
           </div>
           <div className="col-md-4">

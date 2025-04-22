@@ -13,10 +13,9 @@ function MainLayoutStudent() {
       <Menubar isOpen={isOpen} toggleMenubar={toggleMenubar} />
       
       {/* Main content area */}
-      <div className="main-content">
-        {/* The Outlet component will render child routes here */}
-        <Outlet />
-      </div>
+      <div className={`main-content ${isOpen ? 'sidebar-open' : ''}`}>
+  <Outlet />
+</div>
     </div>
   );
 }

@@ -156,14 +156,3 @@
   background-color: #0039c7;
 }
 
-/* Labels for each detail */
-.drawer-content div {
-  margin-bottom: 12px;
-  font-size: 14px;
-}
-
-.drawer-content div strong {
-  color: #0d1e61;
-  font-weight: 600;
-}
-

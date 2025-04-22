@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AddViolations from "./AddViolations";
+import ViolationsDetails from "./ViolationsDetails";
 import "./Violations.css";
 import { FaBell, FaCommentDots } from "react-icons/fa";
 import { db } from "../../firebase/firebaseConfig"; // Make sure path is correct
@@ -10,6 +11,7 @@ const Violations = () => {
   const [searchTerm, setSearchTerm] = useState(""); 
   const [filter, setFilter] = useState("All");
   const [violations, setViolations] = useState([]);
+  const [selectedViolation, setSelectedViolation] = useState(null);
 
   // 🔄 Load violations from Firebase
   useEffect(() => {
@@ -42,6 +44,7 @@ const Violations = () => {
 
     setDrawerOpen(false); // Close drawer after adding
   };
+  
 
   const getBadgeClass = (status) =>
     status === "Resolved" ? "badge-resolved" : "badge-unresolved";
@@ -120,7 +123,7 @@ const Violations = () => {
           </thead>
           <tbody>
             {filteredViolations.map((v, i) => (
-              <tr key={v.id}>
+              <tr key={v.id} onClick={() => setSelectedViolation(v)} style={{ cursor: 'pointer'}}>
                 <td>
                   <span className={`badge ${getBadgeClass(v.status)} px-3 py-2`}>
                     {v.status}
@@ -141,6 +144,14 @@ const Violations = () => {
         <AddViolations
           closeDrawer={() => setDrawerOpen(false)}
           addViolation={handleAddViolation}
+        />
+      )}
+
+       {/* Detail Drawer */}
+      {selectedViolation && (
+        <ViolationsDetails
+          violation={selectedViolation}
+          onClose={() => setSelectedViolation(null)}
         />
       )}
     </div>
