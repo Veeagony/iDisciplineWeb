@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { IoMdClose } from "react-icons/io";
-import "./AddStudentForm.css";
 import "./EditStudentForm.css";
 
 const EditStudentForm = ({ isOpen, onClose, student, onSave }) => {

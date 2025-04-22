@@ -1,0 +1,103 @@
+.drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%; /* Full width of the screen */
+    max-width: 500px; /* Adjust max-width based on your requirement */
+    height: 100%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: -3px 0 8px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%);
+    animation: slideIn 0.3s forwards;
+    overflow-y: auto;
+  }
+  
+  @keyframes slideIn {
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  .drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0d1e61;
+    color: white;
+    padding: 15px;
+    border-radius: 10px 10px 0 0;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    width: 100%;
+  }
+  
+  .drawer-title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 26px;
+    cursor: pointer;
+    margin-top: -5px;
+  }
+  
+  .close-btn:hover {
+    color: #ddd;
+  }
+  
+  .drawer-body {
+    padding-top: 20px;
+    font-size: 14px;
+  }
+  
+  .drawer-body div {
+    margin: 12px 0;
+  }
+  
+  strong {
+    font-weight: 600;
+  }
+  
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 30px;
+  }
+  
+  .btn-archive,
+  .btn-log-violation {
+    padding: 12px 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .btn-archive {
+    background-color: #0d1e61;
+    color: white;
+  }
+  
+  .btn-archive:hover {
+    background-color: #0039c7;
+  }
+  
+  .btn-log-violation {
+    background-color: #f44336; /* Red color */
+    color: white;
+  }
+  
+  .btn-log-violation:hover {
+    background-color: #e31b00;
+  }
+  

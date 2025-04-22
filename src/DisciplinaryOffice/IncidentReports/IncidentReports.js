@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaSearch, FaBell, FaCommentDots } from "react-icons/fa";
+import IncidentReportsDetails from "./IncidentReportsDetails"; // Import the new component
 import './IncidentReports.css';
 
 const IncidentReports = () => {
@@ -112,23 +113,13 @@ const IncidentReports = () => {
         </table>
       </div>
 
-      {/* Drawer Component for Incident Report Details */}
+      {/* Drawer for Incident Report Details */}
       {selectedReport && (
-        <div className="drawer">
-          <div className="drawer-content">
-            <button className="close-btn" onClick={handleCloseDrawer}>X</button>
-            <h3>Incident Report Details</h3>
-            <div><strong>Incident Report No.</strong>: {selectedReport.id}</div>
-            <div><strong>Date & Time of the Incident</strong>: {selectedReport.date}</div>
-            <div><strong>Location</strong>: Not Provided</div>
-            <div><strong>Parties Involved</strong>: Victim, Offender, Witness</div>
-            <div><strong>Description of the Incident</strong>: {selectedReport.message}</div>
-            <div><strong>Reported by</strong>: Unknown</div>
-            <div><strong>Date Reported</strong>: {selectedReport.date}</div>
-            <button className="btn-archive" onClick={handleArchive}>Archive</button>
-            <button className="btn-log-violation">Log as Violation</button>
-          </div>
-        </div>
+        <IncidentReportsDetails
+          report={selectedReport}
+          closeDrawer={handleCloseDrawer}
+          handleArchive={handleArchive}
+        />
       )}
     </div>
   );
