@@ -1,6 +1,7 @@
 .incident-reports {
   background-color: #fff;
   padding: 20px;
+  border-radius: 10px;
 }
 
 .incidentr {
@@ -11,73 +12,92 @@
 
 .report-count {
   background: #e0ecff;
-  padding: 3px 10px;
+  padding: 5px 15px;
   border-radius: 20px;
   font-weight: 600;
-  margin-top: -8px;
-  margin-left: 30px;
+  margin-left: 20px;
+  font-size: 16px;
 }
 
 .icon-btn {
   background-color: white;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-  
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .icon-btn svg {
-  fill: #10349E;
-  height: 30px;
-  width: 30px;
+  fill: #10349e;
+  height: 24px;
+  width: 24px;
 }
 
-
+.icon-btn:hover {
+  background-color: #f0f4ff;
+  color: #0056b3;
+}
 
 .filters {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
   background-color: #0d1e61;
-  padding: 12px;
-  border-radius: 10px;
+  padding: 12px 20px;
+  border-radius: 8px;
 }
 
 .search-input {
-  border-radius: 0 25px 25px 0;
-  border: 1px solid #ced4da;
-  margin-top: 12px;
   width: 300px;
+  padding: 12px;
+  border-radius: 25px 0 0 25px;
+  border: 1px solid #ced4da;
+  font-size: 14px;
 }
 
 .dropdown {
-  padding: 6px 10px;
+  padding: 8px 12px;
   border-radius: 6px;
   font-size: 14px;
-  margin-left: 10px;
+  background-color: #ffffff;
+  color: #333;
 }
 
-
-
+.filter-active {
+  background-color: #ffffff;
+  color: black;
+  border: 2px solid #0d1e61;
+}
 
 .btn-outline-primary {
   border: none;
+  background-color: #345ed0;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-weight: 600;
 }
 
 .incident-table {
   width: 100%;
-  
-  
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .incident-table th,
 .incident-table td {
-  padding: 12px;
-  padding-left: 80px;
+  padding: 12px 18px;
   border-bottom: 1px solid #ddd;
   text-align: left;
-  font-size: 0.88rem;
-  
+  font-size: 14px;
+}
+
+.incident-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+.incident-table td {
+  font-size: 14px;
 }
 
 
@@ -94,21 +114,29 @@
 .table-container {
   border: 1px solid #dee2e6;
   border-radius: 10px;
-  max-height: 400px;
-  overflow-y: auto;  /* Enable vertical scrolling */
+  overflow-x: auto;
+  margin-top: 20px;
 }
 
-/* Drawer Style */
+.table-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background-color: #6c757d;
+  border-radius: 5px;
+}
+
 .drawer {
   position: fixed;
   top: 0;
   right: 0;
-  width: 720px;
+  width: 400px;
   height: 100%;
   background-color: white;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: -3px 0 10px rgba(0, 0, 0, 0.1);
   transform: translateX(100%);
   animation: slideIn 0.3s forwards;
   overflow-y: auto;
@@ -141,13 +169,15 @@
 /* Buttons for Archive and Log as Violation */
 .btn-archive,
 .btn-log-violation {
-  padding: 8px 15px;
-  border: none;
-  border-radius: 20px;
-  font-weight: 600;
-  background-color: #0144F2;
+  padding: 10px 18px;
+  font-weight: bold;
+  background-color: #0d1e61;
   color: white;
-  margin-top: 15px;
+  border: none;
+  border-radius: 25px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-size: 14px;
   width: 100%;
 }
 
@@ -155,4 +185,3 @@
 .btn-log-violation:hover {
   background-color: #0039c7;
 }
-
