@@ -31,6 +31,7 @@ const Violations = () => {
     });
     return () => unsubscribe();
   }, []);
+  
 
   const handleAddViolation = (newViolation) => {
     console.log("➡️ handleAddViolation received:", newViolation); // Check the received data

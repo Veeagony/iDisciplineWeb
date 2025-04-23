@@ -38,6 +38,12 @@ const AddViolations = ({ closeDrawer, addViolation }) => {
     return () => unsubscribe();
   }, []);
 
+  useEffect(() => {
+    const currentDate = new Date();
+    const formattedDate = `${currentDate.toLocaleString('default', { month: 'long' })} ${currentDate.getDate()}, ${currentDate.getFullYear()}`;
+    setDateReported(formattedDate);  // Set the current date
+  }, []);
+
   // Generate a unique Case No (Random example)
   useEffect(() => {
     // You can generate this number based on your needs (e.g., current timestamp or a sequential counter from Firebase)
@@ -235,9 +241,9 @@ const AddViolations = ({ closeDrawer, addViolation }) => {
           type="text"
           placeholder=""
           value={dateReported}
-          onChange={(e) => setDateReported(e.target.value)}
+          readOnly  // Make this field read-only as it’s auto-generated
         />
-
+      
         <button className="add-btn" onClick={handleSubmit}>
           Add
         </button>
