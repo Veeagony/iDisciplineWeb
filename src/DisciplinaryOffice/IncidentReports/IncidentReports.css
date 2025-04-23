@@ -41,7 +41,7 @@
   display: flex;
   align-items: center;
   gap: 15px;
-  background-color: #0d1e61;
+  background-color: #223067;
   padding: 12px 20px;
   border-radius: 8px;
 }
@@ -54,23 +54,17 @@
   font-size: 14px;
 }
 
-.dropdown {
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 14px;
-  background-color: #ffffff;
-  color: #333;
-}
+
 
 .filter-active {
   background-color: #ffffff;
   color: black;
-  border: 2px solid #0d1e61;
+  border: 2px solid #223067;
 }
 
 .btn-outline-primary {
   border: none;
-  background-color: #345ed0;
+  background-color: #223067;
   padding: 10px 15px;
   border-radius: 5px;
   font-weight: 600;

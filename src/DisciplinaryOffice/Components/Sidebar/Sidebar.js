@@ -16,7 +16,7 @@ function Sidebar({ isOpen, toggleSidebar }) {
     { label: "Violations", icon: <FaBalanceScale />, path: "/violations" },
     { label: "Incident Reports", icon: <FaFileAlt />, path: "/incident-reports" },
     { label: "Appointments", icon: <FaCalendarAlt />, path: "/appointments" },
-    { label: "Reports", icon: <FaChartBar />, path: "/report" },
+    { label: "Reports", icon: <FaChartBar />, path: "/reports" },
     { label: "Handbook", icon: <FaBook />, path: "/handbook" },
   ];
 

@@ -121,8 +121,6 @@ const AddViolations = ({ closeDrawer, addViolation }) => {
     />
   </div>
 
-
-
     <label>Location:</label>
     <input type="text" placeholder="Enter Location" value={location} onChange={(e) => setLocation(e.target.value)} />
 

@@ -1,0 +1,26 @@
+.reports-page {
+    background-color: #fff;
+  }
+
+.reports-filter-bar {
+  background-color: #223067;
+  padding: 12px;
+  border-radius: 10px;
+  color: white;
+}
+
+.btn-outline-primary {
+  border: none;
+  padding: 10px 15px;
+  background-color: #223067;
+  font-weight: 600;
+  color: white;
+}
+
+.dropdown {
+    margin-top: -5px;
+    margin-right: 20px;
+    margin-left: 8px;
+    height: 35px;
+    width: 200px;
+  }

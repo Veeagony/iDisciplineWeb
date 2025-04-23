@@ -10,6 +10,8 @@ import Violations from "./DisciplinaryOffice/Violations/Violations"; // Import t
 import StudentViolationRecord from "./DisciplinaryOffice/StudentList/StudentViolationRecord";
 import IncidentReports from "./DisciplinaryOffice/IncidentReports/IncidentReports";
 import Appointments from "./DisciplinaryOffice/Appointments/Appointments";
+import Handbook from "./DisciplinaryOffice/Handbook/Handbook";
+import Reports from "./DisciplinaryOffice/Reports/Reports";
 import Home from "./Student/Home/Home";
 
 function App() {
@@ -26,6 +28,9 @@ function App() {
           <Route path="/student-violation-record/:id" element={<StudentViolationRecord />} />
           <Route path="/incident-reports" element={<IncidentReports />} />
           <Route path="/appointments" element={<Appointments />} />
+          <Route path="/handbook" element={<Handbook />} />
+          <Route path="/reports" element={<Reports />} />
+         
         </Route>
         
         {/* Routes for Student (MainLayoutStudent) */}

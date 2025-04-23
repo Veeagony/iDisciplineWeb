@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Dashboard.css";
 import { FaBalanceScale, FaUserGraduate, FaCalendarAlt } from "react-icons/fa";
+import { FaBell, FaCommentDots } from "react-icons/fa";
 import { db } from "../../firebase/firebaseConfig";
 import { ref, onValue } from "firebase/database";
 
@@ -31,7 +32,16 @@ function Dashboard() {
             <label>Dashboard</label>
             <p>for the last 30 days</p>
           </div>
+          <div className="d-flex align-items-center gap-3">
+            <button className="icon-btn" >
+              <FaCommentDots size={20} />
+                </button>
+                <button className="icon-btn" >
+                  <FaBell size={20} />
+                </button>
+          </div>
         </div>
+        
 
         {/* Dashboard Stats */}
         <div className="row mt-4 g-4">

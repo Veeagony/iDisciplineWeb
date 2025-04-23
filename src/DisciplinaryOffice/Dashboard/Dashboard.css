@@ -17,6 +17,26 @@
   color: #6c757d;
 }
 
+icon-btn {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  
+}
+
+.icon-btn svg {
+  fill: #10349E;
+  height: 30px;
+  width: 30px;
+}
+
+.icon-btn:hover {
+  background-color: white;
+  color: black;
+  outline: none;
+}
+
 /* Cards */
 .card {
   border: none;
