@@ -26,9 +26,11 @@ const Appointments = () => {
           ...value,
         }));
         setAppointments(appointmentsArray);
-        // Update marked dates whenever appointments change
-        const appointmentDates = appointmentsArray.map(appt => new Date(appt.datetime).toDateString());
-        setMarkedDates(appointmentDates);
+        // Update marked dates using Set to avoid duplicates
+        const uniqueDates = [...new Set(
+          appointmentsArray.map(appt => new Date(appt.datetime).toDateString())
+        )];
+        setMarkedDates(uniqueDates);
       } else {
         setAppointments([]);
         setMarkedDates([]);
@@ -57,21 +59,10 @@ const Appointments = () => {
     setDate(newDate);
   };
 
-  const handleAddAppointment = (newAppointment) => {
-    setAppointments(prev => [...prev, newAppointment]);
-    setMarkedDates(prev => [...prev, new Date(newAppointment.datetime).toDateString()]);
-  };
-
-  const markCalendarDate = (dateToMark) => {
-    setMarkedDates(prev => [...prev, dateToMark.toDateString()]);
-  };
-
   const tileClassName = ({ date, view }) => {
     if (view === 'month') {
       const dateString = date.toDateString();
-      if (markedDates.includes(dateString)) {
-        return 'has-appointment';
-      }
+      return markedDates.includes(dateString) ? 'has-appointment' : null;
     }
     return null;
   };
@@ -171,8 +162,6 @@ const Appointments = () => {
         <AddAppointments
           closeDrawer={() => setDrawerOpen(false)}
           violations={violations}
-          addAppointment={handleAddAppointment}
-          markCalendarDate={markCalendarDate} // Pass the new function
         />
       )}
     </div>
