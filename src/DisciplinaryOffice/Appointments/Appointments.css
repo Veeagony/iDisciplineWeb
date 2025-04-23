@@ -74,100 +74,98 @@
   width: 13%;
 }
 
+.react-calendar {
+  width: 100%;
+}
   
-  /* Calendar styles */
-  .calendar-container {
-    margin-top: 20px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .calendar-container .react-calendar {
-    flex-grow: 1;
-    width: 100% !important;
-    max-width: 100% !important;
-  }
+  /* Calendar Container */
+.calendar-container {
+  width: 800px; /* Fixed width */
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: white; /* Changed from gray */
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
 
-  .calendar-wrapper {
-    width: 0%;
-  }
-  
-  .react-calendar {
-    background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
-    border: none;
-    padding: 20px;
-    width: 100%;
-    max-width: 400px;
-  }
-  
-  /* Header navigation buttons */
-  .react-calendar__navigation button {
-    background: none;
-    border: none;
-    color: #0d1e61;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 5px 10px;
-    transition: background 0.2s ease;
-  }
-  
-  .react-calendar__navigation button:hover {
-    background-color: #f0f4ff;
-    border-radius: 8px;
-  }
-  
-  /* Day names (Mon, Tue...) */
-  .react-calendar__month-view__weekdays {
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: 600;
-    font-size: 13px;
-    color: #0d1e61;
-    border-bottom: 1px dashed #ccc;
-    margin-bottom: 8px;
-  }
-  
-  .react-calendar__month-view__weekdays__weekday {
-    padding: 10px 0;
-  }
-  
-  /* Day tiles */
-  .react-calendar__tile {
-    padding: 12px 0;
-    font-size: 14px;
-    border-radius: 12px;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .react-calendar__tile--now {
-    background-color: #007bff;
-    color: white;
-    font-weight: bold;
-  }
-  
-  .react-calendar__tile--active {
-    background-color: #0d1e61 !important;
-    color: white;
-    font-weight: bold;
-  }
-  
-  .react-calendar__tile:enabled:hover {
-    background-color: #e6f0ff;
-    color: #0d1e61;
-  }
-  
-  .react-calendar__tile--neighboringMonth {
-    color: #ccc;
-  }
-  
-  /* Weekend styling (optional) */
-  .react-calendar__month-view__days__day--weekend {
-    color: #f44336;
-  }
-  
+/* Day Cells */
+.react-calendar__tile {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  margin: 2px;
+  background: white !important; /* Force white background */
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+  color: #2563eb !important; /* Blue color for numbers */
+}
+
+/* Neighboring Month */
+.react-calendar__tile--neighboringMonth {
+  color: #93c5fd !important; /* Lighter blue for neighboring months */
+  opacity: 1 !important; /* Ensure full visibility */
+}
+
+/* Weekend Days */
+.react-calendar__month-view__days__day--weekend {
+  color: #1e3a8a !important; /* Different shade of blue for weekends */
+}
+
+/* Current Day */
+.react-calendar__tile--now {
+  background: #bfdbfe !important; /* Light blue background for today */
+  color: #1e3a8a !important; /* Dark blue number */
+}
+
+/* Selected Day */
+.react-calendar__tile--active {
+  background: #1e3a8a !important;
+  color: white !important;
+}
+
+/* Navigation Header */
+.react-calendar__navigation {
+  background: #1c3db5 !important; /* Deeper blue */
+  color: white !important; /* White text for better contrast */
+  border-bottom: 1px solid #3759c3; /* Slightly lighter blue for subtle separation */
+  padding: 0.5em 1em; /* Add some padding for better touch targets and visual spacing */
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Vertically align items in the header */
+  justify-content: space-between; /* Distribute space around the buttons and title */
+}
+
+.react-calendar__navigation__label {
+  font-weight: 600 !important; /* Make the month/year bold */
+  font-size: 1.1em !important; /* Slightly larger font size */
+}
+
+.react-calendar__navigation__arrow {
+  background: none !important; /* Remove button backgrounds */
+  color: white !important; /* White arrow color */
+  border: none !important; /* Remove button borders */
+  border-radius: 4px; /* Slightly round the arrow hit area */
+  padding: 0.3em 0.6em; /* Add some padding to the arrow buttons */
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out; /* Smooth hover transition */
+}
+
+.react-calendar__navigation__arrow:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important; /* Slightly transparent white on hover */
+}
+
+.react-calendar__navigation__prev-button,
+.react-calendar__navigation__next-button {
+  font-size: 1.2em !important; /* Make arrows a bit larger */
+}
+
+.react-calendar__navigation__prev2-button,
+.react-calendar__navigation__next2-button {
+  font-size: 0.9em !important; /* Make double arrows a bit smaller */
+}
   
   /* Styling the appointments table */
   .appointments-table {
