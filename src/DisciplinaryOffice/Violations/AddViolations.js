@@ -38,6 +38,13 @@ const AddViolations = ({ closeDrawer, addViolation }) => {
     return () => unsubscribe();
   }, []);
 
+  // Generate a unique Case No (Random example)
+  useEffect(() => {
+    // You can generate this number based on your needs (e.g., current timestamp or a sequential counter from Firebase)
+    const generatedCaseNo = `C-${Math.floor(Math.random() * 1000000)}`;
+    setCaseNo(generatedCaseNo);  // Set the generated Case No
+  }, []);
+
   const handleOffenderChange = (e) => {
     const value = e.target.value;
     setOffender(value);
@@ -73,6 +80,7 @@ const AddViolations = ({ closeDrawer, addViolation }) => {
       alert("Please fill out all the required fields!");
       return;
     }
+
     const newViolation = {
       status,
       caseNo,
@@ -107,7 +115,7 @@ const AddViolations = ({ closeDrawer, addViolation }) => {
           type="text"
           placeholder=""
           value={caseNo}
-          onChange={(e) => setCaseNo(e.target.value)}
+          readOnly  // Make this field read-only
         />
 
         <label>Status</label>

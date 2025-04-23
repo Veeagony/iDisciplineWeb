@@ -93,7 +93,7 @@ const IncidentReports = () => {
               <th>Status</th>
               <th>Student ID</th>
               <th>Full Name</th>
-              <th>Message</th>
+              <th>Category</th>
               <th>Type</th>
               <th>Date Sent</th>
             </tr>

@@ -109,8 +109,8 @@ const StudentList = () => {
               <th>Student ID</th>
               <th>First Name</th>
               <th>Last Name</th>
-              <th>No of Violations</th>
-              <th>No of IR Submitted</th>
+              <th>Year & Section</th>
+              
             </tr>
           </thead>
           <tbody>
@@ -120,8 +120,8 @@ const StudentList = () => {
                 <td>{student.studentId || "0001"}</td>
                 <td>{student.firstName}</td>
                 <td>{student.lastName}</td>
-                <td>{student.violations || 0}</td>
-                <td>{student.irSubmitted || 0}</td>
+                <td>{student.sections}</td>
+               
               </tr>
             ))}
           </tbody>

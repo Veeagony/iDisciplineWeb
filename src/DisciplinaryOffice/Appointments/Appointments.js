@@ -83,7 +83,7 @@ const Appointments = () => {
               <th>Student ID</th>
               <th>Full Name</th>
               <th>Case</th>
-              <th>Message</th>
+              <th>Meeting Type</th>
               <th>Date Sent</th>
             </tr>
           </thead>
