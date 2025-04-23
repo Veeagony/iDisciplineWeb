@@ -96,7 +96,7 @@ const AddViolations = ({ closeDrawer, addViolation }) => {
       violationCategory,
       violationType,
       Victim: victim,
-      Offender: offender, // Ensure this is set correctly
+      offender: offender, // Ensure this is set correctly
       Witness: witness,
       Description: description,
       DateReported: dateReported,

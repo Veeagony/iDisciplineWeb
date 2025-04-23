@@ -1,80 +1,145 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css'; // Import default styles
-import './Appointments.css'; // Import your custom styles
+import DatePicker from 'react-datepicker';
+import { db } from '../../firebase/firebaseConfig';
+import { ref, onValue } from 'firebase/database';
+import AddAppointments from './AddAppointments';
+import 'react-calendar/dist/Calendar.css';
+import 'react-datepicker/dist/react-datepicker.css';
+import './Appointments.css';
 
 const Appointments = () => {
   const [date, setDate] = useState(new Date());
-  const [appointments] = useState([
-    { id: 1, status: 'Settled', studentId: '00000', fullName: 'First Name Last Name', case: 'Case1', message: '---', dateSent: '2025-02-04' },
-    { id: 2, status: 'Unsettled', studentId: '00001', fullName: 'First Name Last Name', case: 'Case2', message: '---', dateSent: '2025-02-05' },
-    { id: 3, status: 'Settled', studentId: '00002', fullName: 'First Name Last Name', case: 'Case3', message: '---', dateSent: '2025-02-06' },
-    { id: 4, status: 'Unsettled', studentId: '00003', fullName: 'First Name Last Name', case: 'Case4', message: '---', dateSent: '2025-02-07' },
-  ]);
+  const [appointments, setAppointments] = useState([]);
+  const [violations, setViolations] = useState([]);
+  const [isDrawerOpen, setDrawerOpen] = useState(false);
+  const [markedDates, setMarkedDates] = useState([]);
+
+  // Fetch appointments from Firebase
+  useEffect(() => {
+    const appointmentsRef = ref(db, 'appointments');
+    const unsubscribe = onValue(appointmentsRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        const appointmentsArray = Object.entries(data).map(([key, value]) => ({
+          id: key,
+          ...value,
+        }));
+        setAppointments(appointmentsArray);
+        // Update marked dates whenever appointments change
+        const appointmentDates = appointmentsArray.map(appt => new Date(appt.datetime).toDateString());
+        setMarkedDates(appointmentDates);
+      } else {
+        setAppointments([]);
+        setMarkedDates([]);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
+  // Fetch violations from Firebase
+  useEffect(() => {
+    const violationsRef = ref(db, 'violations');
+    const unsubscribe = onValue(violationsRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        const violationsArray = Object.entries(data).map(([key, value]) => ({
+          id: key,
+          ...value,
+        }));
+        setViolations(violationsArray);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
   const handleDateChange = (newDate) => {
     setDate(newDate);
-    // Filter appointments based on the selected date
+  };
+
+  const handleAddAppointment = (newAppointment) => {
+    setAppointments(prev => [...prev, newAppointment]);
+    setMarkedDates(prev => [...prev, new Date(newAppointment.datetime).toDateString()]);
+  };
+
+  const markCalendarDate = (dateToMark) => {
+    setMarkedDates(prev => [...prev, dateToMark.toDateString()]);
+  };
+
+  const tileClassName = ({ date, view }) => {
+    if (view === 'month') {
+      const dateString = date.toDateString();
+      if (markedDates.includes(dateString)) {
+        return 'has-appointment';
+      }
+    }
+    return null;
   };
 
   return (
     <div className="appointments-page px-4 py-4">
-      {/* Header Row (Title + Badge + Icons) */}
-<div className="d-flex justify-content-between align-items-center mb-3">
-  <div className="d-flex align-items-center">
-    <h4 className="appointments-title">Appointments</h4>
-    <span className="appointments-count">4</span>
-  </div>
-  <div className="d-flex align-items-center gap-3">
-    <button className="icon-btn">
-      <i className="fas fa-comment-dots"></i>
-    </button>
-    <button className="icon-btn">
-      <i className="fas fa-bell"></i>
-    </button>
-  </div>
-</div>
+      {/* Header Section */}
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <div className="d-flex align-items-center">
+          <h4 className="appointments-title">Appointments</h4>
+          <span className="appointments-count">{appointments.length}</span>
+        </div>
+        <div className="d-flex align-items-center gap-3">
+          <button className="icon-btn">
+            <i className="fas fa-comment-dots"></i>
+          </button>
+          <button className="icon-btn">
+            <i className="fas fa-bell"></i>
+          </button>
+        </div>
+      </div>
 
-  {/* Header Section (Title + Count + Icons) */}
-  {/* Filter Bar */}
-<div className="appointments-filter-bar d-flex align-items-center gap-3 mb-2">
-  <div className="search-group">
-    <i className="fas fa-search"></i>
-    <input
-      type="text"
-      className="form-control border-start-0"
-      placeholder="Search Here"
-    />
-  </div>
+      {/* Filter Bar */}
+      <div className="appointments-filter-bar d-flex align-items-center gap-3 mb-2">
+        <div className="search-group">
+          <i className="fas fa-search"></i>
+          <input
+            type="text"
+            className="form-control border-start-0"
+            placeholder="Search Here"
+          />
+        </div>
 
-  <select className="dropdown">
-    <option>Upcoming</option>
-  </select>
+        <select className="dropdown">
+          <option>Upcoming</option>
+        </select>
 
-  {["All", "PTC", "Counseling", "Archive"].map((category) => (
-    <button
-      key={category}
-      className={`btn ${category === "All" ? "filter-active" : "btn-outline-primary"} fw-semibold`}
-    >
-      {category}
-    </button>
-  ))}
-</div>
+        {["All", "PTC", "Counseling", "Archive"].map((category) => (
+          <button
+            key={category}
+            className={`btn ${category === "All" ? "filter-active" : "btn-outline-primary"} fw-semibold`}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
 
-{/* Add Button */}
-<div className="d-flex mt-2">
-  <button className="add-appointment-btn">Add an Appointment</button>
-</div>
+      {/* Add Button */}
+      <div className="d-flex mt-2">
+        <button
+          className="add-appointment-btn"
+          onClick={() => setDrawerOpen(true)}
+        >
+          Add an Appointment
+        </button>
+      </div>
 
+      {/* Calendar */}
       <div className="calendar-container">
-        <div className="calendar-wrapper"></div>
         <Calendar
           onChange={handleDateChange}
           value={date}
           minDate={new Date()}
+          tileClassName={tileClassName}
         />
       </div>
 
+      {/* Appointments Table */}
       <div className="appointments-table">
         <table>
           <thead>
@@ -92,15 +157,24 @@ const Appointments = () => {
               <tr key={appointment.id}>
                 <td>{appointment.status}</td>
                 <td>{appointment.studentId}</td>
-                <td>{appointment.fullName}</td>
-                <td>{appointment.case}</td>
-                <td>{appointment.message}</td>
-                <td>{appointment.dateSent}</td>
+                <td>{appointment.studentName}</td>
+                <td>{appointment.caseNo}</td>
+                <td>{appointment.meetingType}</td>
+                <td>{new Date(appointment.datetime).toLocaleString()}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+
+      {isDrawerOpen && (
+        <AddAppointments
+          closeDrawer={() => setDrawerOpen(false)}
+          violations={violations}
+          addAppointment={handleAddAppointment}
+          markCalendarDate={markCalendarDate} // Pass the new function
+        />
+      )}
     </div>
   );
 };
