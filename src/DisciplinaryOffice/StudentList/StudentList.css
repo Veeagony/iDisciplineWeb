@@ -1,86 +1,94 @@
 .student-title {
-    font-weight: bold;
-    color: #10349E;
-    font-size: 25px;
-  }
+  font-weight: bold;
+  color: #10349E;
+  font-size: 25px;
+}
 
 .student-count {
-    margin-top: -20px;
-    margin-left: 30px;
-    background: #e0ecff;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-weight: 600;
-  }
-  
-  .year-dropdown {
-    width: 100px;
-    padding: 6px;
-    margin-bottom: -10px;
-    border-radius: 4px;
-  }
-  
-  .search-input {
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    padding: 6px 12px;
-    width: 500px;
-  }
-  
-  
-  .add-student-btn {
-    background-color: #26a69a;
-    border: none;
-    color: white;
-    padding: 6px 18px;
-    border-radius: 20px;
-    font-weight: 600;
-    width: 150px;
-  }
-  
-  .student-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  .student-table th,
-  .student-table td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-    text-align: left;
-  }
-  
-  .student-photo {
-    width: 32px;
-    height: 32px;
-    background-color: #ccc;
-    border-radius: 50%;
-  }
+  margin-top: -20px;
+  margin-left: 30px;
+  background: #e0ecff;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.year-dropdown {
+  width: 100px;
+  padding: 6px;
+  margin-bottom: -10px;
+  border-radius: 4px;
+}
+
+.search-input {
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 6px 12px;
+  width: 500px;
+}
+
+.add-student-btn {
+  background-color: #26a69a;
+  border: none;
+  color: white;
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-weight: 600;
+  width: 150px;
+}
+
+.archive-btn {
+  background-color: #ff9800;
+  border: none;
+  color: white;
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-weight: 600;
+  width: 150px;
+  margin-right: 10px;
+}
+
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.student-table th,
+.student-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.student-photo {
+  width: 32px;
+  height: 32px;
+  background-color: #ccc;
+  border-radius: 50%;
+}
 
 .icon-btn {
-    background-color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    
-    
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .icon-btn svg {
-    fill: #10349E;
-    height: 30px;
-    width: 30px;
+  fill: #10349E;
+  height: 30px;
+  width: 30px;
 }
 
 .icon-btn:hover {
-    background-color: white;
-    color: black;
-    outline: none;
+  background-color: white;
+  color: black;
+  outline: none;
 }
 
 .button-container {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Controls the space between the elements */
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Controls the space between the elements */
 }
