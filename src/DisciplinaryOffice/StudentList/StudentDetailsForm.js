@@ -4,12 +4,8 @@ import { FaPen } from "react-icons/fa"; // Add FaPen for the pencil icon
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "./StudentDetailsForm.css";
 
-const StudentDetailsForm = ({ isOpen, onClose, student, onEdit, onArchive }) => {
+const StudentDetailsForm = ({ isOpen, onClose, student, onEdit }) => {
   if (!student) return null;
-
-  const handleArchive = () => {
-    onArchive(student.id); // Call the archiving function when button is clicked
-  };
 
   return (
     <div className={`student-details-drawer ${isOpen ? "open" : ""}`}>
@@ -75,11 +71,6 @@ const StudentDetailsForm = ({ isOpen, onClose, student, onEdit, onArchive }) => 
             <h6 className="text-primary fw-bold">Behavior Report</h6>
             <p className="small mb-0">This student is in immediate need of counseling</p>
           </div>
-        </div>
-
-        {/* Archive Button */}
-        <div className="d-flex justify-content-end mt-4">
-          <button className="btn btn-warning" onClick={handleArchive}>Archive</button>
         </div>
       </div>
     </div>
