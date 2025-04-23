@@ -14,6 +14,8 @@ const Appointments = () => {
   const [violations, setViolations] = useState([]);
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [markedDates, setMarkedDates] = useState([]);
+  const [activeCategory, setActiveCategory] = useState('All'); // State for the active category
+  const [filteredAppointments, setFilteredAppointments] = useState([]);
 
   // Fetch appointments from Firebase
   useEffect(() => {
@@ -55,6 +57,16 @@ const Appointments = () => {
     return () => unsubscribe();
   }, []);
 
+  // Filter appointments based on the active category
+  useEffect(() => {
+    if (activeCategory === 'All') {
+      setFilteredAppointments(appointments);
+    } else {
+      const filtered = appointments.filter(appt => appt.meetingType === activeCategory);
+      setFilteredAppointments(filtered);
+    }
+  }, [appointments, activeCategory]);
+
   const handleDateChange = (newDate) => {
     setDate(newDate);
   };
@@ -67,13 +79,17 @@ const Appointments = () => {
     return null;
   };
 
+  const handleCategoryClick = (category) => {
+    setActiveCategory(category);
+  };
+
   return (
     <div className="appointments-page px-4 py-4">
       {/* Header Section */}
       <div className="d-flex justify-content-between align-items-center mb-3">
         <div className="d-flex align-items-center">
           <h4 className="appointments-title">Appointments</h4>
-          <span className="appointments-count">{appointments.length}</span>
+          <span className="appointments-count">{filteredAppointments.length}</span>
         </div>
         <div className="d-flex align-items-center gap-3">
           <button className="icon-btn">
@@ -103,7 +119,8 @@ const Appointments = () => {
         {["All", "PTC", "Counseling", "Archive"].map((category) => (
           <button
             key={category}
-            className={`btn ${category === "All" ? "filter-active" : "btn-outline-primary"} fw-semibold`}
+            className={`btn ${activeCategory === category ? "filter-active" : "btn-outline-primary"} fw-semibold`}
+            onClick={() => handleCategoryClick(category)}
           >
             {category}
           </button>
@@ -144,7 +161,7 @@ const Appointments = () => {
             </tr>
           </thead>
           <tbody>
-            {appointments.map((appointment) => (
+            {filteredAppointments.map((appointment) => (
               <tr key={appointment.id}>
                 <td>{appointment.status}</td>
                 <td>{appointment.studentId}</td>
