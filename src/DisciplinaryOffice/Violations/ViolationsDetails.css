@@ -1,89 +1,182 @@
+/* ViolationsDetails.css */
 .drawer-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: 999;
-    display: flex;
-    justify-content: flex-end;
-    animation: fadeIn 0.3s ease;
-  }
-  
-  .drawer {
-    width: 400px;
-    background-color: #fff;
-    height: 100%;
-    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-    animation: slideIn 0.3s ease;
-    padding: 20px;
-    position: relative;
-  }
-  
-  .drawer-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .case-title {
-    font-size: 1.3rem;
-    color: #0b3d91;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .close-btn {
-    background: none;
-    border: none;
-    font-size: 22px;
-    cursor: pointer;
-  }
-  
-  .timeline {
-    margin-top: 15px;
-  }
-  
-  .timeline-item {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    margin-top: 5px;
-  }
-  
-  .blue {
-    background-color: #0b3d91;
-  }
-  
-  .drawer-footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  .btn {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 6px;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .contact { background-color: #0b3d91; }
-  .print { background-color: #1e88e5; }
-  .message { background-color: #1976d2; }
-  
-  @keyframes slideIn {
-    from { transform: translateX(100%); }
-    to { transform: translateX(0); }
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  display: flex;
+  justify-content: flex-end;
+  animation: fadeIn 0.3s ease;
+}
+
+.drawer-main {
+  width: 400px;
+  background-color: #fff;
+  height: 100%;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+  animation: slideIn 0.3s ease;
+  padding: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer-header {
+  background-color: #0b3d91; /* Add background color */
+  color: white; /* Add text color */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px; /* Add padding */
+  margin-bottom: 20px;
+}
+
+.drawer-header h5 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.drawer-header .close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.drawer-content {
+  padding: 0 20px;
+}
+
+.case-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.case-title {
+  font-size: 1.2rem;
+  color: #0b3d91;
+  margin: 0;
+}
+
+.edit-btn {
+  background-color: #ffb300;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.violation-details p {
+  margin: 8px 0;
+  line-height: 1.4;
+}
+
+.notes-section {
+  margin-top: 15px;
+  padding: 10px;
+  background: #f5f5f5;
+  border-radius: 4px;
+}
+
+.updates {
+  margin-top: 20px;
+}
+
+.updates h6 {
+  color: #0b3d91;
+  margin-bottom: 10px;
+}
+
+.update-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.update-list li {
+  margin-bottom: 15px;
+  padding-left: 30px;
+  position: relative;
+}
+
+.update-list li::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #1976d2;
+  position: absolute;
+  left: 10px;
+  top: 5px;
+}
+
+.update-list li::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 15px;
+  bottom: -5px;
+  border-left: 1px solid #1976d2;
+}
+
+.update-list li:last-child::after {
+  display: none;
+}
+
+.actions-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.right-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  color: white;
+  background-color: #1976d2;
+}
+
+.contact {
+  background-color: #1976d2;
+}
+
+.print {
+  background-color: #1976d2;
+}
+
+.message {
+  background-color: #1976d2;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #eee;
+  margin: 20px 0;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
