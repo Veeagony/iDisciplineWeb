@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import { db } from '../../firebase/firebaseConfig';
 import { ref, onValue } from 'firebase/database';
 import AddAppointments from './AddAppointments';
+import { FaBell, FaCommentDots } from "react-icons/fa";
 import 'react-calendar/dist/Calendar.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Appointments.css';
@@ -93,11 +94,11 @@ const Appointments = () => {
         </div>
         <div className="d-flex align-items-center gap-3">
           <button className="icon-btn">
-            <i className="fas fa-comment-dots"></i>
-          </button>
-          <button className="icon-btn">
-            <i className="fas fa-bell"></i>
-          </button>
+                      <FaCommentDots size={20} />
+                    </button>
+                    <button className="icon-btn">
+                      <FaBell size={20} />
+                    </button>
         </div>
       </div>
 

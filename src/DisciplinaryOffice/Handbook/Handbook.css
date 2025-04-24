@@ -1,0 +1,67 @@
+.reports-page {
+    padding: 20px;
+    background-color: #f4f5f7;
+  }
+  
+  .studentsv {
+    color: #10349e;
+    font-weight: bold;
+    font-size: 25px;
+  }
+  
+  .icon-btn {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .icon-btn svg {
+    fill: #10349E;
+    height: 30px;
+    width: 30px;
+  }
+  
+  .icon-btn:hover {
+    background-color: white;
+    color: black;
+    outline: none;
+  }
+  
+  .pdf-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .controls button {
+    padding: 10px 20px;
+    background-color: #2dd6a2;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    margin: 0 10px;
+    cursor: pointer;
+  }
+  
+  .controls button:disabled {
+    background-color: #ddd;
+  }
+  
+  .controls button:hover {
+    background-color: #26a69a;
+  }
+  
