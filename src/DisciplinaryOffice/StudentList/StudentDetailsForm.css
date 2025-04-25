@@ -34,7 +34,7 @@
 
 .profile-card {
   position: relative;
-  background: #fff;
+  background: #1f4dd8db;
   border-radius: 10px;
   overflow: hidden;
   padding: 20px;
@@ -98,4 +98,11 @@ h6.fw-bold.text-primary.mb-3 {
 
 .card .btn-link:hover {
   color: #007bff;
+}
+
+.profile-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
 }

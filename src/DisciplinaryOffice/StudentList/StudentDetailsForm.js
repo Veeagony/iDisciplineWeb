@@ -1,7 +1,7 @@
 import React from "react";
 import { IoMdClose } from "react-icons/io";
-import { FaPen } from "react-icons/fa"; // Add FaPen for the pencil icon
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { FaPen } from "react-icons/fa"; // Pencil icon for editing
+import { Link } from "react-router-dom"; // Used for navigation
 import "./StudentDetailsForm.css";
 
 const StudentDetailsForm = ({ isOpen, onClose, student, onEdit }) => {
@@ -25,11 +25,25 @@ const StudentDetailsForm = ({ isOpen, onClose, student, onEdit }) => {
         {/* Profile Card */}
         <div className="profile-card shadow-sm mb-4">
           <div className="d-flex align-items-center p-3">
-            <div className="image-placeholder-lg me-3"></div>
+            {student.image ? (
+              <img
+                src={student.image}
+                alt="Student Profile"
+                className="profile-photo me-3"
+              />
+            ) : (
+              <div className="image-placeholder-lg me-3"></div>
+            )}
             <div>
-              <h6 className="fw-bold mb-1">{student.firstName} {student.lastName}</h6>
-              <div className="text-muted small">Student No.</div>
-              <div className="text-muted small">Year & Section: {student.year} - {student.section}</div>
+              <h6 className="fw-bold mb-1">
+                {student.firstName} {student.lastName}
+              </h6>
+              <div className="text-muted small">
+                Student No. {student.studentId || "-"}
+              </div>
+              <div className="text-muted small">
+                Year &amp; Section: {student.year} - {student.section}
+              </div>
               <div className="text-muted small">School Year: 2024-2025</div>
             </div>
           </div>
@@ -42,19 +56,59 @@ const StudentDetailsForm = ({ isOpen, onClose, student, onEdit }) => {
         {/* Student Info + Emergency Contact */}
         <div className="row gx-5 mb-4">
           <div className="col-6">
-            <p><strong>First Name:</strong><br />{student.firstName}</p>
-            <p><strong>Middle Name:</strong><br />{student.middleName || "-"}</p>
-            <p><strong>Last Name:</strong><br />{student.lastName}</p>
-            <p><strong>Gender:</strong><br />{student.gender}</p>
-            <p><strong>Address:</strong><br />{student.address || "-"}</p>
-            <p><strong>Year & Section:</strong><br />{student.year} - {student.section}</p>
-            <p><strong>Adviser:</strong><br />{student.adviser || "-"}</p>
+            <p>
+              <strong>First Name:</strong>
+              <br />
+              {student.firstName}
+            </p>
+            <p>
+              <strong>Middle Name:</strong>
+              <br />
+              {student.middleName || "-"}
+            </p>
+            <p>
+              <strong>Last Name:</strong>
+              <br />
+              {student.lastName}
+            </p>
+            <p>
+              <strong>Gender:</strong>
+              <br />
+              {student.gender}
+            </p>
+            <p>
+              <strong>Address:</strong>
+              <br />
+              {student.address || "-"}
+            </p>
+            <p>
+              <strong>Year &amp; Section:</strong>
+              <br />
+              {student.year} - {student.section}
+            </p>
+            <p>
+              <strong>Adviser:</strong>
+              <br />
+              {student.adviser || "-"}
+            </p>
           </div>
           <div className="col-6">
             <p className="text-primary fw-semibold mb-1">Emergency Contact</p>
-            <p><strong>Parent/Guardian:</strong><br />{student.parent || "-"}</p>
-            <p><strong>Email:</strong><br />{student.email}</p>
-            <p><strong>Contact Number:</strong><br />{student.phone}</p>
+            <p>
+              <strong>Parent/Guardian:</strong>
+              <br />
+              {student.parent || "-"}
+            </p>
+            <p>
+              <strong>Email:</strong>
+              <br />
+              {student.email}
+            </p>
+            <p>
+              <strong>Contact Number:</strong>
+              <br />
+              {student.phone}
+            </p>
           </div>
         </div>
 
@@ -63,13 +117,18 @@ const StudentDetailsForm = ({ isOpen, onClose, student, onEdit }) => {
           <div className="card flex-grow-1 p-3 shadow-sm">
             <h6 className="fw-bold">Student Report</h6>
             {/* Clickable Violation Record */}
-            <Link to={`/student-violation-record/${student.id}`} className="btn btn-link p-0">
+            <Link
+              to={`/student-violation-record/${student.id}`}
+              className="btn btn-link p-0"
+            >
               Violation Record &gt;
             </Link>
           </div>
           <div className="card flex-grow-1 p-3 shadow-sm">
             <h6 className="text-primary fw-bold">Behavior Report</h6>
-            <p className="small mb-0">This student is in immediate need of counseling</p>
+            <p className="small mb-0">
+              This student is in immediate need of counseling
+            </p>
           </div>
         </div>
       </div>

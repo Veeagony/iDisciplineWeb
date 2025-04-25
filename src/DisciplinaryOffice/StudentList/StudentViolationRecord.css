@@ -1,153 +1,211 @@
-/* StudentViolationRecord.css */
+/* Page Wrapper: fills full viewport */
+.svr-page {
+  width: 83vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  font-family: Arial, sans-serif;
+  margin: 0 auto;
+}
 
-/* Overall layout */
-.student-violation-record {
-    padding: 30px;
-    background-color: #f9f9f9; /* Light background color */
+/* Header */
+.svr-header {
+  background-color: #ffffff;
+  color: #10349e;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+.svr-header h5 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: bold;
+}
+.back-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  background-color: #004aad;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+.back-link:hover {
+  background-color: #003b8f;
+}
+
+/* Main Content */
+.svr-main {
+  flex: 1;
+  display: flex;
+  padding: 20px 24px;
+  gap: 20px;
+  overflow-y: auto;
+}
+
+/* Left Column */
+.svr-left {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Student Card */
+.student-card {
+  display: flex;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+.student-photo {
+  width: 80px;
+  height: 80px;
+  margin-right: 16px;
+  overflow: hidden;
+}
+.student-photo img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.student-details h6 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+.student-details p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Filter & Sort Controls */
+.filter-sort {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.violation-filters {
+  display: flex;
+  gap: 10px;
+}
+.violation-filters button {
+  padding: 10px 15px;
+  font-size: 14px;
+  border: 1px solid #004aad;
+  background-color: #fff;
+  color: #004aad;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+.violation-filters button.active,
+.violation-filters button:hover {
+  background-color: #004aad;
+  color: #fff;
+}
+.sort-dropdown select {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #004aad;
+}
+
+/* Violations List */
+.violations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.violation-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 12px 15px;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.violation-type {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+.violation-count {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.violation-count span {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+.detail-btn {
+  background-color: #004aad;
+  border: none;
+  color: #fff;
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.detail-btn:hover {
+  background-color: #003b8f;
+}
+.detail-btn i {
+  font-size: 18px;
+}
+
+/* Right Column: Behavior Report */
+.svr-right {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+}
+.behavior-report {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+.behavior-report h6 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #004aad;
+}
+.behavior-report p {
+  font-size: 16px;
+  color: #333;
+  margin: 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .svr-main {
+    flex-direction: column;
   }
-  
-  .student-card {
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .svr-left,
+  .svr-right {
+    width: 100%;
   }
-  
-  .details-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #004aad;
-    color: white;
-    padding: 20px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    font-weight: bold;
-  }
-  
-  .details-header .btn-link {
-    color: #fff;
-    font-size: 14px;
-  }
-  
-  h5 {
-    font-weight: bold;
-    margin: 0;
-  }
-  
-  /* Student Info Section */
-  .student-info {
-    margin-top: 20px;
-  }
-  
-  .student-info h6 {
-    font-weight: 600;
-    margin-bottom: 5px;
-  }
-  
-  /* Violation Filter Buttons */
-  .violation-filters {
-    display: flex;
-    gap: 15px;
-    margin-top: 15px;
-  }
-  
-  .violation-filters button {
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .violation-filters .btn-primary {
-    background-color: #004aad;
-    color: white;
-    border: none;
-  }
-  
-  .violation-filters .btn-light {
-    background-color: #f1f5f9;
-    color: #004aad;
-    border: 1px solid #004aad;
-  }
-  
-  .violation-filters .btn-primary:hover,
-  .violation-filters .btn-light:hover {
-    background-color: #002c7d;
-  }
-  
-  /* Violation Category Layout */
-  .violation-category {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 10px;
-    margin-top: 10px;
-    border: 1px solid #ddd;
-  }
-  
-  .violation-category .violation-type {
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  .violation-category .violation-count {
-    display: flex;
-    align-items: center;
+  .filter-sort {
+    flex-direction: column;
     gap: 10px;
   }
-  
-  .violation-category .violation-count span {
-    font-size: 18px;
+  .violation-filters {
+    justify-content: center;
   }
-  
-  .violation-category .violation-count .btn {
-    padding: 5px 10px;
-    background-color: #004aad;
-    color: white;
-    font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    border: none;
-  }
-  
-  .violation-category .violation-count .btn:hover {
-    background-color: #003b8f;
-  }
-  
-  /* Behavior Report Section */
-  .behavior-report {
-    background-color: #f1f5f9;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 30px;
-  }
-  
-  .behavior-report h6 {
-    margin-bottom: 15px;
-    color: #004aad;
-  }
-  
-  .behavior-report p {
-    font-size: 16px;
-  }
-  
-  /* Icon Style */
-  .bi-arrow-right-circle {
-    font-size: 20px;
-    color: #004aad;
-    cursor: pointer;
-  }
-  
-  .violation-category .violation-count .bi-arrow-right-circle {
-    font-size: 22px;
-    color: #004aad;
-  }
-  
+}

@@ -1,27 +1,29 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom"; // For accessing the student ID from the URL
-import { Link } from "react-router-dom"; // For navigation back to Student Details
-import "./StudentViolationRecord.css"
+import { useParams, Link } from "react-router-dom";
+import "./StudentViolationRecord.css";
 
 const StudentViolationRecord = () => {
-  const { id } = useParams(); // Get the student ID from the URL
+  const { id } = useParams();
 
-  // Fetch the student details and violation records (this is static for now)
+  // Static student data for demo purposes
   const student = {
     id,
+    image: "https://via.placeholder.com/100", // Replace with actual image URL if available
     firstName: "Matthew",
     lastName: "Ke",
+    year: "8th",
+    section: "A",
     violations: [
-      { type: "Minor", count: 3 },
-      { type: "Minor", count: 4 },
+      { type: "Minor Offense", count: 3 },
+      { type: "Minor Offense", count: 4 },
       { type: "Bullying", count: 5 },
     ],
   };
 
-  // State for selected category filter
+  // State for the filter category (default to "Minor Offense")
   const [selectedCategory, setSelectedCategory] = useState("Minor Offense");
 
-  // Filter violations based on category
+  // Filter violations based on selected category
   const filteredViolations =
     selectedCategory === "All"
       ? student.violations
@@ -30,68 +32,98 @@ const StudentViolationRecord = () => {
         );
 
   return (
-    <div>
-      <div className="details-header">
-        <h5 className="text-white fw-bold mb-0">Student Violation Record</h5>
-        <Link to={`/student-details/${student.id}`} className="btn btn-link">
+    <div className="svr-page">
+      {/* Header */}
+      <header className="svr-header">
+        <h5>Student Violation Record</h5>
+        <Link to={`/student-details/${student.id}`} className="back-link">
           Back to Student Details
         </Link>
-      </div>
+      </header>
 
-      <div className="student-violation-record mt-4">
-        {/* Student Information */}
-        <div className="student-card mb-3">
-          <div className="d-flex justify-content-between">
-            <div className="student-info">
-              <h6 className="fw-bold">{student.firstName} {student.lastName}</h6>
-              <div className="text-muted">Student No. {student.id}</div>
-              <div className="text-muted">Year & Section: {student.year} - {student.section}</div>
-              <div className="text-muted">School Year: 2024-2025</div>
+      {/* Main Content Area */}
+      <main className="svr-main">
+        {/* Left Column */}
+        <section className="svr-left">
+          {/* Student Card */}
+          <div className="student-card">
+            <div className="student-photo">
+              {student.image ? (
+                <img src={student.image} alt="Student Profile" />
+              ) : (
+                <div className="placeholder-photo" />
+              )}
             </div>
+            <div className="student-details">
+              <h6>
+                {student.firstName} {student.lastName}
+              </h6>
+              <p>Student No. {student.id}</p>
+              <p>
+                Year &amp; Section: {student.year} - {student.section}
+              </p>
+              <p>School Year: 2024-2025</p>
+            </div>
+          </div>
+
+          {/* Filter & Sort Controls */}
+          <div className="filter-sort">
             <div className="violation-filters">
               <button
-                className={`btn ${selectedCategory === "All" ? "btn-primary" : "btn-light"}`}
+                className={selectedCategory === "All" ? "active" : ""}
                 onClick={() => setSelectedCategory("All")}
               >
                 All
               </button>
               <button
-                className={`btn ${selectedCategory === "Major Offense" ? "btn-primary" : "btn-light"}`}
+                className={
+                  selectedCategory === "Major Offense" ? "active" : ""
+                }
                 onClick={() => setSelectedCategory("Major Offense")}
               >
                 Major Offense
               </button>
               <button
-                className={`btn ${selectedCategory === "Minor Offense" ? "btn-primary" : "btn-light"}`}
+                className={
+                  selectedCategory === "Minor Offense" ? "active" : ""
+                }
                 onClick={() => setSelectedCategory("Minor Offense")}
               >
                 Minor Offense
               </button>
             </div>
-          </div>
-        </div>
-
-        {/* Violation records */}
-        <div className="violation-categories">
-          {filteredViolations.map((violation, index) => (
-            <div key={index} className="violation-category d-flex justify-content-between align-items-center mb-3">
-              <div className="violation-type">{violation.type}</div>
-              <div className="violation-count d-flex align-items-center">
-                <span>{violation.count}</span>
-                <button className="btn btn-link ms-2">
-                  <i className="bi bi-arrow-right-circle"></i>
-                </button>
-              </div>
+            <div className="sort-dropdown">
+              <select>
+                <option value="highest">Highest</option>
+                <option value="lowest">Lowest</option>
+              </select>
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
 
-      {/* Behavior Report Section */}
-      <div className="behavior-report mt-4">
-        <h6 className="text-primary fw-bold">Behavior Report</h6>
-        <p>This student is in immediate need of counseling</p>
-      </div>
+          {/* Violations List */}
+          <div className="violations-list">
+            {filteredViolations.map((violation, index) => (
+              <div key={index} className="violation-item">
+                <div className="violation-type">{violation.type}</div>
+                <div className="violation-count">
+                  <span>{violation.count}</span>
+                  <button className="detail-btn">
+                    <i className="bi bi-arrow-right-circle"></i>
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Right Column: Behavior Report */}
+        <aside className="svr-right">
+          <div className="behavior-report">
+            <h6>Behavior Report</h6>
+            <p>This student is in immediate need of counseling</p>
+          </div>
+        </aside>
+      </main>
     </div>
   );
 };
