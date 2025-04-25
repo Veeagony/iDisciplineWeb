@@ -37,20 +37,28 @@
   background-color: #003b8f;
 }
 
-/* Main Content */
+/* Main Content Area */
 .svr-main {
   flex: 1;
   display: flex;
-  padding: 20px 24px;
   gap: 20px;
+  padding: 20px 24px;
   overflow-y: auto;
 }
 
-/* Left Column */
+/* Left Column: Student Info & Violations */
 .svr-left {
   flex: 2;
   display: flex;
   flex-direction: column;
+  gap: 20px;
+}
+
+/* Student Info Section: includes Student Card & Filter/Sort */
+.student-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 /* Student Card */
@@ -60,7 +68,6 @@
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
 }
 .student-photo {
   width: 80px;
@@ -91,26 +98,27 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
 }
 .violation-filters {
   display: flex;
   gap: 10px;
 }
 .violation-filters button {
-  padding: 10px 15px;
+  padding: 10px 20px;
   font-size: 14px;
-  border: 1px solid #004aad;
+  font-weight: 600;
+  border: 1px solid #ccc;
   background-color: #fff;
-  color: #004aad;
-  border-radius: 6px;
+  color: #808080;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 .violation-filters button.active,
 .violation-filters button:hover {
   background-color: #004aad;
   color: #fff;
+  border-color: #004aad;
 }
 .sort-dropdown select {
   padding: 8px 12px;
@@ -121,8 +129,15 @@
   color: #004aad;
 }
 
-/* Violations List */
-.violations-list {
+/* Violations List Columns Container */
+.violations-columns {
+  display: flex;
+  gap: 20px;
+}
+
+/* Each Violations Column */
+.violations-column {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -207,5 +222,8 @@
   }
   .violation-filters {
     justify-content: center;
+  }
+  .violations-columns {
+    flex-direction: column;
   }
 }
