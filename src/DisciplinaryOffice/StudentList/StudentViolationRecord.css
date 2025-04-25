@@ -24,6 +24,13 @@
   font-size: 22px;
   font-weight: bold;
 }
+
+/* Header Actions: Back link & Icons */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
 .back-link {
   color: #fff;
   text-decoration: none;
@@ -35,6 +42,20 @@
 }
 .back-link:hover {
   background-color: #003b8f;
+}
+.icons-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.header-icon {
+  font-size: 25px;
+  color: #004aad;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.header-icon:hover {
+  color: #003b8f;
 }
 
 /* Main Content Area */
@@ -129,56 +150,74 @@
   color: #004aad;
 }
 
-/* Violations List Columns Container */
+/* Violations Layout (Two Columns) */
 .violations-columns {
   display: flex;
-  gap: 20px;
+  gap: 25px;
 }
 
-/* Each Violations Column */
 .violations-column {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
 }
+
+/* Container for each violation record */
 .violation-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background-color: #fff;
-  padding: 12px 15px;
-  border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  justify-content: space-between;
+  background-color: #ffffff;
+  padding: 30px 18px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 10px;
 }
+
+/* Violation Type with Integrated Blue "Icon" */
 .violation-type {
+  display: flex;
+  align-items: center;
   font-size: 16px;
   font-weight: 600;
   color: #333;
 }
+.violation-type .icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 55px;
+  background-color: #e0f7ff;
+  border-radius: 20%;
+  margin-right: 8px;
+  transform: rotate(-20deg);
+}
+.violation-type .icon svg {
+  color: #004aad;
+  font-size: 16px;
+}
+
+/* Violation Count and Detail Button with Arrow Icon */
 .violation-count {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 .violation-count span {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 500;
   color: #333;
 }
 .detail-btn {
-  background-color: #004aad;
+  background-color: #ffffff;
   border: none;
-  color: #fff;
+  color: #004aad;
   padding: 6px 8px;
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
-.detail-btn:hover {
-  background-color: #003b8f;
-}
-.detail-btn i {
+.detail-btn i,
+.detail-btn svg {
   font-size: 18px;
 }
 
