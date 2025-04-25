@@ -3,8 +3,10 @@ import Calendar from 'react-calendar';
 import { db } from '../../firebase/firebaseConfig';
 import { ref, onValue } from 'firebase/database';
 import AddAppointments from './AddAppointments';
+import AppointmentsDetails from './AppointmentsDetails';
 import 'react-calendar/dist/Calendar.css';
 import 'react-datepicker/dist/react-datepicker.css';
+import { FaCommentDots, FaBell } from 'react-icons/fa';
 import './Appointments.css';
 
 const Appointments = () => {
