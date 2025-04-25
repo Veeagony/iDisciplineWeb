@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { IoMdClose } from "react-icons/io";
 import "./AddStudentForm.css";
 
@@ -16,6 +16,11 @@ const AddStudentForm = ({ isOpen, onClose, onSubmit }) => {
     email: "",
     phone: "",
   });
+  
+  // New state for image file and preview URL
+  const [imageFile, setImageFile] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null);
+  const fileInputRef = useRef(null);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -23,15 +28,36 @@ const AddStudentForm = ({ isOpen, onClose, onSubmit }) => {
     setFormData({ ...formData, [id]: value });
   };
 
+  const handleImageClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImageFile(file);
+      // Create and store a preview URL string
+      const previewURL = URL.createObjectURL(file);
+      setPreviewImage(previewURL);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const allFilled = Object.values(formData).every((val) => val.trim() !== "");
-    if (!allFilled) {
-      alert("Please fill out all fields.");
+    // Ensure all fields including the image are filled
+    const allFilled = Object.keys(formData).every(
+      (key) => formData[key] && formData[key].toString().trim() !== ""
+    );
+    if (!allFilled || !imageFile) {
+      alert("Please fill out all fields and upload an image.");
       return;
     }
-
-    onSubmit(formData);
+    // Save the form data with the preview image URL
+    const finalData = { ...formData, image: previewImage };
+    onSubmit(finalData);
+    // Reset form when submission is complete
     setFormData({
       firstName: "",
       middleName: "",
@@ -45,6 +71,8 @@ const AddStudentForm = ({ isOpen, onClose, onSubmit }) => {
       email: "",
       phone: "",
     });
+    setImageFile(null);
+    setPreviewImage(null);
     onClose();
   };
 
@@ -53,16 +81,32 @@ const AddStudentForm = ({ isOpen, onClose, onSubmit }) => {
       {/* Header */}
       <div className="drawer-banner d-flex justify-content-between align-items-center px-4 py-3">
         <h5 className="mb-0 text-white fw-bold">Create a New Student</h5>
-        <IoMdClose size={24} onClick={onClose} className="text-white" style={{ cursor: "pointer" }} />
+        <IoMdClose
+          size={24}
+          onClick={onClose}
+          className="text-white"
+          style={{ cursor: "pointer" }}
+        />
       </div>
 
       {/* Body */}
       <div className="drawer-body p-4">
-        {/* Upload */}
-        <div className="image-upload-box d-flex justify-content-center mb-4">
-          <div className="image-placeholder text-center d-flex align-items-center justify-content-center">
-            Upload Image
-          </div>
+        {/* Image Upload */}
+        <div className="image-upload-box d-flex justify-content-center mb-4" onClick={handleImageClick}>
+          {previewImage ? (
+            <img src={previewImage} alt="Preview" className="image-preview" />
+          ) : (
+            <div className="image-placeholder text-center d-flex align-items-center justify-content-center">
+              Upload Image
+            </div>
+          )}
+          <input
+            type="file"
+            accept="image/*"
+            ref={fileInputRef}
+            style={{ display: "none" }}
+            onChange={handleImageChange}
+          />
         </div>
 
         <form onSubmit={handleSubmit}>
@@ -71,15 +115,33 @@ const AddStudentForm = ({ isOpen, onClose, onSubmit }) => {
             <div className="col-md-6">
               <div className="mb-2">
                 <label className="form-label">First Name</label>
-                <input type="text" className="form-control" id="firstName" value={formData.firstName} onChange={handleChange} />
+                <input
+                  type="text"
+                  className="form-control"
+                  id="firstName"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                />
               </div>
               <div className="mb-2">
                 <label className="form-label">Middle Name</label>
-                <input type="text" className="form-control" id="middleName" value={formData.middleName} onChange={handleChange} />
+                <input
+                  type="text"
+                  className="form-control"
+                  id="middleName"
+                  value={formData.middleName}
+                  onChange={handleChange}
+                />
               </div>
               <div className="mb-2">
                 <label className="form-label">Last Name</label>
-                <input type="text" className="form-control" id="lastName" value={formData.lastName} onChange={handleChange} />
+                <input
+                  type="text"
+                  className="form-control"
+                  id="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                />
               </div>
               <div className="mb-2">
                 <label className="form-label">Gender</label>
@@ -91,7 +153,13 @@ const AddStudentForm = ({ isOpen, onClose, onSubmit }) => {
               </div>
               <div className="mb-2">
                 <label className="form-label">Address</label>
-                <input type="text" className="form-control" id="address" value={formData.address} onChange={handleChange} />
+                <input
+                  type="text"
+                  className="form-control"
+                  id="address"
+                  value={formData.address}
+                  onChange={handleChange}
+                />
               </div>
               <div className="mb-2">
                 <label className="form-label">Year</label>
@@ -137,7 +205,9 @@ const AddStudentForm = ({ isOpen, onClose, onSubmit }) => {
           </div>
 
           <div className="text-end mt-3">
-            <button type="submit" className="addbtn">Add Student</button>
+            <button type="submit" className="addbtn">
+              Add Student
+            </button>
           </div>
         </form>
       </div>

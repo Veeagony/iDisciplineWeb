@@ -19,7 +19,8 @@ const AddViolations = ({ closeDrawer, addViolation }) => {
   const [description, setDescription] = useState("");
   const [dateReported, setDateReported] = useState("");
   const [studentList, setStudentList] = useState([]);
-  const [suggestions, setSuggestions] = useState([]);
+  const [offenderSuggestions, setOffenderSuggestions] = useState([]);
+  const [victimSuggestions, setVictimSuggestions] = useState([]);
 
   // Fetch student list from Firebase
   useEffect(() => {
@@ -58,15 +59,33 @@ const AddViolations = ({ closeDrawer, addViolation }) => {
       const filteredSuggestions = studentList.filter((student) =>
         student.fullName.toLowerCase().includes(value.toLowerCase())
       );
-      setSuggestions(filteredSuggestions);
+      setOffenderSuggestions(filteredSuggestions);
     } else {
-      setSuggestions([]);
+      setOffenderSuggestions([]);
     }
   };
 
-  const handleSuggestionClick = (fullName) => {
+  const handleOffenderSuggestionClick = (fullName) => {
     setOffender(fullName);
-    setSuggestions([]); // Clear suggestions after selection
+    setOffenderSuggestions([]); // Clear suggestions after selection
+  };
+
+  const handleVictimChange = (e) => {
+    const value = e.target.value;
+    setVictim(value);
+    if (value.length >= 2) {
+      const filteredSuggestions = studentList.filter((student) =>
+        student.fullName.toLowerCase().includes(value.toLowerCase())
+      );
+      setVictimSuggestions(filteredSuggestions);
+    } else {
+      setVictimSuggestions([]);
+    }
+  };
+
+  const handleVictimSuggestionClick = (fullName) => {
+    setVictim(fullName);
+    setVictimSuggestions([]); // Clear suggestions after selection
   };
 
   const handleSubmit = () => {
@@ -84,6 +103,18 @@ const AddViolations = ({ closeDrawer, addViolation }) => {
       !dateReported
     ) {
       alert("Please fill out all the required fields!");
+      return;
+    }
+
+    // Validate Offender
+    if (offender && !studentList.some(student => student.fullName === offender)) {
+      alert("The entered offender is not in the student list.");
+      return;
+    }
+
+    // Validate Victim
+    if (victim && !studentList.some(student => student.fullName === victim)) {
+      alert("The entered victim is not in the student list.");
       return;
     }
 
@@ -192,12 +223,23 @@ const AddViolations = ({ closeDrawer, addViolation }) => {
 
         <label>Parties Involved (Victim, Offender, Witness):</label>
         <label>Victim:</label>
-        <input
-          type="text"
-          placeholder=""
-          value={victim}
-          onChange={(e) => setVictim(e.target.value)}
-        />
+        <div className="autocomplete-input">
+          <input
+            type="text"
+            placeholder=""
+            value={victim}
+            onChange={handleVictimChange}
+          />
+          {victimSuggestions.length > 0 && (
+            <ul className="autocomplete-suggestions">
+              {victimSuggestions.map((student) => (
+                <li key={student.fullName} onClick={() => handleVictimSuggestionClick(student.fullName)}>
+                  {student.fullName}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
         <div className="dot blue"></div>
 
         <label>Offender:</label>
@@ -208,10 +250,10 @@ const AddViolations = ({ closeDrawer, addViolation }) => {
             value={offender}
             onChange={handleOffenderChange}
           />
-          {suggestions.length > 0 && (
+          {offenderSuggestions.length > 0 && (
             <ul className="autocomplete-suggestions">
-              {suggestions.map((student) => (
-                <li key={student.fullName} onClick={() => handleSuggestionClick(student.fullName)}>
+              {offenderSuggestions.map((student) => (
+                <li key={student.fullName} onClick={() => handleOffenderSuggestionClick(student.fullName)}>
                   {student.fullName}
                 </li>
               ))}
@@ -243,7 +285,7 @@ const AddViolations = ({ closeDrawer, addViolation }) => {
           value={dateReported}
           readOnly  // Make this field read-only as it’s auto-generated
         />
-      
+
         <button className="add-btn" onClick={handleSubmit}>
           Add
         </button>

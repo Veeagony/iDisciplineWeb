@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
-import DatePicker from 'react-datepicker';
 import { db } from '../../firebase/firebaseConfig';
 import { ref, onValue } from 'firebase/database';
 import AddAppointments from './AddAppointments';
+import AppointmentsDetails from './AppointmentsDetails';
 import 'react-calendar/dist/Calendar.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Appointments.css';
@@ -14,8 +14,9 @@ const Appointments = () => {
   const [violations, setViolations] = useState([]);
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [markedDates, setMarkedDates] = useState([]);
-  const [activeCategory, setActiveCategory] = useState('All'); // State for the active category
+  const [activeCategory, setActiveCategory] = useState('All');
   const [filteredAppointments, setFilteredAppointments] = useState([]);
+  const [selectedAppointment, setSelectedAppointment] = useState(null);
 
   // Fetch appointments from Firebase
   useEffect(() => {
@@ -83,6 +84,10 @@ const Appointments = () => {
     setActiveCategory(category);
   };
 
+  const closeDrawer = () => {
+    setDrawerOpen(false); // Ensure the drawer is closed when this function is called
+  };
+
   return (
     <div className="appointments-page px-4 py-4">
       {/* Header Section */}
@@ -131,7 +136,7 @@ const Appointments = () => {
       <div className="d-flex mt-2">
         <button
           className="add-appointment-btn"
-          onClick={() => setDrawerOpen(true)}
+          onClick={() => setDrawerOpen(true)} // Set drawer open when Add button is clicked
         >
           Add an Appointment
         </button>
@@ -162,7 +167,10 @@ const Appointments = () => {
           </thead>
           <tbody>
             {filteredAppointments.map((appointment) => (
-              <tr key={appointment.id}>
+              <tr key={appointment.id}
+                  onClick={() => setSelectedAppointment(appointment)} // ✅ Correct placement
+                  style={{ cursor: 'pointer' }}
+              >
                 <td>{appointment.status}</td>
                 <td>{appointment.studentId}</td>
                 <td>{appointment.studentName}</td>
@@ -175,10 +183,20 @@ const Appointments = () => {
         </table>
       </div>
 
+      {/* Add Appointment Drawer */}
       {isDrawerOpen && (
         <AddAppointments
-          closeDrawer={() => setDrawerOpen(false)}
+          closeDrawer={closeDrawer} // Close drawer after adding appointment
           violations={violations}
+          isOpen={isDrawerOpen} // Ensure that the drawer state is passed properly
+        />
+      )}
+
+      {/* Appointment Details */}
+      {selectedAppointment && (
+        <AppointmentsDetails
+          appointment={selectedAppointment}
+          onClose={() => setSelectedAppointment(null)}
         />
       )}
     </div>

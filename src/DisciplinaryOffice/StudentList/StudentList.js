@@ -42,13 +42,14 @@ const StudentList = () => {
   const handleAddStudent = (studentData) => {
     const nextIdNumber = students.length + 1;
     const paddedId = String(nextIdNumber).padStart(4, "0");
-  
+
     const newStudentRef = push(ref(db, "students"));
+    // Save the student data along with the image URL (assumed to be provided by AddStudentForm)
     set(newStudentRef, {
       ...studentData,
       studentId: paddedId, // 👈 This is the formatted ID
     });
-  
+
     setDrawerOpen(false); // Close drawer after adding
   };
 
@@ -92,13 +93,14 @@ const StudentList = () => {
         <div className="d-flex justify-content-between align-items-center">
           <div className="d-flex align-items-center">
             <h2 className="student-title">Students</h2>
-            <span className="student-count">{isArchiveView ? archivedStudents.length : students.length}</span>
+            <span className="student-count">
+              {isArchiveView ? archivedStudents.length : students.length}
+            </span>
           </div>
 
           {/* Right aligned container for search bar and icons */}
           <div className="d-flex align-items-center gap-3">
             <input className="search-input" placeholder="Search Here" />
-
             <div className="d-flex align-items-center gap-3">
               <button className="icon-btn" onClick={toggleDrawer}>
                 <FaCommentDots />
@@ -133,21 +135,37 @@ const StudentList = () => {
               <th>Student ID</th>
               <th>First Name</th>
               <th>Last Name</th>
-              <th>Year & Section</th>
-              {isArchiveView && <th>Actions</th>}
+              <th>Year &amp; Section</th>
+              {isArchiveView && <th></th>}
             </tr>
           </thead>
           <tbody>
             {(isArchiveView ? archivedStudents : students).map((student, i) => (
-              <tr key={i} onClick={() => handleRowClick(student)} style={{ cursor: "pointer" }}>
-                <td><div className="student-photo" /></td>
+              <tr
+                key={i}
+                onClick={() => handleRowClick(student)}
+                style={{ cursor: "pointer" }}
+              >
+                <td>
+                  {student.image ? (
+                    <img
+                      src={student.image}
+                      alt="Student Profile"
+                      className="student-photo"
+                    />
+                  ) : (
+                    <div className="student-photo" />
+                  )}
+                </td>
                 <td>{student.studentId || "0001"}</td>
                 <td>{student.firstName}</td>
                 <td>{student.lastName}</td>
-                <td>{student.sections}</td>
+                <td>{`${student.year || ""} - ${student.section || ""}`}</td>
                 {isArchiveView && (
                   <td>
-                    <button onClick={() => handleUnarchiveToggle(student.id)}>Unarchive</button>
+                    <button onClick={() => handleUnarchiveToggle(student.id)}>
+                      Unarchive
+                    </button>
                   </td>
                 )}
               </tr>

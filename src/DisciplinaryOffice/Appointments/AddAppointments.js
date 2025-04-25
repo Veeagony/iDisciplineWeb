@@ -1,11 +1,10 @@
-// AddAppointments.jsx
 import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./AddAppointments.css";
 import { db } from "../../firebase/firebaseConfig";
 import { ref, push, set } from "firebase/database";
-import { FaTimes } from "react-icons/fa"; // Import the close icon
+import { FaTimes } from "react-icons/fa";
 
 const AddAppointments = ({ closeDrawer, violations, addAppointment, markCalendarDate }) => {
   const [selectedCase, setSelectedCase] = useState("");
@@ -16,7 +15,7 @@ const AddAppointments = ({ closeDrawer, violations, addAppointment, markCalendar
 
   useEffect(() => {
     if (selectedCase) {
-      const violation = violations.find(v => v.caseNo === selectedCase);
+      const violation = violations.find((v) => v.caseNo === selectedCase);
       setSelectedViolation(violation);
     }
   }, [selectedCase, violations]);
@@ -41,15 +40,15 @@ const AddAppointments = ({ closeDrawer, violations, addAppointment, markCalendar
       await set(newRef, newAppointment);
       const savedAppointment = { ...newAppointment, id: newRef.key };
       addAppointment(savedAppointment);
-      markCalendarDate(new Date(savedAppointment.datetime)); // Mark the date on the calendar
-      closeDrawer();
+      markCalendarDate(new Date(savedAppointment.datetime));
+      closeDrawer(); // Close the drawer by calling the parent's function
     } catch (error) {
       console.error("Error adding appointment:", error);
     }
   };
 
   return (
-    <div className="add-appointments-drawer open"> {/* Ensure 'open' class is applied for initial visibility */}
+    <div className="add-appointments-drawer open">
       <div className="drawer-overlay" onClick={closeDrawer}></div>
       <div className="drawer-content">
         <div className="drawer-header">
@@ -59,7 +58,7 @@ const AddAppointments = ({ closeDrawer, violations, addAppointment, markCalendar
           </button>
         </div>
         <form onSubmit={handleSubmit} className="appointment-form">
-          {/* Case Number Section */}
+          {/* Case Number */}
           <div className="form-group">
             <label htmlFor="caseNo">Case No.</label>
             <select
@@ -71,14 +70,16 @@ const AddAppointments = ({ closeDrawer, violations, addAppointment, markCalendar
             >
               <option value="">Select Case</option>
               {violations
-                .filter(v => v.status !== "Archive")
+                .filter((v) => v.status !== "Archive")
                 .map((v) => (
-                  <option key={v.id} value={v.caseNo}>{v.caseNo}</option>
+                  <option key={v.id} value={v.caseNo}>
+                    {v.caseNo}
+                  </option>
                 ))}
             </select>
           </div>
 
-          {/* Student Information Section */}
+          {/* Student Information */}
           <div className="info-group">
             <div className="info-item">
               <span className="info-label">Student Name:</span>
@@ -108,7 +109,7 @@ const AddAppointments = ({ closeDrawer, violations, addAppointment, markCalendar
 
           {/* Brief Description */}
           <div className="form-group">
-            <label htmlFor="briefDesc">Brief Desc:</label>
+            <label htmlFor="briefDesc">Brief Description:</label>
             <textarea
               id="briefDesc"
               className="form-control desc-textarea"
@@ -118,10 +119,10 @@ const AddAppointments = ({ closeDrawer, violations, addAppointment, markCalendar
             />
           </div>
 
-          {/* DateTime & Meeting Type */}
+          {/* Date & Time and Meeting Type */}
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="datetime">Date & Time:</label>
+              <label htmlFor="datetime">Date &amp; Time:</label>
               <DatePicker
                 id="datetime"
                 selected={datetime}

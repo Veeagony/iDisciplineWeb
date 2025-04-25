@@ -55,22 +55,17 @@ const EditStudentForm = ({ isOpen, onClose, student, onSave }) => {
 
   return (
     <div className={`edit-student-drawer ${isOpen ? "open" : ""}`}>
-      <div className="drawer-header d-flex justify-content-between align-items-center px-4 py-3">
-        <h5 className="text-white fw-bold mb-0">Edit Student</h5>
-        <IoMdClose
-          size={24}
-          className="text-white"
-          onClick={onClose}
-          style={{ cursor: "pointer" }}
-        />
+      <div className="drawer-header">
+        <h5>Edit Student</h5>
+        <IoMdClose size={24} onClick={onClose} className="close-btn" />
       </div>
 
-      <form className="drawer-body p-4" onSubmit={handleSubmit}>
+      <form className="drawer-body" onSubmit={handleSubmit}>
         <div className="d-flex justify-content-center mb-4">
-          <div className="image-placeholder-lg text-center">Upload Image</div>
+          <div className="image-placeholder-lg">Upload Image</div>
         </div>
 
-        <div className="row g-3 mb-3">
+        <div className="row">
           <div className="col-6">
             <label className="form-label">First Name</label>
             <input
@@ -93,7 +88,7 @@ const EditStudentForm = ({ isOpen, onClose, student, onSave }) => {
           </div>
         </div>
 
-        <div className="row g-3 mb-3">
+        <div className="row">
           <div className="col-6">
             <label className="form-label">Middle Name</label>
             <input
@@ -116,7 +111,7 @@ const EditStudentForm = ({ isOpen, onClose, student, onSave }) => {
           </div>
         </div>
 
-        <div className="row g-3 mb-3">
+        <div className="row">
           <div className="col-6">
             <label className="form-label">Last Name</label>
             <input
@@ -144,7 +139,7 @@ const EditStudentForm = ({ isOpen, onClose, student, onSave }) => {
           </div>
         </div>
 
-        <div className="row g-3 mb-3">
+        <div className="row">
           <div className="col-6">
             <label className="form-label">Gender</label>
             <select
@@ -170,7 +165,7 @@ const EditStudentForm = ({ isOpen, onClose, student, onSave }) => {
           </div>
         </div>
 
-        <div className="row g-3 mb-4">
+        <div className="row">
           <div className="col-4">
             <label className="form-label">Year</label>
             <select

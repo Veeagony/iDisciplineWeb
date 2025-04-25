@@ -1,0 +1,202 @@
+/* Basic Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Drawer Overlay */
+.drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Appointment Details Drawer */
+.appointment-details-drawer {
+  background-color: #fff;
+  width: 480px;
+  height: 100%;
+  overflow-y: auto;
+  transform: translateX(100%);
+  animation: slideIn 0.3s forwards;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes slideIn {
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Container */
+.appointment-details-container {
+  padding: 24px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+/* Header Section */
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eaeaea;
+  margin-bottom: 20px;
+}
+
+.header-section h3 {
+  font-size: 1.5rem;
+  margin: 0;
+  font-weight: 600;
+  color: #222;
+}
+
+/* Header Buttons Group */
+.header-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+/* Edit Button in Header */
+.edit-btn-header {
+  background-color: #0d6efd;
+  border: none;
+  color: #fff;
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.edit-btn-header:hover {
+  background-color: #0b5ed7;
+}
+
+/* Close Button */
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #aaa;
+  transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+  color: #666;
+}
+
+/* Case Number */
+.case-number h5 {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+/* Detail Items */
+.detail-item {
+  margin-bottom: 12px;
+  font-size: 1rem;
+}
+
+.detail-item strong {
+  color: #444;
+}
+
+/* Grid Layout for Details */
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+/* Notes Section */
+.notes-section {
+  margin: 20px 0;
+  padding: 16px;
+  background-color: #f9f9f9;
+  border-left: 4px solid #0d6efd;
+  border-radius: 4px;
+}
+
+.notes-section strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.notes-content {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Updates Section */
+.updates-section {
+  margin: 20px 0;
+}
+
+.updates-section h6 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.update-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.update-item {
+  font-size: 0.95rem;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.update-item:last-child {
+  border-bottom: none;
+}
+
+.update-item strong {
+  color: #444;
+}
+
+.update-item span {
+  display: block;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.print-btn {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #e0e0e0;
+  color: #333;
+  transition: background-color 0.25s ease;
+}
+
+.print-btn:hover {
+  background-color: #d5d5d5;
+}

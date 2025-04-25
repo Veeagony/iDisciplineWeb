@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import AddViolations from "./AddViolations";
-import ViolationsDetails from "./ViolationsDetails";
 import "./Violations.css";
 import { FaBell, FaCommentDots } from "react-icons/fa";
 import { db } from "../../firebase/firebaseConfig";
@@ -144,13 +143,6 @@ const Violations = () => {
         <AddViolations
           closeDrawer={() => setDrawerOpen(false)}
           addViolation={handleAddViolation}
-        />
-      )}
-
-      {selectedViolation && (
-        <ViolationsDetails
-          violation={selectedViolation}
-          onClose={() => setSelectedViolation(null)}
         />
       )}
     </div>
