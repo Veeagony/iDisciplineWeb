@@ -24,38 +24,45 @@ const StudentDetailsForm = ({ isOpen, onClose, student, onEdit, onArchive }) => 
       <div className="details-body">
         {/* Profile Card */}
         <div className="profile-card shadow-sm mb-4">
-          <div className="d-flex align-items-center p-3">
-            {student.image ? (
-              <img
-                src={student.image}
-                alt="Student Profile"
-                className="profile-photo me-3"
-              />
-            ) : (
-              <div className="image-placeholder-lg me-3"></div>
-            )}
-            <div>
-              <h6 className="fw-bold mb-1">
-                {student.firstName} {student.lastName}
-              </h6>
-              <div className="text-muted small">
-                Student No. {student.studentId || "-"}
-              </div>
-              <div className="text-muted small">
-                Year &amp; Section: {student.year} - {student.section}
-              </div>
-              <div className="text-muted small">School Year: 2024-2025</div>
-            </div>
+          <div className="profile-header">
+          <div className="header-content">
+        </div>  
+      </div>
+
+      <div className="profile-body p-3">
+        <div className="d-flex align-items-center">
+          {student.image ? (
+            <img
+              src={student.image}
+              alt="Student Profile"
+              className="profile-photo me-3"
+            />
+          ) : (
+            <div className="image-placeholder-lg me-3"></div>
+          )}
+      <div>
+          <h6 className="fw-bold mb-1">
+            {student.firstName} {student.lastName}
+          </h6>
+          <div className="text-muted small">
+            Student No. {student.studentId || "-"}
           </div>
-          {/* Edit Icon */}
+          <div className="text-muted small">
+            Year & Section: {student.year} - {student.section}
+          </div>
+          <div className="text-muted small">School Year: 2024-2025</div>
+      </div>
           <button className="edit-btn" onClick={() => onEdit?.(student)}>
-            <FaPen />
-          </button>
-          {/* Archive Icon (added below the edit icon) */}
-          <button className="archive-btn" onClick={() => onArchive?.(student)}>
-            <FaArchive />
-          </button>
-        </div>
+                <FaPen />
+              </button>
+              {/* Archive Icon (added below the edit icon) */}
+              <button className="archive-btnn" onClick={() => onArchive?.(student)}>
+                <FaArchive />
+              </button>
+    </div>
+  </div>
+</div>
+          
 
         {/* Student Info + Emergency Contact */}
         <div className="row gx-5 mb-4">

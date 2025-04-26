@@ -16,7 +16,7 @@
 }
 
 .details-header {
-  background-color: #1f4ed8;
+  background-color: #0F296F;
   border-top-left-radius: 0.75rem;
   border-top-right-radius: 0.75rem;
   display: flex;
@@ -24,31 +24,71 @@
   padding: 20px;
 }
 
-.image-placeholder-lg {
-  width: 120px; /* Make the image placeholder larger */
-  height: 120px;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-}
-
 .profile-card {
   position: relative;
-  background: #f3f3f4db;
+  background: #1f4dd8db;
   border-radius: 10px;
   overflow: hidden;
   padding: 20px;
   margin-bottom: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+.profile-header {
+  background-color: #0F296F; /* Dark blue header */
+  padding: 20px;
+  color: white;
+  border-radius: 8px 8px 0 0;
+}
+
+
+.profile-body {
+  padding: 15px;
+  background-color: #f9f9f9;
+}
+
+.profile-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.image-placeholder-lg {
+  width: 100px;
+  height: 100px;
+  background-color: #e0e0e0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #888;
+}
+
+.text-muted {
+  color: #777;
+}
+
+
+.fw-bold {
+  font-weight: 600;
+  
+}
+
+.small {
+  font-size: 0.9rem;
+}
+
 
 .edit-btn {
   position: absolute;
-  top: 10px; /* Adjusted for smaller space from the top */
-  right: 10px; /* Positioned at the right corner */
+  top: 60px; /* Adjusted for smaller space from the top */
+  right: 60px; /* Positioned at the right corner */
   background-color: transparent; /* No background */
   border: none;
   font-size: 18px; /* Adjusted to make the icon small */
-  color: #000;
+  color: #0F296F;
   cursor: pointer;
   z-index: 10;
   width: 40px;
@@ -58,6 +98,22 @@
   color: #ffc107; /* Change color on hover */
 }
 
+.archive-btnn {
+  position: absolute;
+  top: 60px; /* Adjusted for smaller space from the top */
+  right: 20px; /* Positioned at the right corner */
+  background-color: transparent; /* No background */
+  border: none;
+  font-size: 18px; /* Adjusted to make the icon small */
+  color: #ffc107;
+  cursor: pointer;
+  z-index: 10;
+  width: 40px;
+}
+
+.archive-btnn:hover {
+  color: #ffc107;
+}
 
 .details-body {
   padding: 24px;

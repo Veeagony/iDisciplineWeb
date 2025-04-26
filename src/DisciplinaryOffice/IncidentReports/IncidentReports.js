@@ -63,7 +63,7 @@ const IncidentReports = () => {
       <div className="filters d-flex align-items-center gap-3 mb-3">
         <input
           type="text"
-          className="search-input"
+          className="form-control border-start-0"
           placeholder="Search Here"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
