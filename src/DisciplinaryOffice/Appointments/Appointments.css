@@ -45,9 +45,10 @@
 }
 
 .form-control {
-  border-radius: 25px;
+  border-radius: 0 25px 25px 0;
+  border: 1px solid #ced4da;
   margin-top: 12px;
-  width: 300px;
+  width: 200px;
 }
 
 .filter-active {

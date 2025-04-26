@@ -1,10 +1,7 @@
 import React from "react";
-import "./Sidebar.css";
 import { useNavigate } from "react-router-dom";
-import {
-  FaBars, FaHome, FaUserGraduate, FaBalanceScale, FaFileAlt,
-  FaCalendarAlt, FaChartBar, FaBook, FaSignOutAlt, FaUserCircle
-} from "react-icons/fa";
+import { FaBars, FaHome, FaUserGraduate, FaBalanceScale, FaFileAlt, FaCalendarAlt, FaChartBar, FaBook, FaSignOutAlt, FaUserCircle } from "react-icons/fa";
+import "./Sidebar.css";
 
 function Sidebar({ isOpen, toggleSidebar }) {
   const navigate = useNavigate();

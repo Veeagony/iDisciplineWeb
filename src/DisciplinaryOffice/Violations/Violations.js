@@ -91,7 +91,7 @@ const Violations = () => {
         <select className="dropdown">
           <option>Year</option>
         </select>
-        {["All", "Minor Offense", "Major Offense", "Grade Level", "No. of Violations"].map((type) => (
+        {["All", "Minor Offense", "Major Offense", "Grade Level", "Violations"].map((type) => (
           <button
             key={type}
             className={`btn ${filter === type ? "filter-active" : "btn-outline-primary"} fw-semibold`}
