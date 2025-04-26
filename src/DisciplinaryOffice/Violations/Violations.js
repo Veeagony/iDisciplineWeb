@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AddViolations from "./AddViolations";
+import ViolationsDetails from "./ViolationsDetails";
 import "./Violations.css";
 import { FaBell, FaCommentDots } from "react-icons/fa";
 import { db } from "../../firebase/firebaseConfig";
@@ -30,10 +31,9 @@ const Violations = () => {
     });
     return () => unsubscribe();
   }, []);
-  
 
   const handleAddViolation = (newViolation) => {
-    console.log("➡️ handleAddViolation received:", newViolation); // Check the received data
+    console.log("➡️ handleAddViolation received:", newViolation);
     const newRef = push(ref(db, "violations"));
     const caseNo = `C-${violations.length + 1}`.padStart(6, "0");
     const newViolationWithCaseNo = { ...newViolation, caseNo };
@@ -52,10 +52,16 @@ const Violations = () => {
 
   const filteredViolations = violations.filter((v) => {
     const matchesFilter = filter === "All" || v.violationCategory === filter;
-    const matchesSearch = !searchTerm || (v.offender && v.offender.toLowerCase().includes(searchTerm.toLowerCase()));
+    const matchesSearch =
+      !searchTerm ||
+      (v.offender &&
+        v.offender.toLowerCase().includes(searchTerm.toLowerCase()));
     const shouldInclude = matchesFilter && matchesSearch;
-    // Log each violation and whether it passes the filter
-    console.log(`🔎 Filtering: ${v?.offender || 'No Offender'}, Category: ${v?.violationCategory}, Filter: ${filter}, Search: ${searchTerm}, Include: ${shouldInclude}`);
+    console.log(
+      `🔎 Filtering: ${v?.offender || "No Offender"}, Category: ${
+        v?.violationCategory
+      }, Filter: ${filter}, Search: ${searchTerm}, Include: ${shouldInclude}`
+    );
     return shouldInclude;
   });
 
@@ -91,10 +97,18 @@ const Violations = () => {
         <select className="dropdown">
           <option>Year</option>
         </select>
-        {["All", "Minor Offense", "Major Offense", "Grade Level", "No. of Violations"].map((type) => (
+        {[
+          "All",
+          "Minor Offense",
+          "Major Offense",
+          "Grade Level",
+          "No. of Violations",
+        ].map((type) => (
           <button
             key={type}
-            className={`btn ${filter === type ? "filter-active" : "btn-outline-primary"} fw-semibold`}
+            className={`btn ${
+              filter === type ? "filter-active" : "btn-outline-primary"
+            } fw-semibold`}
             onClick={() => setFilter(type)}
           >
             {type === "All" ? "All Violations" : type}
@@ -103,7 +117,10 @@ const Violations = () => {
       </div>
 
       <div className="d-flex justify-content-end">
-        <button className="addviolationbtn" onClick={() => setDrawerOpen(true)}>
+        <button
+          className="addviolationbtn"
+          onClick={() => setDrawerOpen(true)}
+        >
           Add Violation
         </button>
       </div>
@@ -120,22 +137,24 @@ const Violations = () => {
             </tr>
           </thead>
           <tbody>
-  {filteredViolations.map((v) => (
-    <tr key={v.id} onClick={() => setSelectedViolation(v)} style={{ cursor: 'pointer'}}>
-      <td>
-        <span className={`badge ${getBadgeClass(v.status)} px-3 py-2`}>
-          {v.status}
-        </span>
-      </td>
-      <td>{v.caseNo}</td>
-      <td>{v.offender}</td> {/* Display the offender's name here */}
-      <td>{v.violationCategory}</td>
-      <td>{v.Date}</td>
-    </tr>
-  ))}
-
-  
-</tbody>
+            {filteredViolations.map((v) => (
+              <tr
+                key={v.id}
+                onClick={() => setSelectedViolation(v)}
+                style={{ cursor: "pointer" }}
+              >
+                <td>
+                  <span className={`badge ${getBadgeClass(v.status)} px-3 py-2`}>
+                    {v.status}
+                  </span>
+                </td>
+                <td>{v.caseNo}</td>
+                <td>{v.offender}</td>
+                <td>{v.violationCategory}</td>
+                <td>{v.Date}</td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
 
@@ -143,6 +162,13 @@ const Violations = () => {
         <AddViolations
           closeDrawer={() => setDrawerOpen(false)}
           addViolation={handleAddViolation}
+        />
+      )}
+
+      {selectedViolation && (
+        <ViolationsDetails
+          violation={selectedViolation}
+          onClose={() => setSelectedViolation(null)}
         />
       )}
     </div>

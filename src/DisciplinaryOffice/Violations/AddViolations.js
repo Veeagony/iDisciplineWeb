@@ -125,11 +125,11 @@ const AddViolations = ({ closeDrawer, addViolation }) => {
       Time: time,
       Location: location,
       violationCategory,
-      violationType,
+      type: violationType,
       Victim: victim,
       offender: offender, // Ensure this is set correctly
       Witness: witness,
-      Description: description,
+      notes: description,
       DateReported: dateReported,
     };
 

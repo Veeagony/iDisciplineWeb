@@ -1,53 +1,88 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { FaGavel, FaArrowRight, FaBell, FaCommentDots } from "react-icons/fa";
+import { FaGavel, FaArrowRight, FaBell, FaCommentDots, FaArrowLeft } from "react-icons/fa";
+import { db } from "../../firebase/firebaseConfig"; 
+import { ref, get, onValue } from "firebase/database"; 
 import "./StudentViolationRecord.css";
 
 const StudentViolationRecord = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // Static student data for demo purposes
-  const student = {
-    id,
-    image: "https://via.placeholder.com/100",
-    firstName: "Matthew",
-    lastName: "Ke",
-    year: "8th",
-    section: "A",
-    violations: [
-      { type: "Major Offense", count: 3 },
-      { type: "Minor Offense", count: 4 },
-    ],
-  };
-
-  // State for the filter category (default to "All")
+  const [student, setStudent] = useState(null);
+  const [violations, setViolations] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedViolation, setSelectedViolation] = useState(null);
 
-  // Filter violations based on selected category
+  useEffect(() => {
+    const fetchStudentData = async () => {
+      try {
+        const studentRef = ref(db, `students/${id}`);
+        const snapshot = await get(studentRef);
+        if (snapshot.exists()) {
+          setStudent(snapshot.val());
+        } else {
+          console.error("Student not found in database.");
+        }
+      } catch (error) {
+        console.error("Error fetching student data:", error);
+      }
+    };
+
+    const fetchViolations = () => {
+      const violationsRef = ref(db, "violations");
+      onValue(violationsRef, (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          const violationsArray = Object.values(data);
+          setViolations(violationsArray);
+        }
+      });
+    };
+
+    fetchStudentData();
+    fetchViolations();
+  }, [id]);
+
+  if (!student) {
+    return <div>Loading student information...</div>;
+  }
+
+  // Filter violations belonging to this student
+  const studentViolations = violations.filter((violation) => 
+    violation.offender === `${student.firstName} ${student.middleName ? student.middleName + ' ' : ''}${student.lastName}`
+  );
+
+  // Separate into Major and Minor Offenses
+  const majorOffenses = studentViolations.filter(v => v.violationCategory === "Major Offense");
+  const minorOffenses = studentViolations.filter(v => v.violationCategory === "Minor Offense");
+
+  // Dynamically set violation list
+  const violationsList = [
+    { type: "Major Offense", count: majorOffenses.length },
+    { type: "Minor Offense", count: minorOffenses.length }
+  ];
+
   const filteredViolations =
     selectedCategory === "All"
-      ? student.violations
-      : student.violations.filter((violation) =>
+      ? violationsList
+      : violationsList.filter((violation) =>
           violation.type.toLowerCase().includes(selectedCategory.toLowerCase())
         );
 
-  // Create a mirrored violations list with a modification in the third row:
-  // If the third violation (index 2) is "Bullying", change it to "Minor Offense".
-  const rightViolations = filteredViolations.map((violation, index) => {
-    if (index === 2 && violation.type.toLowerCase() === "bullying") {
-      return { ...violation, type: "Minor Offense" };
-    }
-    return violation;
-  });
+  const handleViolationClick = (violation) => {
+    setSelectedViolation(violation);
+  };
+
+  const handleBack = () => {
+    setSelectedViolation(null);
+  };
 
   return (
     <div className="svr-page">
-      {/* Header */}
       <header className="svr-header">
         <h5>Student Violation Record</h5>
         <div className="header-actions">
-          {/* Back button navigates back to the Student List */}
           <button className="back-link" onClick={() => navigate("/studentlist")}>
             Back to Student List
           </button>
@@ -58,11 +93,8 @@ const StudentViolationRecord = () => {
         </div>
       </header>
 
-      {/* Main Content Area */}
       <main className="svr-main">
-        {/* Left Column: Student Info & Violations */}
         <section className="svr-left">
-          {/* Student Card & Filter/Sort Controls */}
           <div className="student-info">
             <div className="student-card">
               <div className="student-photo">
@@ -76,7 +108,7 @@ const StudentViolationRecord = () => {
                 <h6>
                   {student.firstName} {student.lastName}
                 </h6>
-                <p>Student No. {student.id}</p>
+                <p>Student No. {student.studentId || student.id}</p>
                 <p>
                   Year &amp; Section: {student.year} - {student.section}
                 </p>
@@ -84,7 +116,6 @@ const StudentViolationRecord = () => {
               </div>
             </div>
 
-            {/* Filter & Sort Controls */}
             <div className="filter-sort">
               <div className="violation-filters">
                 <button
@@ -106,60 +137,62 @@ const StudentViolationRecord = () => {
                   Minor Offense
                 </button>
               </div>
-              <div className="sort-dropdown">
-                <select>
-                  <option value="highest">Highest</option>
-                  <option value="lowest">Lowest</option>
-                </select>
+            </div>
+          </div>
+
+          {selectedViolation ? (
+            <div className="violation-details-panel">
+              <header className="vd-header">
+                <button className="back-button" onClick={handleBack}>
+                  <FaArrowLeft />
+                </button>
+                <h5>
+                  {selectedViolation.type} ({selectedViolation.count})
+                </h5>
+              </header>
+              <main className="vd-main">
+                {Array.from({ length: selectedViolation.count }).map((_, index) => (
+                  <div key={index} className="case-item">
+                    <div className="case-header">Case #{index + 1}</div>
+                    <p><strong>Student ID:</strong> #{student.studentId || "00000"}</p>
+                    <p><strong>Date Sent:</strong> Dec 25, 2025</p>
+                    <p><strong>Details:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <div className="case-actions">
+                      <button className="status-btn">Status</button>
+                      <button className="readmore-btn">Read More</button>
+                    </div>
+                  </div>
+                ))}
+              </main>
+            </div>
+          ) : (
+            <div className="violations-columns">
+              <div className="violations-column">
+                {filteredViolations.map((violation, index) => (
+                  <div 
+                    key={index} 
+                    className="violation-item" 
+                    onClick={() => handleViolationClick(violation)}
+                  >
+                    <div className="violation-type">
+                      <span className="icon">
+                        <FaGavel />
+                      </span>
+                      {violation.type}
+                    </div>
+                    <div className="violation-count">
+                      <span>{violation.count}</span>
+                      <button className="detail-btn">
+                        <FaArrowRight />
+                      </button>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
-
-          {/* Violations List (Two Columns) */}
-          <div className="violations-columns">
-            {/* Left Column: Original Filtered Violations */}
-            <div className="violations-column">
-              {filteredViolations.map((violation, index) => (
-                <div key={index} className="violation-item">
-                  <div className="violation-type">
-                    <span className="icon">
-                      <FaGavel />
-                    </span>
-                    {violation.type}
-                  </div>
-                  <div className="violation-count">
-                    <span>{violation.count}</span>
-                    <button className="detail-btn">
-                      <FaArrowRight />
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Right Column: Mirrored Violations with Modification */}
-            <div className="violations-column">
-              {rightViolations.map((violation, index) => (
-                <div key={index} className="violation-item">
-                  <div className="violation-type">
-                    <span className="icon">
-                      <FaGavel />
-                    </span>
-                    {violation.type}
-                  </div>
-                  <div className="violation-count">
-                    <span>{violation.count}</span>
-                    <button className="detail-btn">
-                      <FaArrowRight />
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          )}
         </section>
 
-        {/* Right Column: Behavior Report */}
         <aside className="svr-right">
           <div className="behavior-report">
             <h6>Behavior Report</h6>

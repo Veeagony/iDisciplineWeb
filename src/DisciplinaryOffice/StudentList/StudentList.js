@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FaBell, FaCommentDots } from "react-icons/fa";
+import { FaBell, FaCommentDots, FaUndo, FaTrash } from "react-icons/fa";
 import AddStudentForm from "./AddStudentForm";
 import StudentDetailsDrawer from "./StudentDetailsForm";
 import EditStudentForm from "./EditStudentForm";
@@ -7,7 +7,7 @@ import "./StudentList.css";
 
 // 🔥 Firebase imports
 import { db } from "../../firebase/firebaseConfig"; // Adjust if needed
-import { ref, set, push, onValue, update } from "firebase/database";
+import { ref, set, push, onValue, update, remove } from "firebase/database";
 
 const StudentList = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
@@ -18,7 +18,7 @@ const StudentList = () => {
   const [showEditDrawer, setShowEditDrawer] = useState(false);
   const [isArchiveView, setIsArchiveView] = useState(false); // Track whether Archive view is active
 
-  // 🔁 Load students from Firebase on mount
+  // Load students from Firebase on mount
   useEffect(() => {
     const studentsRef = ref(db, "students");
     onValue(studentsRef, (snapshot) => {
@@ -31,8 +31,8 @@ const StudentList = () => {
         setStudents(studentList.filter((student) => !student.isArchived)); // Active students
         setArchivedStudents(studentList.filter((student) => student.isArchived)); // Archived students
       } else {
-        setStudents([]); // If no students, set an empty array
-        setArchivedStudents([]); // If no archived students, set an empty array
+        setStudents([]);
+        setArchivedStudents([]);
       }
     });
   }, []);
@@ -44,13 +44,12 @@ const StudentList = () => {
     const paddedId = String(nextIdNumber).padStart(4, "0");
 
     const newStudentRef = push(ref(db, "students"));
-    // Save the student data along with the image URL (assumed to be provided by AddStudentForm)
     set(newStudentRef, {
       ...studentData,
-      studentId: paddedId, // 👈 This is the formatted ID
+      studentId: paddedId,
     });
 
-    setDrawerOpen(false); // Close drawer after adding
+    setDrawerOpen(false);
   };
 
   const handleRowClick = (student) => {
@@ -67,7 +66,7 @@ const StudentList = () => {
   const handleSaveEditedStudent = (updatedStudent) => {
     if (!selectedStudent?.id) return;
     const studentRef = ref(db, `students/${selectedStudent.id}`);
-    update(studentRef, updatedStudent); // Update in Firebase
+    update(studentRef, updatedStudent);
     setShowEditDrawer(false);
     setShowDetails(false);
   };
@@ -75,20 +74,31 @@ const StudentList = () => {
   // Archive functionality
   const handleArchiveToggle = (student) => {
     if (!student?.id) return;
-  
     const studentRef = ref(db, `students/${student.id}`);
     update(studentRef, { isArchived: true }).then(() => {
-      setShowDetails(false); // Close the details drawer after archiving
+      setShowDetails(false);
     });
   };
-  
+
   const handleUnarchiveToggle = (studentId) => {
     const studentRef = ref(db, `students/${studentId}`);
     update(studentRef, { isArchived: false });
   };
 
+  const handleDeleteStudent = (studentId) => {
+    if (!studentId) return;
+    const studentRef = ref(db, `students/${studentId}`);
+    remove(studentRef)
+      .then(() => {
+        // Optionally, you can add notification or feedback here.
+      })
+      .catch((error) => {
+        console.error("Error deleting student:", error);
+      });
+  };
+
   const toggleView = () => {
-    setIsArchiveView(!isArchiveView); // Toggle between active and archived views
+    setIsArchiveView(!isArchiveView);
   };
 
   return (
@@ -101,8 +111,6 @@ const StudentList = () => {
               {isArchiveView ? archivedStudents.length : students.length}
             </span>
           </div>
-
-          {/* Right aligned container for search bar and icons */}
           <div className="d-flex align-items-center gap-3">
             <input className="search-input" placeholder="Search Here" />
             <div className="d-flex align-items-center gap-3">
@@ -116,7 +124,6 @@ const StudentList = () => {
           </div>
         </div>
 
-        {/* Align dropdown and buttons (Add Student + Archive) horizontally */}
         <div className="d-flex justify-content-between align-items-center mt-3">
           <select className="year-dropdown">
             <option>Year</option>
@@ -131,7 +138,6 @@ const StudentList = () => {
           </div>
         </div>
 
-        {/* Student Table */}
         <table className="student-table mt-4">
           <thead>
             <tr>
@@ -166,9 +172,26 @@ const StudentList = () => {
                 <td>{student.lastName}</td>
                 <td>{`${student.year || ""} - ${student.section || ""}`}</td>
                 {isArchiveView && (
-                  <td>
-                    <button onClick={() => handleUnarchiveToggle(student.id)}>
-                      Unarchive
+                  <td className="archive-actions">
+                    <button
+                      className="icon-btn unarchive-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleUnarchiveToggle(student.id);
+                      }}
+                      title="Unarchive"
+                    >
+                      <FaUndo />
+                    </button>
+                    <button
+                      className="icon-btn delete-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDeleteStudent(student.id);
+                      }}
+                      title="Delete"
+                    >
+                      <FaTrash />
                     </button>
                   </td>
                 )}

@@ -62,10 +62,11 @@
 }
 
 .student-photo {
-  width: 32px;
-  height: 32px;
-  background-color: #ccc;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
+  object-fit: cover;
+  background-color: #eee;
 }
 
 .icon-btn {
@@ -90,15 +91,20 @@
 .button-container {
   display: flex;
   align-items: center;
-  gap: 10px; /* Controls the space between the elements */
+  gap: 10px;
 }
 
-/* Student Photo Styling */
-.student-photo {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
-  background-color: #eee;
+/* Archive Actions Styles */
+.archive-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Space between unarchive and delete buttons */
 }
 
+.unarchive-btn:hover {
+  color: #388e3c; /* Green color on unarchive hover */
+}
+
+.delete-btn:hover {
+  color: #d32f2f; /* Red color on delete hover */
+}
