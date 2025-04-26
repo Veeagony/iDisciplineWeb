@@ -73,11 +73,15 @@ const StudentList = () => {
   };
 
   // Archive functionality
-  const handleArchiveToggle = (studentId) => {
-    const studentRef = ref(db, `students/${studentId}`);
-    update(studentRef, { isArchived: true });
+  const handleArchiveToggle = (student) => {
+    if (!student?.id) return;
+  
+    const studentRef = ref(db, `students/${student.id}`);
+    update(studentRef, { isArchived: true }).then(() => {
+      setShowDetails(false); // Close the details drawer after archiving
+    });
   };
-
+  
   const handleUnarchiveToggle = (studentId) => {
     const studentRef = ref(db, `students/${studentId}`);
     update(studentRef, { isArchived: false });

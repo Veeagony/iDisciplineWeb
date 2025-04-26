@@ -1,10 +1,10 @@
 import React from "react";
 import { IoMdClose } from "react-icons/io";
-import { FaPen } from "react-icons/fa"; // Pencil icon for editing
+import { FaPen, FaArchive } from "react-icons/fa"; // Import Archive icon along with the Pen icon
 import { Link } from "react-router-dom"; // Used for navigation
 import "./StudentDetailsForm.css";
 
-const StudentDetailsForm = ({ isOpen, onClose, student, onEdit }) => {
+const StudentDetailsForm = ({ isOpen, onClose, student, onEdit, onArchive }) => {
   if (!student) return null;
 
   return (
@@ -50,6 +50,10 @@ const StudentDetailsForm = ({ isOpen, onClose, student, onEdit }) => {
           {/* Edit Icon */}
           <button className="edit-btn" onClick={() => onEdit?.(student)}>
             <FaPen />
+          </button>
+          {/* Archive Icon (added below the edit icon) */}
+          <button className="archive-btn" onClick={() => onArchive?.(student)}>
+            <FaArchive />
           </button>
         </div>
 

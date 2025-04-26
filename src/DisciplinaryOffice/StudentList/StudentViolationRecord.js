@@ -16,14 +16,13 @@ const StudentViolationRecord = () => {
     year: "8th",
     section: "A",
     violations: [
-      { type: "Minor Offense", count: 3 },
+      { type: "Major Offense", count: 3 },
       { type: "Minor Offense", count: 4 },
-      { type: "Bullying", count: 5 },
     ],
   };
 
-  // State for the filter category (default to "Minor Offense")
-  const [selectedCategory, setSelectedCategory] = useState("Minor Offense");
+  // State for the filter category (default to "All")
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
   // Filter violations based on selected category
   const filteredViolations =
