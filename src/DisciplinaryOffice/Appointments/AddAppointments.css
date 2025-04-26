@@ -73,20 +73,20 @@
 .form-title {
   font-size: 1.6rem;
   font-weight: 600;
-  color: #333;
+  color: #ffffff;
 }
 
 .close-button {
   background: none;
   border: none;
-  color: #6c757d;
+  color: #ffffff;
   font-size: 1.5rem;
   cursor: pointer;
   transition: color 0.2s ease;
 }
 
 .close-button:hover {
-  color: #000;
+  color: #f70202;
 }
 
 /* Form Layout */
@@ -137,6 +137,13 @@
   width: 100%;
 }
 
+.react-datepicker-popper {
+  z-index: 2000 !important; /* Make it higher than drawer (1001) */
+  
+}
+
+
+
 /* Student Information Section */
 .info-group {
   background: #E9ECEF;
@@ -162,6 +169,7 @@
   font-size: 1rem;
   color: #2A2A2A;
 }
+
 
 /* Brief Description Textarea */
 .desc-textarea {

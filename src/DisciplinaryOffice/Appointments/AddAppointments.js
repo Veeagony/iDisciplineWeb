@@ -19,33 +19,33 @@ const AddAppointments = ({ closeDrawer, violations, addAppointment, markCalendar
       setSelectedViolation(violation);
     }
   }, [selectedCase, violations]);
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const newAppointment = {
       caseNo: selectedCase,
       studentName: selectedViolation?.offender || "",
+      studentId: selectedViolation?.studentId || "",
       status: selectedViolation?.status || "",
       violationCategory: selectedViolation?.violationCategory || "",
-      violationType: selectedViolation?.violationType || "",
+      violationType: selectedViolation?.type || "",
       timeReported: selectedViolation?.Date || "",
       briefDesc,
       datetime: datetime.toISOString(),
       meetingType,
     };
-
+  
     try {
       const newRef = push(ref(db, "appointments"));
       await set(newRef, newAppointment);
-      const savedAppointment = { ...newAppointment, id: newRef.key };
-      addAppointment(savedAppointment);
-      markCalendarDate(new Date(savedAppointment.datetime));
-      closeDrawer(); // Close the drawer by calling the parent's function
+      closeDrawer(); // ✅ Only close drawer
     } catch (error) {
       console.error("Error adding appointment:", error);
     }
   };
+  
 
   return (
     <div className="add-appointments-drawer open">
@@ -79,11 +79,17 @@ const AddAppointments = ({ closeDrawer, violations, addAppointment, markCalendar
             </select>
           </div>
 
-          {/* Student Information */}
+         {/* Student Information */}
           <div className="info-group">
-            <div className="info-item">
-              <span className="info-label">Student Name:</span>
-              <div className="info-value">{selectedViolation?.offender || ""}</div>
+            <div className="info-row">
+              <div className="info-item">
+                <span className="info-label">Student ID:</span>
+                <div className="info-value">{selectedViolation?.studentId || ""}</div>
+              </div>
+              <div className="info-item">
+                <span className="info-label">Student Name:</span>
+                <div className="info-value">{selectedViolation?.offender || ""}</div>
+              </div>
             </div>
             <div className="info-row">
               <div className="info-item">
@@ -98,7 +104,7 @@ const AddAppointments = ({ closeDrawer, violations, addAppointment, markCalendar
             <div className="info-row">
               <div className="info-item">
                 <span className="info-label">Violation Type:</span>
-                <div className="info-value">{selectedViolation?.violationType || ""}</div>
+                <div className="info-value">{selectedViolation?.type || ""}</div>
               </div>
               <div className="info-item">
                 <span className="info-label">Time Reported:</span>
@@ -106,6 +112,7 @@ const AddAppointments = ({ closeDrawer, violations, addAppointment, markCalendar
               </div>
             </div>
           </div>
+
 
           {/* Brief Description */}
           <div className="form-group">
@@ -124,15 +131,18 @@ const AddAppointments = ({ closeDrawer, violations, addAppointment, markCalendar
             <div className="form-group">
               <label htmlFor="datetime">Date &amp; Time:</label>
               <DatePicker
-                id="datetime"
-                selected={datetime}
-                onChange={(date) => setDatetime(date)}
-                showTimeSelect
-                dateFormat="MMMM d, yyyy h:mm aa"
-                className="form-control"
-                minDate={new Date()}
-                required
-              />
+              id="datetime"
+              selected={datetime}
+              onChange={(date) => setDatetime(date)}
+              showTimeSelect
+              dateFormat="MMMM d, yyyy h:mm aa"
+              className="form-control"
+              minDate={new Date()}
+              required
+              popperPlacement="bottom-start" 
+            />
+
+
             </div>
             <div className="form-group">
               <label htmlFor="meetingType">Meeting Type:</label>

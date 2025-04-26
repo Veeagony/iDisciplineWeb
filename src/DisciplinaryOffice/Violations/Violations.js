@@ -35,6 +35,7 @@ const Violations = () => {
   const handleAddViolation = (newViolation) => {
     console.log("➡️ handleAddViolation received:", newViolation);
     const newRef = push(ref(db, "violations"));
+    // Note: You may want to adjust caseNo generation and incorporate studentId as needed.
     const caseNo = `C-${violations.length + 1}`.padStart(6, "0");
     const newViolationWithCaseNo = { ...newViolation, caseNo };
     set(newRef, newViolationWithCaseNo)
@@ -97,7 +98,7 @@ const Violations = () => {
         <select className="dropdown">
           <option>Year</option>
         </select>
-        {["All", "Minor Offense", "Major Offense", "Grade Level", "No. of Violations"].map((type) => (
+        {["All", "Minor Offense", "Major Offense", "Archive"].map((type) => (
           <button
             key={type}
             className={`btn ${
@@ -125,6 +126,7 @@ const Violations = () => {
             <tr>
               <th>Status</th>
               <th>Case No.</th>
+              <th>Student ID</th> {/* New column for student ID */}
               <th>Student Name</th>
               <th>Violation Category</th>
               <th>Date</th>
@@ -143,6 +145,7 @@ const Violations = () => {
                   </span>
                 </td>
                 <td>{v.caseNo}</td>
+                <td>{v.studentId}</td> {/* Displaying student ID */}
                 <td>{v.offender}</td>
                 <td>{v.violationCategory}</td>
                 <td>{v.Date}</td>
