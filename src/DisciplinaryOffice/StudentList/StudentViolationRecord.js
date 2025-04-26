@@ -4,7 +4,7 @@ import { FaGavel, FaArrowRight, FaBell, FaCommentDots, FaArrowLeft } from "react
 import { db } from "../../firebase/firebaseConfig"; 
 import { ref, get, onValue } from "firebase/database"; 
 import "./StudentViolationRecord.css";
-
+import ViolationsDetails from "../Violations/ViolationsDetails";
 const StudentViolationRecord = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -13,6 +13,7 @@ const StudentViolationRecord = () => {
   const [violations, setViolations] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedViolation, setSelectedViolation] = useState(null);
+  const [openedViolation, setOpenedViolation] = useState(null);
 
   useEffect(() => {
     const fetchStudentData = async () => {
@@ -141,31 +142,51 @@ const StudentViolationRecord = () => {
           </div>
 
           {selectedViolation ? (
-            <div className="violation-details-panel">
-              <header className="vd-header">
-                <button className="back-button" onClick={handleBack}>
-                  <FaArrowLeft />
-                </button>
-                <h5>
-                  {selectedViolation.type} ({selectedViolation.count})
-                </h5>
-              </header>
-              <main className="vd-main">
-                {Array.from({ length: selectedViolation.count }).map((_, index) => (
-                  <div key={index} className="case-item">
-                    <div className="case-header">Case #{index + 1}</div>
-                    <p><strong>Student ID:</strong> #{student.studentId || "00000"}</p>
-                    <p><strong>Date Sent:</strong> Dec 25, 2025</p>
-                    <p><strong>Details:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <div className="case-actions">
-                      <button className="status-btn">Status</button>
-                      <button className="readmore-btn">Read More</button>
-                    </div>
-                  </div>
-                ))}
-              </main>
-            </div>
-          ) : (
+          <div className="violation-details-panel">
+            <header className="vd-header">
+              <button className="back-button" onClick={handleBack}>
+                <FaArrowLeft />
+              </button>
+              <h5>
+                {selectedViolation.type} ({selectedViolation.count})
+              </h5>
+            </header>
+            <main className="vd-main">
+  {studentViolations
+    .filter((v) => v.violationCategory === selectedViolation.type)
+    .map((violation, index) => (
+      <div
+        key={index}
+        className="case-item"
+        onClick={() => setOpenedViolation(violation)} // ← make clickable
+        style={{ cursor: "pointer" }}
+      >
+        <div className="case-header">Case #{index + 1}</div>
+        <p><strong>Student ID:</strong> #{student.studentId || "00000"}</p>
+        <p><strong>Date Sent:</strong> {violation.Date || violation.DateReported || "N/A"}</p>
+        <p><strong>Details:</strong> {violation.notes || "No description available."}</p>
+        <div className="case-actions">
+          <button className="status-btn">
+            {violation.status || "Unresolved"}
+          </button>
+          <button className="readmore-btn">
+            Read More
+          </button>
+        </div>
+      </div>
+    ))}
+</main>
+
+{openedViolation && (
+  <ViolationsDetails
+    violation={openedViolation}
+    onClose={() => setOpenedViolation(null)}
+  />
+)}
+
+
+          </div>
+        ) : (
             <div className="violations-columns">
               <div className="violations-column">
                 {filteredViolations.map((violation, index) => (
