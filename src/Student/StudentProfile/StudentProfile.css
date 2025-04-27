@@ -1,0 +1,155 @@
+/* Page Header */
+/* Page Header */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .page-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #0F296F;
+  }
+  
+  .header-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* space between the icons */
+  }
+  
+  .notification-bell, .comment-icon {
+    font-size: 24px;
+    color: #6495ED;
+    cursor: pointer;
+  }
+  
+  .notification-bell:hover, .comment-icon:hover {
+    color: #0F296F;
+  }
+  
+
+.student-profile {
+    font-family: Arial, sans-serif;
+    color: #333;
+    padding: 20px;
+  }
+  
+  /* Top Section: Profile + Emergency side-by-side */
+  .top-section {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  
+  /* Student Profile Card */
+  .top-profile-card {
+    flex: none;
+    width: 500px; /* ✅ Fix the width */
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  
+  .card-header {
+    height: 40px;
+    background-color: #0F296F;
+  }
+  
+  .card-body {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .photo-section {
+    flex: 0 0 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .photo-placeholder {
+    width: 100px;
+    height: 100px;
+    background-color: #d9d9d9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 10%;
+  }
+  
+  .photo-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .info-section {
+    flex-grow: 1;
+    padding-left: 20px;
+  }
+  
+  .student-name {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .student-no {
+    margin-top: 5px;
+    font-size: 0.95rem;
+    font-weight: bold;
+  }
+  
+  .student-detail {
+    font-size: 0.9rem;
+    margin-top: 8px;
+    color: #555;
+  }
+  
+  /* Emergency Contact Card */
+  .emergency-contact-card {
+    flex: 1;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 255, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .emergency-title {
+    color: #0F296F;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  /* Student Details Section (full width below) */
+  .student-details {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+  }
+  
+  .details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .left-column, .right-column {
+    width: 45%;
+  }
+  
+  .left-column p, .right-column p {
+    margin: 8px 0;
+  }
+  

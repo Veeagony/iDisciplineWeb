@@ -10,9 +10,9 @@ function Menubar({ isOpen, toggleMenubar }) {
   const menuItems = [
     { label: "Home", icon: <FaHome />, path: "/home" },
     { label: "Student Profile", icon: <FaUserCircle />, path: "/student-profile" },
-    { label: "Violations", icon: <FaBalanceScale />, path: "/violations" },
-    { label: "Incident Report", icon: <FaFileAlt />, path: "/incident-reports" },
-    { label: "Handbook", icon: <FaBook />, path: "/handbook" },
+    { label: "Violation", icon: <FaBalanceScale />, path: "/violation" },
+    { label: "Incident Report", icon: <FaFileAlt />, path: "/incident-report" },
+    { label: "Handbook", icon: <FaBook />, path: "/handbooks" },
   ];
 
   const handleLogout = () => {

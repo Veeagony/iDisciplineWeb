@@ -1,0 +1,143 @@
+.violation-page {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f8f9fa;
+    color: #333;
+  }
+  
+  /* Header */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .page-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #0f296f;
+  }
+  
+  .header-bell {
+    font-size: 24px;
+    color: #6495ed;
+    cursor: pointer;
+  }
+  
+  /* Sub Header */
+  .violation-subheader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+  }
+  
+  .violation-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0f296f;
+  }
+  
+  .badge {
+    padding: 4px 12px;
+    border: 1px solid #0f296f;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    color: #0f296f;
+    font-weight: 600;
+  }
+  
+  .violation-category {
+    color: gray;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Cards Grid */
+  .violation-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+  
+  /* Individual Card */
+  .violation-card {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  position: relative; /* ✅ Important for absolute positioning inside */
+  padding: 20px;
+}
+
+/* Adjust card header */
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.case-title {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #555;
+}
+
+/* Status badge positioned at the top right */
+.status-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 15px 20px 0 0; /* space from top and right */
+  background-color: #d9534f;
+  color: white;
+  padding: 5px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+  
+  /* Card Body Horizontal */
+  .card-body {
+    padding: 10px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .info-line {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 2px;
+  }
+  
+  .card-description {
+    font-size: 0.85rem;
+    color: #777;
+    margin-top: 8px;
+    margin-bottom: 10px;
+  }
+  
+  /* Read More */
+  .read-more {
+    margin-top: auto;
+    text-align: right;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #0f296f;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  .arrow {
+    margin-left: 5px;
+  }
+  
