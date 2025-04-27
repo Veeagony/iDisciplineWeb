@@ -1,11 +1,11 @@
 import React from "react";
 import "./Menubar.css";
-import { useNavigate } from "react-router-dom";
-import { FaBars, FaHome, FaUserCircle, FaBalanceScale, FaFileAlt, FaBook, FaSignOutAlt } from "react-icons/fa";  // Import FaSignOutAlt for logout
+import { useNavigate, useLocation } from "react-router-dom";
+import { FaBars, FaHome, FaUserCircle, FaBalanceScale, FaFileAlt, FaBook, FaSignOutAlt } from "react-icons/fa";
 
 function Menubar({ isOpen, toggleMenubar }) {
   const navigate = useNavigate();
-  const currentPath = window.location.pathname;
+  const location = useLocation(); // ✅ correct way to get current route
 
   const menuItems = [
     { label: "Home", icon: <FaHome />, path: "/home" },
@@ -15,17 +15,18 @@ function Menubar({ isOpen, toggleMenubar }) {
     { label: "Handbook", icon: <FaBook />, path: "/handbook" },
   ];
 
-  // Handle logout
   const handleLogout = () => {
-    localStorage.removeItem('user'); // Clear user session from localStorage
-    navigate("/"); // Redirect to login page
+    localStorage.removeItem('user');
+    navigate("/");
   };
 
   return (
     <div className={`menubar ${isOpen ? "" : "collapsed"}`}>
-      <button className="toggle-btn" onClick={toggleMenubar}>
-        <FaBars />
-      </button>
+      <div className="top-section">
+        <button className="toggle-btn" onClick={toggleMenubar}>
+          <FaBars />
+        </button>
+      </div>
 
       <div className="user-section">
         <div className="user-avatar"><FaUserCircle /></div>
@@ -41,17 +42,18 @@ function Menubar({ isOpen, toggleMenubar }) {
         {menuItems.map((item, index) => (
           <div
             key={index}
-            className={`menu-item ${currentPath === item.path ? "active" : ""}`}
+            className={`menu-item ${location.pathname === item.path ? "active" : ""}`}
             onClick={() => navigate(item.path)}
           >
             {item.icon}
-            <span>{item.label}</span>
+            {isOpen && <span>{item.label}</span>}
           </div>
         ))}
-        {/* Add Logout button */}
+        
+        {/* Logout Button */}
         <div className="menu-item" onClick={handleLogout}>
           <FaSignOutAlt />
-          <span>Logout</span>
+          {isOpen && <span>Logout</span>}
         </div>
       </div>
     </div>
