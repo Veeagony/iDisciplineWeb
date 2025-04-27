@@ -3,6 +3,7 @@ import "./ViolationsDetails.css";
 import { FaTimes } from "react-icons/fa";
 
 const ViolationsDetails = ({ violation, onClose }) => {
+  
   return (
     <div className="drawer open">
       <div className="drawer-container">
@@ -47,7 +48,7 @@ const ViolationsDetails = ({ violation, onClose }) => {
             </div>
             <div className="detail-item">
               <span className="detail-title">Time Reported:</span>
-              <span className="detail-content">{violation.Date || "N/A"}</span>
+              <span className="detail-content">{violation.Time || "N/A"}</span>
             </div>
             <div className="detail-item">
               <span className="detail-title">Notes:</span>
@@ -62,7 +63,7 @@ const ViolationsDetails = ({ violation, onClose }) => {
               <div className="timeline-item">
                 <div className="timeline-dot"></div>
                 <div className="timeline-text">
-                  Report Sent - Thursday, Dec. 25, 2025
+                  Report Sent - {violation.DateReported || "N/A"}
                 </div>
               </div>
               <div className="timeline-item">

@@ -163,7 +163,7 @@ const StudentViolationRecord = () => {
       >
         <div className="case-header">Case #{index + 1}</div>
         <p><strong>Student ID:</strong> #{student.studentId || "00000"}</p>
-        <p><strong>Date Sent:</strong> {violation.Date || violation.DateReported || "N/A"}</p>
+        <p><strong>Date Sent:</strong> {violation.DateReported || "N/A"}</p>
         <p><strong>Details:</strong> {violation.notes || "No description available."}</p>
         <div className="case-actions">
           <button className="status-btn">

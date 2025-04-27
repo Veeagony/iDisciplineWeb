@@ -187,10 +187,14 @@ const Appointments = () => {
       {/* Add Appointment Drawer */}
       {isDrawerOpen && (
         <AddAppointments
-          closeDrawer={closeDrawer} // Close drawer after adding appointment
-          violations={violations}
-          isOpen={isDrawerOpen} // Ensure that the drawer state is passed properly
-        />
+        closeDrawer={closeDrawer}
+        violations={violations}
+        addAppointment={(newAppt) => {
+          setAppointments(prev => [...prev, newAppt]); // Update the appointments list
+          closeDrawer(); // ✅ Close the drawer after adding
+        }}
+        isOpen={isDrawerOpen}
+      />
       )}
 
       {/* Appointment Details */}
