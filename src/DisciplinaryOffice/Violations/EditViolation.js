@@ -30,8 +30,20 @@ const EditViolation = ({ violationId, onClose }) => {
 
   const handleSave = async () => {
     if (!violationData) return;
+
     const violationRef = ref(db, `violations/${violationId}`);
-    await update(violationRef, violationData)
+    const currentDateTime = new Date().toLocaleString();
+
+    const updateMessage = `Record updated at ${currentDateTime}`;
+
+    const updatedViolation = {
+      ...violationData,
+      updates: violationData.updates
+        ? [...violationData.updates, updateMessage]
+        : [updateMessage],
+    };
+
+    await update(violationRef, updatedViolation)
       .then(() => {
         alert("Violation updated successfully!");
         onClose();
@@ -48,82 +60,119 @@ const EditViolation = ({ violationId, onClose }) => {
 
   return (
     <div className="drawer-overlay">
-      <div className="drawer open">
-        <div className="drawer-container">
-          <header className="drawer-header">
-            <h5 className="mb-0 text-white fw-bold">Edit Violation</h5>
-            <div className="header-actions">
-              <button className="close-btn" onClick={onClose}>
-                <IoMdClose size={24} />
-              </button>
-            </div>
-          </header>
+      <div className="edit-violation-drawer">
+        <div className="drawer-header">
+          <h5>Edit Violation</h5>
+          <IoMdClose
+            size={24}
+            onClick={onClose}
+            style={{ cursor: "pointer", color: "white" }}
+          />
+        </div>
 
-          <div className="drawer-body">
-            <label>Student Name:</label>
+        <div className="drawer-body">
+          {/* Case No. (readonly) */}
+          <div className="case-section">
+            <h2>Case No.</h2>
+            <input type="text" value={violationData.caseNo || ""} readOnly />
+          </div>
+
+          <label>Status:</label>
+          <select
+            name="status"
+            value={violationData.status || ""}
+            onChange={handleChange}
+          >
+            <option value="Unresolved">Unresolved</option>
+            <option value="Resolved">Resolved</option>
+          </select>
+
+          <label>Date & Time of the incident:</label>
+          <div className="date-grid">
             <input
               type="text"
-              name="offender"
-              value={violationData.offender || ""}
+              name="Date"
+              value={violationData.Date || ""}
               onChange={handleChange}
+              placeholder="Date (e.g. April 28, 2025)"
             />
-
-            <label>Violation Category:</label>
-            <select
-              name="violationCategory"
-              value={violationData.violationCategory || ""}
-              onChange={handleChange}
-            >
-              <option value="">Select Category</option>
-              <option value="Minor Offense">Minor Offense</option>
-              <option value="Major Offense">Major Offense</option>
-            </select>
-
-            <label>Violation Type:</label>
-            <input
-              type="text"
-              name="type"
-              value={violationData.type || ""}
-              onChange={handleChange}
-            />
-
-            <label>Status:</label>
-            <select
-              name="status"
-              value={violationData.status || ""}
-              onChange={handleChange}
-            >
-              <option value="Unresolved">Unresolved</option>
-              <option value="Resolved">Resolved</option>
-            </select>
-
-            <label>Location:</label>
-            <input
-              type="text"
-              name="Location"
-              value={violationData.Location || ""}
-              onChange={handleChange}
-            />
-
-            <label>Description (Notes):</label>
-            <textarea
-              name="notes"
-              value={violationData.notes || ""}
-              onChange={handleChange}
-            />
-
-            <label>Time of Incident:</label>
             <input
               type="text"
               name="Time"
               value={violationData.Time || ""}
               onChange={handleChange}
+              placeholder="Time (e.g. 10:30 PM)"
             />
-
-            <button className="save-btn" onClick={handleSave}>
-              Save Changes
-            </button>
           </div>
+
+          <label>Location:</label>
+          <input
+            type="text"
+            name="Location"
+            value={violationData.Location || ""}
+            onChange={handleChange}
+          />
+
+          <label>Violation Category:</label>
+          <select
+            name="violationCategory"
+            value={violationData.violationCategory || ""}
+            onChange={handleChange}
+          >
+            <option value="">Select Category</option>
+            <option value="Minor Offense">Minor Offense</option>
+            <option value="Major Offense">Major Offense</option>
+          </select>
+
+          <label>Violation Type:</label>
+          <input
+            type="text"
+            name="type"
+            value={violationData.type || ""}
+            onChange={handleChange}
+          />
+
+          <label>Parties Involved:</label>
+          <input
+            type="text"
+            name="Victim"
+            placeholder="Victim"
+            value={violationData.Victim || ""}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            name="offender"
+            placeholder="Offender"
+            value={violationData.offender || ""}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            name="Witness"
+            placeholder="Witness"
+            value={violationData.Witness || ""}
+            onChange={handleChange}
+          />
+
+          <label>Description (Notes):</label>
+          <textarea
+            name="notes"
+            value={violationData.notes || ""}
+            onChange={handleChange}
+          />
+
+          <label>Date Reported:</label>
+          <input
+            type="text"
+            name="DateReported"
+            value={violationData.DateReported || ""}
+            readOnly
+          />
+
+          <button className="save-btn" onClick={handleSave}>
+            Save Changes
+          </button>
         </div>
       </div>
     </div>
