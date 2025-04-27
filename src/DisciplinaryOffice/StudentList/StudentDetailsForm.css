@@ -67,7 +67,8 @@
 }
 
 .text-muted {
-  color: #777;
+  color: #555;
+
 }
 
 
@@ -95,7 +96,7 @@
 }
 
 .edit-btn:hover {
-  color: #ffc107; /* Change color on hover */
+  color: #0F296F; /* Change color on hover */
 }
 
 .archive-btnn {

@@ -1,0 +1,78 @@
+.contact-parent-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+  }
+  
+  .contact-parent-panel {
+    width: 320px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .contact-parent-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .contact-parent-header h4 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #0F296F;
+  }
+  
+  .contact-parent-body p {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  .contact-parent-footer {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .sms-btn {
+    background-color: #00a383;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 16px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  
+  .email-btn {
+    background-color: #f5a623;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 16px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  
+  .sms-btn:hover {
+    background-color: #007a65;
+  }
+  
+  .email-btn:hover {
+    background-color: #d48806;
+  }
+  

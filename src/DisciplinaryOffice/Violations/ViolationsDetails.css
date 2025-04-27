@@ -1,165 +1,186 @@
-/* Base Drawer Styles */
-.drawer {
+/* Basic Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Drawer Overlay */
+.drawer-overlay {
   position: fixed;
   top: 0;
-  right: -520px; /* Start hidden offscreen */
-  width: 520px;
+  left: 0;
+  width: 100%;
   height: 100%;
-  background: #fff;
-  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.3);
-  transition: right 0.4s ease;
+  background: rgba(0, 0, 0, 0.4);
   z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
 }
 
-.drawer.open {
-  right: 0;
+/* Violation Details Drawer */
+.violation-details-drawer {
+  background-color: #fff;
+  width: 480px;
+  height: 100%;
+  overflow-y: auto;
+  transform: translateX(100%);
+  animation: slideIn 0.3s forwards;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
 }
 
+@keyframes slideIn {
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Drawer Container */
 .drawer-container {
   display: flex;
   flex-direction: column;
   height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Header Layout */
+/* Drawer Header */
 .drawer-header {
+  background-color: #0F296F;
+  padding: 18px 24px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 16px 20px;
-  background-color: #f5f5f5;
-  border-bottom: 1px solid #ccc;
+  align-items: center;
+  position: relative;
 }
 
-.drawer-header h2 {
-  margin: 0;
-  font-size: 1.5rem;
-  color: #ffffff;
+.drawer-title {
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
 }
 
-/* Container for header action buttons */
+/* Group Edit and Close Button */
 .header-actions {
   display: flex;
-  gap: 10px; /* Space between the Edit and X buttons */
+  align-items: center;
+  gap: 8px;
 }
 
-.close-btn {
-  background: transparent;
+/* Edit Button */
+.edit-btnn {
+  background: none;
   border: none;
-  font-size: 1.5rem;
-  color: #000;
+  color: white;
+  font-size: 18px;
   cursor: pointer;
 }
 
-/* Drawer Body */
-.drawer-body {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
+.edit-btnn:hover {
+  color: #ffc107;
+}
+
+/* Close Button */
+.close-btnn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.close-btnn:hover {
+  color: #ffc107;
 }
 
 /* Case Section */
-.case-header {
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #eee;
-}
-
-.case-info {
-  display: flex;
-  align-items: baseline;
-}
-
-.case-label {
-  font-weight: bold;
-  margin-right: 8px;
-  color: #555;
-  font-size: 1rem;
+.case-section {
+  text-align: center;
+  margin: 10px 0; /* smaller margin to move everything upward */
 }
 
 .case-number {
-  font-size: 1.3rem;
-  color: #007bff;
-  font-weight: 500;
+  font-size: 26px;
+  color: #0F296F;
+  font-weight: bold;
 }
 
-/* Violation Details Section */
+/* Violation Details */
 .violation-details {
-  margin-bottom: 20px;
+  padding: 0 24px;
 }
 
 .detail-item {
   display: flex;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .detail-title {
-  flex: 0 0 160px;
+  width: 150px;
   font-weight: bold;
-  color: #555;
-  font-size: 0.95rem;
+  color: #333;
 }
 
 .detail-content {
-  color: #333;
-  font-size: 0.95rem;
+  color: #555;
 }
 
 /* Updates Section */
 .updates-section {
-  margin-top: 30px;
+  padding: 24px;
 }
 
 .updates-section h3 {
-  font-size: 1.2rem;
-  color: #333;
-  margin-bottom: 12px;
+  color: #0F296F;
+  font-size: 18px;
+  margin-bottom: 16px;
 }
 
 .timeline {
-  border-left: 2px solid #007bff;
+  margin-left: 16px;
+  border-left: 2px solid #0F296F;
   padding-left: 16px;
 }
 
 .timeline-item {
   display: flex;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .timeline-dot {
   width: 10px;
   height: 10px;
-  background: #007bff;
+  background: #0F296F;
   border-radius: 50%;
   margin-right: 10px;
 }
 
 .timeline-text {
-  font-size: 0.95rem;
+  font-size: 14px;
   color: #333;
 }
 
-/* Footer Styles */
+/* Footer */
 .drawer-footer {
-  background: #f5f5f5;
-  border-top: 1px solid #ccc;
-  padding: 16px 20px;
   display: flex;
   justify-content: space-around;
+  background: #f8f9fa;
+  padding: 16px;
+  border-top: 1px solid #ddd;
 }
 
 .footer-btn {
-  background: #007bff;
-  color: #fff;
+  padding: 10px 20px;
+  background-color: #0F296F;
+  color: white;
   border: none;
-  border-radius: 4px;
-  padding: 10px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
   cursor: pointer;
-  font-size: 0.95rem;
-  transition: background 0.2s ease;
+  transition: background-color 0.25s ease;
 }
 
 .footer-btn:hover {
-  background: #0056b3;
+  background-color: #001f5b;
 }

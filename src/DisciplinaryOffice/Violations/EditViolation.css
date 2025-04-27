@@ -1,0 +1,127 @@
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Drawer Overlay */
+.drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Drawer Base */
+.drawer {
+  background-color: #fff;
+  width: 480px;
+  height: 100%;
+  overflow-y: auto;
+  transform: translateX(100%);
+  animation: slideIn 0.3s forwards;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes slideIn {
+  to {
+    transform: translateX(0);
+  }
+}
+
+.drawer-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Header */
+.drawer-header {
+  background-color: #0F296F;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.drawer-header h5 {
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Body */
+.drawer-body {
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.drawer-body label {
+  display: block;
+  margin-top: 16px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+.drawer-body input,
+.drawer-body select,
+.drawer-body textarea {
+  width: 100%;
+  margin-top: 6px;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.drawer-body textarea {
+  height: 100px;
+  resize: none;
+}
+
+/* Save Button */
+.save-btn {
+  margin-top: 24px;
+  background-color: #00a383;
+  color: white;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 24px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.save-btn:hover {
+  background-color: #007a65;
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  padding: 50px;
+  font-size: 18px;
+  color: #777;
+}

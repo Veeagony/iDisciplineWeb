@@ -1,31 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
+import EditViolation from "./EditViolation";
+import ContactParent from "./ContactParent";
 import "./ViolationsDetails.css";
-import { FaTimes } from "react-icons/fa";
+import { FaTimes, FaPen } from "react-icons/fa";
 
 const ViolationsDetails = ({ violation, onClose }) => {
-  
+  const [isEditing, setIsEditing] = useState(false);
+  const [contactParentOpen, setContactParentOpen] = useState(false);
+
+  if (!violation) return null;
+
   return (
-    <div className="drawer open">
-      <div className="drawer-container">
-        {/* Header: title on left, Edit button and close button on the right */}
-        <header className="drawer-header">
-          <h2>Violation Details</h2>
-          <div className="header-actions">
-  <button className="close-btn" onClick={onClose}>
-    <FaTimes />
-  </button>
-</div>
-
-        </header>
-
-        {/* Main Content */}
-        <div className="drawer-body">
-          {/* Case Section */}
-          <div className="case-header">
-            <div className="case-info">
-              <span className="case-label">Case No.</span>
-              <span className="case-number">{violation.caseNo || "N/A"}</span>
+    <div className="drawer-overlay">
+      <div className="violation-details-drawer">
+        <div className="drawer-container">
+          {/* Header */}
+          <header className="drawer-header">
+            <h5 className="drawer-title">Violation Details</h5>
+            <div className="header-actions">
+              <button className="edit-btnn" onClick={() => setIsEditing(true)}>
+                <FaPen />
+              </button>
+              <button className="close-btnn" onClick={onClose}>
+                <FaTimes size={20} />
+              </button>
             </div>
+          </header>
+
+          {/* Case Number */}
+          <div className="case-section">
+            <h2 className="case-number">{violation.caseNo || "N/A"}</h2>
           </div>
 
           {/* Violation Details */}
@@ -51,6 +55,10 @@ const ViolationsDetails = ({ violation, onClose }) => {
               <span className="detail-content">{violation.Time || "N/A"}</span>
             </div>
             <div className="detail-item">
+              <span className="detail-title">Location:</span>
+              <span className="detail-content">{violation.Location || "N/A"}</span>
+            </div>
+            <div className="detail-item">
               <span className="detail-title">Notes:</span>
               <span className="detail-content">{violation.notes || "No additional notes."}</span>
             </div>
@@ -66,23 +74,31 @@ const ViolationsDetails = ({ violation, onClose }) => {
                   Report Sent - {violation.DateReported || "N/A"}
                 </div>
               </div>
-              <div className="timeline-item">
-                <div className="timeline-dot"></div>
-                <div className="timeline-text">
-                  Scheduled Meeting - Monday, Dec. 27, 2025
-                </div>
-              </div>
             </div>
           </div>
-        </div>
 
-        {/* Footer Actions */}
-        <footer className="drawer-footer">
-          <button className="footer-btn">Contact Parent</button>
-          <button className="footer-btn">Print</button>
-          <button className="footer-btn">Message</button>
-        </footer>
+          {/* Footer */}
+          <footer className="drawer-footer">
+            <button className="footer-btn" onClick={() => setContactParentOpen(true)}>Contact Parent</button>
+            {contactParentOpen && (
+              <ContactParent
+                violationId={violation.id}
+                onClose={() => setContactParentOpen(false)}
+              />
+            )}
+            <button className="footer-btn">Print</button>
+            <button className="footer-btn">Message</button>
+          </footer>
+        </div>
       </div>
+
+      {/* Edit Violation Modal */}
+      {isEditing && (
+        <EditViolation
+          violationId={violation.id}
+          onClose={() => setIsEditing(false)}
+        />
+      )}
     </div>
   );
 };

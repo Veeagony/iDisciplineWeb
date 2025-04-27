@@ -1,70 +1,97 @@
-.drawer {
+/* Basic Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Drawer Overlay */
+.drawer-overlay {
   position: fixed;
   top: 0;
-  right: 0;
-  width: 720px;
+  left: 0;
+  width: 100%;
   height: 100%;
-  background-color: white;
-  padding: 0;
-  border-left: 1px solid #ddd;
-  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Add Violation Drawer */
+.add-violation-drawer {
+  background-color: #fff;
+  width: 480px;
+  height: 100%;
+  overflow-y: auto;
   transform: translateX(100%);
   animation: slideIn 0.3s forwards;
-  overflow-y: auto;
-  z-index: 1050;
-  font-family: 'Segoe UI', sans-serif;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
 }
 
 @keyframes slideIn {
-  100% {
+  to {
     transform: translateX(0);
   }
 }
 
+/* Drawer Header */
 .drawer-header {
-  background-color: #1A4CE0;           /* Cleaner blue tone */
-  color: white;
+  background-color: #1A4CE0;
   padding: 18px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-}
-
-.drawer-title {
-  font-size: 18px;
-  font-weight: 600;
-  margin: 0;
-}
-
-.close-btn {
-  background: none;
-  border: none;
   color: white;
-  font-size: 24px;
-  line-height: 1;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.close-btn:hover {
-  opacity: 0.75;
+.drawer-header h5 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
 }
 
-.form {
+/* Drawer Body */
+.drawer-body {
   padding: 24px;
-}
-
-.form label {
-  display: block;
-  font-size: 14px;
-  font-weight: 600;
-  margin: 16px 0 6px;
+  font-family: 'Segoe UI', sans-serif;
   color: #333;
 }
 
-input, select, textarea {
+.case-section {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.case-section h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #0F296F;
+  margin-bottom: 12px;
+}
+
+.case-section input {
+  text-align: center;
+  font-size: 18px;
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+/* Labels and Inputs */
+.drawer-body label {
+  display: block;
+  margin-top: 18px;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.drawer-body input,
+.drawer-body select,
+.drawer-body textarea {
   width: 100%;
   padding: 10px 12px;
   font-size: 14px;
@@ -78,65 +105,60 @@ textarea {
   resize: none;
 }
 
-.date-time {
+/* Date Grid */
+.date-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
+  gap: 8px;
 }
 
-.link-label {
-  margin-top: 16px;
-  color: #0d1e61;
-  font-weight: 500;
-  font-size: 14px;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.add-btn {
-  margin: 24px;
-  background-color: #00a383;
-  color: white;
-  padding: 12px;
-  border: none;
-  border-radius: 24px;
-  font-weight: bold;
-  font-size: 16px;
-  cursor: pointer;
-  width: calc(100% - 48px);
-}
-.date-time select {
-  height: 40px;
-}
-
-.autocomplete-input {
+/* Autocomplete */
+.autocomplete-field {
   position: relative;
 }
 
 .autocomplete-suggestions {
   position: absolute;
-  top: calc(100% + 4px); /* Position slightly below the input */
+  top: calc(100% + 4px);
   left: 0;
   right: 0;
-  border: 1px solid rgba(0, 0, 0, 0.15); /* Light border */
   background-color: white;
-  z-index: 10;
+  border: 1px solid rgba(0,0,0,0.15);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border-radius: 6px;
   list-style: none;
-  padding: 8px 0; /* Add some padding to the top and bottom */
+  padding: 8px 0;
   margin: 0;
-  border-radius: 4px; /* Slightly rounded corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  z-index: 10;
   max-height: 150px;
   overflow-y: auto;
 }
 
 .autocomplete-suggestions li {
-  padding: 8px 16px; /* Adjust padding inside each item */
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #333;
   cursor: pointer;
-  font-size: 14px; /* Match input font size */
-  color: #333; /* Darker text color */
 }
 
 .autocomplete-suggestions li:hover {
-  background-color: #f5f5f5; /* Light gray on hover */
+  background-color: #f0f0f0;
+}
+
+/* Add Button */
+.add-btn {
+  margin-top: 24px;
+  background-color: #00a383;
+  color: white;
+  width: 100%;
+  border: none;
+  padding: 14px 0;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background-color: #007a65;
 }

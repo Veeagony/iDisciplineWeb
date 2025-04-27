@@ -56,7 +56,7 @@ const EditStudentForm = ({ isOpen, onClose, student, onSave }) => {
   return (
     <div className={`edit-student-drawer ${isOpen ? "open" : ""}`}>
       <div className="drawer-header">
-        <h5>Edit Student</h5>
+        <h5 className="mb-0 text-white fw-bold">Edit Student</h5>
         <IoMdClose size={24} onClick={onClose} className="close-btn" />
       </div>
 
