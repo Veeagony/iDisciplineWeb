@@ -95,7 +95,7 @@
 
 .date-grid {
   display: grid;
-  grid-template-columns: 2fr 2fr;
+  grid-template-columns: repeat(4, 1fr);
   gap: 8px;
   margin-bottom: 12px;
 }
@@ -122,6 +122,29 @@ textarea {
 
 .save-btn:hover {
   background-color: #007a65;
+}
+
+/* Toast Notification */
+.toast {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background-color: #00a383;
+  color: white;
+  padding: 14px 24px;
+  border-radius: 30px;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  animation: fadeInOut 2s;
+  font-size: 16px;
+  z-index: 2000;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(20px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(20px); }
 }
 
 /* Loading Text */

@@ -23,29 +23,30 @@ const Violations = () => {
           ...value,
         }));
         setViolations(violationArray);
-        console.log("✅ Violations data updated in state:", violationArray);
       } else {
         setViolations([]);
-        console.log("⚠️ No violations data found in Firebase.");
       }
     });
     return () => unsubscribe();
   }, []);
 
   const handleAddViolation = (newViolation) => {
-    console.log("➡️ handleAddViolation received:", newViolation);
     const newRef = push(ref(db, "violations"));
-    // Note: You may want to adjust caseNo generation and incorporate studentId as needed.
     const caseNo = `C-${violations.length + 1}`.padStart(6, "0");
     const newViolationWithCaseNo = { ...newViolation, caseNo };
     set(newRef, newViolationWithCaseNo)
       .then(() => {
-        console.log("✅ New violation added to Firebase:", newViolationWithCaseNo);
-        setDrawerOpen(false);
+        alert("Violation added successfully!");
+        setDrawerOpen(false); // ✅ Close drawer after adding
       })
       .catch((error) => {
-        console.error("❌ Error adding violation to Firebase:", error);
+        console.error("Error adding violation:", error);
       });
+  };
+
+  const handleRowClick = (violation) => {
+    setSelectedViolation(violation);
+    setDrawerOpen(false); // ✅ Close AddViolations if open
   };
 
   const getBadgeClass = (status) =>
@@ -53,21 +54,9 @@ const Violations = () => {
 
   const filteredViolations = violations.filter((v) => {
     const matchesFilter = filter === "All" || v.violationCategory === filter;
-    const matchesSearch =
-      !searchTerm ||
-      (v.offender &&
-        v.offender.toLowerCase().includes(searchTerm.toLowerCase()));
-    const shouldInclude = matchesFilter && matchesSearch;
-    console.log(
-      `🔎 Filtering: ${v?.offender || "No Offender"}, Category: ${
-        v?.violationCategory
-      }, Filter: ${filter}, Search: ${searchTerm}, Include: ${shouldInclude}`
-    );
-    return shouldInclude;
+    const matchesSearch = !searchTerm || (v.offender && v.offender.toLowerCase().includes(searchTerm.toLowerCase()));
+    return matchesFilter && matchesSearch;
   });
-
-  console.log("🔄 Current violations state:", violations);
-  console.log("➡️ Filtered violations to render:", filteredViolations);
 
   return (
     <div className="violations-page px-4 py-4">
@@ -101,9 +90,7 @@ const Violations = () => {
         {["All", "Minor Offense", "Major Offense", "Archive"].map((type) => (
           <button
             key={type}
-            className={`btn ${
-              filter === type ? "filter-active" : "btn-outline-primary"
-            } fw-semibold`}
+            className={`btn ${filter === type ? "filter-active" : "btn-outline-primary"} fw-semibold`}
             onClick={() => setFilter(type)}
           >
             {type === "All" ? "All Violations" : type}
@@ -112,10 +99,7 @@ const Violations = () => {
       </div>
 
       <div className="d-flex justify-content-end">
-        <button
-          className="addviolationbtn"
-          onClick={() => setDrawerOpen(true)}
-        >
+        <button className="addviolationbtn" onClick={() => setDrawerOpen(true)}>
           Add Violation
         </button>
       </div>
@@ -126,7 +110,7 @@ const Violations = () => {
             <tr>
               <th>Status</th>
               <th>Case No.</th>
-              <th>Student ID</th> {/* New column for student ID */}
+              <th>Student ID</th>
               <th>Student Name</th>
               <th>Violation Category</th>
               <th>Date</th>
@@ -134,18 +118,14 @@ const Violations = () => {
           </thead>
           <tbody>
             {filteredViolations.map((v) => (
-              <tr
-                key={v.id}
-                onClick={() => setSelectedViolation(v)}
-                style={{ cursor: "pointer" }}
-              >
+              <tr key={v.id} onClick={() => handleRowClick(v)} style={{ cursor: "pointer" }}>
                 <td>
                   <span className={`badge ${getBadgeClass(v.status)} px-3 py-2`}>
                     {v.status}
                   </span>
                 </td>
                 <td>{v.caseNo}</td>
-                <td>{v.studentId}</td> {/* Displaying student ID */}
+                <td>{v.studentId}</td>
                 <td>{v.offender}</td>
                 <td>{v.violationCategory}</td>
                 <td>{v.Date}</td>
@@ -155,13 +135,14 @@ const Violations = () => {
         </table>
       </div>
 
+      {/* Drawers */}
       {isDrawerOpen && (
         <AddViolations
+          isOpen={isDrawerOpen}
           closeDrawer={() => setDrawerOpen(false)}
           addViolation={handleAddViolation}
         />
       )}
-
       {selectedViolation && (
         <ViolationsDetails
           violation={selectedViolation}
