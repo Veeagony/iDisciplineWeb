@@ -14,7 +14,7 @@ import Handbook from "./DisciplinaryOffice/Handbook/Handbook";
 import Reports from "./DisciplinaryOffice/Reports/Reports";
 import Home from "./Student/Home/Home";
 import StudentProfile from "./Student/StudentProfile/StudentProfile";
-import Violation from "./Student/Violation/Violation"
+import ViolationRecord from "./Student/Violation/ViolationRecord"
 
 function App() {
   return (
@@ -39,7 +39,7 @@ function App() {
         <Route element={<MainLayoutStudent />}>
           <Route path="/home" element={<Home />} />
           <Route path="/student-profile" element={<StudentProfile />} />
-          <Route path="/violation" element={<Violation />} />
+          <Route path="/violation" element={<ViolationRecord />} />
         </Route>
       </Routes>
     </Router>
