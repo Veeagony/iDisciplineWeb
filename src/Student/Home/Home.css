@@ -1,128 +1,182 @@
-/* General layout */
-.home-container {
-    margin: 20px;
-  }
-  
-  /* Header */
-  h2 {
-    font-size: 28px;
-    font-weight: 600;
-    color: #0f296f;
-  }
-  
-  /* Stats Container */
-  .stats-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  .stat-card {
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 20px;
-    width: 23%;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .stat-card h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: #0f296f;
-  }
-  
-  .stat-card p {
-    font-size: 24px;
-    font-weight: 600;
-    color: #0f296f;
-  }
-  
-  /* Individual stat colors */
-  .violation {
-    background-color: #f55d5d;
-  }
-  
-  .incident-report {
-    background-color: #55d55d;
-  }
-  
-  .pending-case {
-    background-color: #f5b642;
-  }
-  
-  .appointment {
-    background-color: #4f77d4;
-    color: #fff;
-  }
-  
-  /* Student Profile */
-  .student-profile {
-    margin-top: 40px;
-  }
-  
-  .student-card {
-    display: flex;
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    align-items: center;
-  }
-  
-  .student-image {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background-color: #ddd;
-    margin-right: 20px;
-  }
-  
-  .student-info p {
-    font-size: 16px;
-    color: #333;
-    margin: 5px 0;
-  }
-  
-  /* Appointments */
-  .appointments-container {
-    margin-top: 40px;
-  }
-  
-  .appointments-list {
-    margin-top: 10px;
-  }
-  
-  .appointment-item {
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .appointment-item p {
-    font-size: 16px;
-    color: #333;
-    margin: 5px 0;
-  }
-  
-  /* Floating Button */
-  .floating-button {
-    position: fixed;
-    right: 30px;
-    bottom: 30px;
-    background-color: #0f296f;
-    border-radius: 50%;
-    padding: 15px;
-    color: white;
-    font-size: 20px;
-    border: none;
-    cursor: pointer;
-    z-index: 100;
-  }
-  
-  .floating-button:hover {
-    background-color: #3e5ea1;
-  }
-  
+.home-page {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  position: relative;
+}
+
+/* Header */
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home-title {
+  color: #0f296f;
+  font-weight: bold;
+}
+
+.home-bell {
+  font-size: 22px;
+  color: #6495ed;
+  cursor: pointer;
+}
+
+/* Stat Cards */
+.stat-cards {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  flex-wrap: wrap; /* Responsive if needed */
+}
+
+.stat-card {
+  width: 220px;
+  height: 160px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+.violation {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+}
+
+.incident {
+  background: linear-gradient(135deg, #27ae60, #219150);
+  color: white;
+}
+
+.pending {
+  background: linear-gradient(135deg, #f39c12, #d68910);
+  color: white;
+}
+
+.appointment {
+  background: linear-gradient(135deg, #0f296f, #143caa);
+  color: white;
+}
+
+.stat-icon {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.stat-text {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.stat-number {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+
+/* Middle Section */
+.middle-section {
+  display: flex;
+  margin-top: 35px;
+  gap: 20px;
+}
+
+/* Student Profile Card */
+.student-profile-card {
+  background: #fff;
+  border-radius: 10px;
+  width: 700px;
+  height: 350px;
+  overflow: hidden;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.student-header {
+  height: 40px;
+  background-color: #0f296f;
+}
+
+.student-body {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.student-photo {
+  width: 120px;
+  height: 120px;
+  background-color: #d9d9d9;
+  margin-right: 20px;
+}
+
+.student-info {
+  flex-grow: 1;
+}
+
+.student-info h2 {
+  margin-bottom: 5px;
+}
+
+.student-info hr {
+  margin: 10px 0;
+}
+
+/* Appointments */
+.appointments-card {
+  background: #fff;
+  border-radius: 10px;
+  width: 300px;
+  padding: 20px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.appointments-title {
+  color: #0f296f;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.appointment-item {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.appointment-line {
+  width: 5px;
+  background-color: #0f296f;
+  border-radius: 10px;
+}
+
+/* Floating Bot */
+.floating-bot {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #0f296f;
+  color: white;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}

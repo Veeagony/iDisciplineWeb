@@ -1,68 +1,85 @@
-import React from "react";
-import "./Home.css";
+import React from 'react';
+import { FaBell, FaGavel, FaUsers, FaHourglassHalf, FaCalendarAlt, FaRobot } from 'react-icons/fa';
+import './Home.css';
 
-function Home() {
+const Home = () => {
   return (
-    <div className="home-container">
-      {/* Dashboard Header */}
-      <h2>Home</h2>
+    <div className="home-page">
+      {/* Header */}
+      <div className="home-header">
+        <h1 className="home-title">Home</h1>
+        <FaBell className="home-bell" />
+      </div>
 
-      {/* Dashboard Stats */}
-      <div className="stats-container">
+      {/* Stat Cards */}
+      <div className="stat-cards">
         <div className="stat-card violation">
-          <h3>Violation</h3>
-          <p>0</p>
+          <FaGavel className="stat-icon" />
+          <div className="stat-text">Violation</div>
+          <div className="stat-number">0</div>
         </div>
-        <div className="stat-card incident-report">
-          <h3>Incident Reports</h3>
-          <p>0</p>
+        <div className="stat-card incident">
+          <FaUsers className="stat-icon" />
+          <div className="stat-text">Incident Reports</div>
+          <div className="stat-number">0</div>
         </div>
-        <div className="stat-card pending-case">
-          <h3>Pending Case</h3>
-          <p>0</p>
+        <div className="stat-card pending">
+          <FaHourglassHalf className="stat-icon" />
+          <div className="stat-text">Pending Case</div>
+          <div className="stat-number">0</div>
         </div>
         <div className="stat-card appointment">
-          <h3>Appointment</h3>
-          <p>0</p>
+          <FaCalendarAlt className="stat-icon" />
+          <div className="stat-text">Appointment</div>
+          <div className="stat-number">0</div>
         </div>
       </div>
 
-      {/* Student Profile */}
-      <div className="student-profile">
-        <div className="student-card">
-          <img src="profile-placeholder.png" alt="Student" className="student-image" />
-          <div className="student-info">
-            <p>Student Name</p>
-            <p>Student No. ____________</p>
-            <p>Year & Section: ____________</p>
-            <p>School Year: ____________</p>
+      {/* Middle Section: Student Profile + Appointments */}
+      <div className="middle-section">
+        {/* Student Profile */}
+        <div className="student-profile-card">
+          <div className="student-header"></div>
+          <div className="student-body">
+            <div className="student-photo"></div>
+            <div className="student-info">
+              <h2>Student Name</h2>
+              <p>Student No.</p>
+              <hr />
+              <p>Year & Section:</p>
+              <p>School Year:</p>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Upcoming Appointments */}
-      <div className="appointments-container">
-        <h3>Upcoming Appointments</h3>
-        <div className="appointments-list">
+        {/* Appointments */}
+        <div className="appointments-card">
+          <h2 className="appointments-title">Upcoming Appointments</h2>
           <div className="appointment-item">
-            <p>Student Counselling</p>
-            <p>Date: ________</p>
-            <p>Time: ________</p>
+            <div className="appointment-line"></div>
+            <div>
+              <strong>Student Counselling</strong>
+              <p>Date</p>
+              <p>Time</p>
+            </div>
           </div>
           <div className="appointment-item">
-            <p>Student Counselling</p>
-            <p>Date: ________</p>
-            <p>Time: ________</p>
+            <div className="appointment-line"></div>
+            <div>
+              <strong>Student Counselling</strong>
+              <p>Date</p>
+              <p>Time</p>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Floating button */}
-      <div className="floating-button">
-        <button className="settings-btn">⚙</button>
+      {/* Floating Bot Icon */}
+      <div className="floating-bot">
+        <FaRobot />
       </div>
     </div>
   );
-}
+};
 
 export default Home;
