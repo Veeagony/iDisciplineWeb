@@ -1,0 +1,188 @@
+/* Overlay */
+.drawer-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  /* Drawer */
+  .drawer-content {
+    background: #ffffff;
+    width: 400px;
+    max-width: 90%;
+    height: 100%;
+    padding: 0;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    overflow-y: auto;
+    animation: slideIn 0.3s ease forwards;
+  }
+  
+  /* Drawer Closing */
+  .drawer-content.closing {
+    animation: slideOut 0.3s ease forwards;
+  }
+  
+  /* Custom Scrollbar */
+  .drawer-content::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .drawer-content::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .drawer-content::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 10px;
+  }
+  
+  .drawer-content::-webkit-scrollbar-thumb:hover {
+    background: #444;
+  }
+  
+  /* Animations */
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideOut {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+  
+  /* Drawer Header */
+  .drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1c3faa;
+    color: white;
+    padding: 18px 20px;
+    border-top-left-radius: 10px;
+  }
+  
+  .drawer-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .close-icon {
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  /* Form */
+  .incident-form {
+    padding: 20px 25px;
+  }
+  
+  .incident-form label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #2d3748;
+    margin-top: 15px;
+  }
+  
+  .incident-form input,
+  .incident-form select,
+  .incident-form textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    outline: none;
+  }
+  
+  .incident-form textarea {
+    height: 100px;
+    resize: none;
+  }
+  
+  /* Date Time Fields */
+  .datetime-fields {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .datetime-fields select,
+  .datetime-fields input {
+    flex: 1;
+  }
+  
+  /* Party Field */
+  .party-field {
+    position: relative;
+    margin-bottom: 10px;
+  }
+  
+  .party-field input {
+    width: 100%;
+    padding-right: 70px;
+  }
+  
+  .search-icon,
+  .group-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #718096;
+    cursor: pointer;
+  }
+  
+  .search-icon {
+    right: 40px;
+  }
+  
+  .group-icon {
+    right: 10px;
+  }
+  
+  /* Submit Button */
+  .submit-button {
+    width: 100%;
+    background-color: #1ca58e;
+    color: white;
+    font-weight: 600;
+    padding: 12px 0;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #169a82;
+  }
+
+  .datetime-fields input[type="time"] {
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+  }
+  
